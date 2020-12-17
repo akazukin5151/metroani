@@ -82,15 +82,24 @@ def draw_metro_frames(surface, constants):
 
 
 def draw_yamanote_frames(surface, constants):
+    # Change background color
     gz.rectangle(
         lx=constants.width * 2, ly=constants.height * 2,
         fill=Yamanote.bg_color
     ).draw(surface)
 
+    # Fill station info in the top with background
     gz.rectangle(
         lx=constants.width, ly=constants.sep_height,
         xy=[constants.width/2,constants.sep_height/2],
         fill=Yamanote.rectangle_fill
+    ).draw(surface)
+
+    # Add line color indicator
+    gz.rectangle(
+        lx=Yamanote.indicator_width, ly=constants.sep_height,
+        xy=[Yamanote.indicator_pos, constants.sep_height/2],
+        fill=Yamanote.indicator_color
     ).draw(surface)
 
 
@@ -298,7 +307,10 @@ class Metro:
 @dataclass(frozen=True)
 class Yamanote:
     rectangle_fill = [0.26, 0.26, 0.24]
-    bg_color = list(map(lambda x: x/255, [229, 229, 299]))
+    bg_color = [x/255 for x in [229, 229, 299]]
+    indicator_width = 100
+    indicator_pos = 470
+    indicator_color = [x/255 for x in [84, 175, 0]]
 
 
 if __name__ == '__main__':
