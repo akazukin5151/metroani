@@ -80,6 +80,14 @@ def draw_metro_frames(surface, constants):
     make_rectangle_frames(surface, constants)
 
 
+def draw_yamanote_frames(surface, constants):
+    gz.rectangle(
+        lx=constants.width, ly=constants.sep_height,
+        xy=[constants.width/2,constants.sep_height/2],
+        fill=Yamanote.rectangle_fill
+    ).draw(surface)
+
+
 @curry
 def make_frames(
     t, constants, settings, next_settings, terminal_settings,
@@ -89,7 +97,8 @@ def make_frames(
     surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
 
     case = {
-        'metro': draw_metro_frames
+        'metro': draw_metro_frames,
+        'yamanote': draw_yamanote_frames
     }
     if (func := case.get(constants.theme.lower(), None)):
         func(surface, constants)
@@ -278,6 +287,11 @@ class Metro:
     stroke_width = 10
     rectangle_height = 220
     rectangle_fill = [0.95, 0.95, 0.95]
+
+
+@dataclass(frozen=True)
+class Yamanote:
+    rectangle_fill = [0.26, 0.26, 0.24]
 
 
 if __name__ == '__main__':
