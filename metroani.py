@@ -82,6 +82,11 @@ def draw_metro_frames(surface, constants):
 
 def draw_yamanote_frames(surface, constants):
     gz.rectangle(
+        lx=constants.width * 2, ly=constants.height * 2,
+        fill=Yamanote.bg_color
+    ).draw(surface)
+
+    gz.rectangle(
         lx=constants.width, ly=constants.sep_height,
         xy=[constants.width/2,constants.sep_height/2],
         fill=Yamanote.rectangle_fill
@@ -292,6 +297,7 @@ class Metro:
 @dataclass(frozen=True)
 class Yamanote:
     rectangle_fill = [0.26, 0.26, 0.24]
+    bg_color = list(map(lambda x: x/255, [229, 229, 299]))
 
 
 if __name__ == '__main__':
