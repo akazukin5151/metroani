@@ -1,0 +1,155 @@
+{
+    "constants": {
+        "height": 1080,
+        "width": 1920,
+        "duration": 0.7
+    },
+    "stations": [
+        {
+            "translations": [
+                {
+                    "name": "鷺ノ宮",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [
+                        960,
+                        150
+                    ],
+                    "exit_xy": [
+                        960,
+                        320
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Saginomiya",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [
+                        1400,
+                        120
+                    ],
+                    "exit_xy": [
+                        1400,
+                        350
+                    ],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [
+                1300,
+                220
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "name": "都立家政",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [
+                        960,
+                        150
+                    ],
+                    "exit_xy": [
+                        960,
+                        320
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Toritsu-Kasei",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [
+                        1400,
+                        120
+                    ],
+                    "exit_xy": [
+                        1400,
+                        350
+                    ],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [
+                1300,
+                220
+            ]
+        }
+    ],
+    "terminal": {
+        "translations": [
+            {
+                "name": "西武新宿 ゆき",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 70,
+                "enter_xy": [
+                    960,
+                    35
+                ],
+                "exit_xy": [
+                    960,
+                    100
+                ],
+                "scale_x": 1
+            },
+            {
+                "name": "For Seibu Shinjuku",
+                "font": "Roboto",
+                "fontsize": 60,
+                "enter_xy": [
+                    960,
+                    35
+                ],
+                "exit_xy": [
+                    960,
+                    110
+                ],
+                "scale_x": 0.8
+            }
+        ],
+        "xy": [
+            650,
+            70
+        ]
+    },
+    "states": {
+        "next": {
+            "translations": [
+                {
+                    "name": "つぎは",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Next",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [
+                300,
+                280
+            ]
+        }
+    }
+}
