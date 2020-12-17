@@ -1,0 +1,306 @@
+{
+    "stations": [
+        {
+            "translations": [
+                {
+                    "name": "鷺ノ宮",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [
+                        960,
+                        150
+                    ],
+                    "exit_xy": [
+                        960,
+                        320
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Saginomiya",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [
+                        1400,
+                        120
+                    ],
+                    "exit_xy": [
+                        1400,
+                        350
+                    ],
+                    "scale_x": 0.8
+                },
+                {
+                    "name": "鷺之宮",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 170,
+                    "enter_xy": [
+                        1400,
+                        120
+                    ],
+                    "exit_xy": [
+                        1400,
+                        350
+                    ],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [
+                1300,
+                220
+            ]
+        },
+        {
+            "translations": [
+                {
+                    "name": "都立家政",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [
+                        960,
+                        150
+                    ],
+                    "exit_xy": [
+                        960,
+                        320
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Toritsu-Kasei",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [
+                        1400,
+                        120
+                    ],
+                    "exit_xy": [
+                        1400,
+                        350
+                    ],
+                    "scale_x": 0.8
+                },
+                {
+                    "name": "都立家政",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [
+                        960,
+                        150
+                    ],
+                    "exit_xy": [
+                        960,
+                        320
+                    ],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [
+                1300,
+                220
+            ]
+        }
+    ],
+    "terminal": {
+        "translations": [
+            {
+                "name": "西武新宿 ゆき",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 70,
+                "enter_xy": [
+                    960,
+                    35
+                ],
+                "exit_xy": [
+                    960,
+                    100
+                ],
+                "scale_x": 1
+            },
+            {
+                "name": "For Seibu Shinjuku",
+                "font": "Roboto",
+                "fontsize": 60,
+                "enter_xy": [
+                    960,
+                    35
+                ],
+                "exit_xy": [
+                    960,
+                    110
+                ],
+                "scale_x": 0.8
+            },
+            {
+                "name": "開往 西武新宿",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 60,
+                "enter_xy": [
+                    960,
+                    35
+                ],
+                "exit_xy": [
+                    960,
+                    110
+                ],
+                "scale_x": 1
+            }
+        ],
+        "xy": [
+            650,
+            70
+        ]
+    },
+    "states": {
+        "next": {
+            "translations": [
+                {
+                    "name": "つぎは",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Next",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "下一站",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 60,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [
+                300,
+                280
+            ]
+        },
+        "arriving": {
+            "translations": [
+                {
+                    "name": "まもなく",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Arriving at",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "即將到達",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 60,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [
+                300,
+                280
+            ]
+        },
+        "stopping": {
+            "translations": [
+                {
+                    "name": "ただいま",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Now stopping at",
+                    "font": "Roboto",
+                    "fontsize": 70,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 0.8
+                },
+                {
+                    "name": "這一站",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [
+                        960,
+                        250
+                    ],
+                    "exit_xy": [
+                        960,
+                        330
+                    ],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [
+                300,
+                280
+            ]
+        }
+    }
+}
