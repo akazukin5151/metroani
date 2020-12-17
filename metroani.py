@@ -62,23 +62,18 @@ def make_text_frames_from_setting(t, constants, surface, settings, old, new):
     return surface
 
 
-def make_line_frames(surface, constants):
+def draw_metro_frames(surface, constants):
+    # Draw separator line
     gz.polyline(
         [(0, constants.sep_height), (constants.width, constants.sep_height)],
         stroke=Metro.stroke_color, stroke_width=Metro.stroke_width
     ).draw(surface)
 
-
-def make_rectangle_frames(surface, constants):
+    # Draw background for 'next' station text
     gz.rectangle(
         lx=constants.width*2, ly=Metro.rectangle_height,
         xy=[0,0], fill=Metro.rectangle_fill
     ).draw(surface)
-
-
-def draw_metro_frames(surface, constants):
-    make_line_frames(surface, constants)
-    make_rectangle_frames(surface, constants)
 
 
 def draw_yamanote_frames(surface, constants):
