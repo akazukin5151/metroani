@@ -153,11 +153,13 @@ def make_bar(surface, constants):
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
     # For text at the bottom and bar in the top,
-    # the bottom of the bars is the center of the section
+    # the bottom of the bars is slightly above the center of the section
+    # The center of the section is the center of the station numbers
     bar_y = (
         (constants.height - constants.sep_height) / 2
         + constants.sep_height  # center of section
         - bar_height * 2
+        - 40  # Approx fontheight/2
     )
 
     triangle_width = constants.width * 0.03
