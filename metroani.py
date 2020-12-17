@@ -23,38 +23,39 @@ def hide_text_scaler(t, duration):
 
 def make_scale_text_frames(
     t, duration, surface, skip_if_t, scaler_func,
-    text, xy, font, fontsize, x_scale,
+    text, xy, font, fontsize, fontcolor, x_scale,
     center_xy
 ):
     '''Draws either a text showing or hiding animation'''
     if t != skip_if_t:
         scaler = scaler_func(t, duration)
-        new = gz.text(text, font, fontsize, xy=xy)
+        new = gz.text(text, font, fontsize, xy=xy, fill=fontcolor)
         new.scale(rx=x_scale, ry=scaler, center=center_xy).draw(surface)
 
 
 def make_text_frames(
     t, duration, surface, new_text, old_text, xy, new_font, old_font,
-    new_fontsize, old_fontsize, old_scale_x, new_scale_x
+    new_fontsize, old_fontsize, fontcolor, old_scale_x, new_scale_x
     , new_center_xy, old_center_xy
 ):
     '''Draws one text showing animation and one text hiding animation'''
     make_scale_text_frames(
         t, duration, surface, 0, show_text_scaler, new_text, xy, new_font,
-        new_fontsize, new_scale_x, new_center_xy
+        new_fontsize, fontcolor, new_scale_x, new_center_xy
     )
     make_scale_text_frames(
         t, duration, surface, duration, hide_text_scaler, old_text, xy, old_font,
-        old_fontsize, old_scale_x, old_center_xy
+        old_fontsize, fontcolor, old_scale_x, old_center_xy
     )
     return surface
 
 
 def make_text_frames_from_setting(t, constants, surface, settings, old, new):
+    color = Yamanote.bg_color if constants.theme.lower() == 'yamanote' else (0,0,0)
     make_text_frames(
         t, constants.duration, surface, new.name, old.name,
         settings.xy, new.font, old.font,
-        new.fontsize, old.fontsize,
+        new.fontsize, old.fontsize, color,
         old.scale_x, new.scale_x, new.enter_xy,
         old.exit_xy
     )
