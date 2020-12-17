@@ -57,6 +57,8 @@ def make_text_frames(
 def make_text_frames_from_setting(t, constants, surface, settings, old, new):
     if constants.theme.lower() == 'yamanote':
         color = Yamanote.bg_color
+    elif constants.theme.lower() == 'tokyu':
+        color = Tokyu.station_color
     # TODO: only change color for station name
     #elif constants.theme.lower() == 'jr':
         #color = JR.station_font_color
@@ -132,6 +134,21 @@ def draw_jr_frames(surface, constants):
     ).draw(surface)
 
 
+def draw_tokyu_frames(surface, constants):
+    # Change background color
+    gz.rectangle(
+        lx=constants.width * 2, ly=constants.height * 2,
+        fill=Tokyu.bg_color
+    ).draw(surface)
+
+    # Fill station info in the top with background
+    gz.rectangle(
+        lx=constants.width, ly=constants.sep_height,
+        xy=[constants.width/2,constants.sep_height/2],
+        fill=Tokyu.rectangle_fill
+    ).draw(surface)
+
+
 @curry
 def make_frames(
     t, constants, settings, next_settings, terminal_settings,
@@ -144,6 +161,7 @@ def make_frames(
         'metro': draw_metro_frames,
         'yamanote': draw_yamanote_frames,
         'jr': draw_jr_frames,
+        'tokyu': draw_tokyu_frames,
     }
     if (func := case.get(constants.theme.lower(), None)):
         func(surface, constants)
@@ -351,6 +369,13 @@ class JR:
     station_font_color = rgb([24, 135, 72])
     box_width_mul = 2.3 / 4
     box_height_mul = 2.5 / 4
+
+
+@dataclass(frozen=True)
+class Tokyu:
+    rectangle_fill = rgb([22, 22, 22])
+    bg_color = rgb([233, 235, 239])
+    station_color = [1, 1, 1]
 
 
 if __name__ == '__main__':
