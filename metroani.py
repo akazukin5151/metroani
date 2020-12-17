@@ -150,11 +150,49 @@ def draw_tokyu_frames(surface, constants):
 
 
 def make_line(surface, constants):
+    bar_height = constants.height * 0.05
+    bar_width = constants.width * 0.9
+    bar_y = (
+        (constants.height - constants.sep_height) / 2
+        + constants.sep_height - bar_height
+    )
+
+    triangle_width = constants.width * 0.03
+    # bar_x is the center of the bar, but triangle_x is the start of the line
+    bar_x = constants.width/2 - triangle_width/2
+    triangle_x = bar_x + bar_width/2 - 1
+
     gz.rectangle(
-        lx=constants.width * 0.9, ly=constants.height * 0.1,
-        xy=[constants.width/2, constants.height/2],
+        lx=bar_width, ly=bar_height,
+        xy=[bar_x, bar_y],
         fill=constants.line_color
     ).draw(surface)
+
+    gz.rectangle(
+        lx=bar_width, ly=bar_height,
+        xy=[bar_x, bar_y + bar_height],
+        fill=constants.line_color_dark
+    ).draw(surface)
+
+
+    gz.polyline(
+        [
+            (triangle_x                 , bar_y - bar_height/2),
+            (triangle_x + triangle_width, bar_y + bar_height/2),
+            (triangle_x                 , bar_y + bar_height/2),
+        ],
+        close_path=True, fill=constants.line_color
+    ).draw(surface)
+
+    gz.polyline(
+        [
+            (triangle_x                 , bar_y + bar_height/2),
+            (triangle_x + triangle_width, bar_y + bar_height/2),
+            (triangle_x                 , bar_y + bar_height*3/2),
+        ],
+        close_path=True, fill=constants.line_color_dark
+    ).draw(surface)
+
 
 
 @curry
@@ -262,6 +300,7 @@ class Constants:
     duration: float
     sep_height: int
     line_color: tuple[float]
+    line_color_dark: tuple[float]
     theme: str  # Metro | Yamanote | JR | Tokyu
 
 
