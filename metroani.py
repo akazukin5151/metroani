@@ -250,7 +250,7 @@ class Constants:
     height: int
     duration: float
     sep_height: int
-    theme: str  # Enum('Theme', 'Metro Yamanote JR Tokyu')
+    theme: str  # Metro | Yamanote | JR | Tokyu
 
 
 @dataclass
