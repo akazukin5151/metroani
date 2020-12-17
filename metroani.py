@@ -179,7 +179,6 @@ def make_bar(surface, constants):
         fill=constants.line_color_dark
     ).draw(surface)
 
-
     # Light triangle
     gz.polyline(
         [
@@ -200,17 +199,16 @@ def make_bar(surface, constants):
         close_path=True, fill=constants.line_color_dark
     ).draw(surface)
 
-
     # Station rectangles
     rect_width = bar_width * 0.07
-    padding = constants.width * 0.05
+    edge_padding = constants.width * 0.02
     rect_x = (
         (constants.width - bar_width - triangle_width)/2
         + rect_width/2
-        + padding
+        + edge_padding
     )
     max_stations = 8
-    max_rect_x = triangle_x - padding - rect_width/2
+    max_rect_x = triangle_x - edge_padding - rect_width/2
     spacing = (max_rect_x - rect_x) / (max_stations - 1)
 
     for n in range(8):
@@ -219,6 +217,21 @@ def make_bar(surface, constants):
             fill=[1,1,1, .9],
             xy=[rect_x + spacing * n, bar_y + bar_height/2]
         ).draw(surface)
+
+    # Draw arrow
+    arrow_width = spacing / 2 - rect_width/2
+    gz.polyline(
+        [
+            (rect_x + rect_width/2                        , bar_y - bar_height/2),
+            (rect_x + rect_width/2 + arrow_width          , bar_y - bar_height/2),
+            (rect_x + spacing - rect_width/2              , bar_y + bar_height/2),
+            (rect_x + rect_width/2 + arrow_width          , bar_y + bar_height*3/2),
+            (rect_x + rect_width/2                        , bar_y + bar_height*3/2),
+            (rect_x + spacing - rect_width/2 - arrow_width, bar_y + bar_height/2),
+        ],
+        close_path=True, stroke=[1,1,1], stroke_width=5, fill=rgb([251, 3, 1])
+    ).draw(surface)
+    # TODO flash arrow color
 
 
 @curry
