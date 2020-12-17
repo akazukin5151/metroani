@@ -10,6 +10,10 @@ import moviepy.video.fx.all as vfx
 from cytoolz import curry, sliding_window
 
 
+def rgb(values: list[int]) -> list[float]:
+    return [x/255 for x in values]
+
+
 # Functions of time that draws animation frames
 
 def show_text_scaler(t, duration):
@@ -51,7 +55,14 @@ def make_text_frames(
 
 
 def make_text_frames_from_setting(t, constants, surface, settings, old, new):
-    color = Yamanote.bg_color if constants.theme.lower() == 'yamanote' else (0,0,0)
+    if constants.theme.lower() == 'yamanote':
+        color = Yamanote.bg_color
+    # TODO: only change color for station name
+    #elif constants.theme.lower() == 'jr':
+        #color = JR.station_font_color
+    else:
+        color = (0,0,0)
+
     make_text_frames(
         t, constants.duration, surface, new.name, old.name,
         settings.xy, new.font, old.font,
@@ -98,6 +109,29 @@ def draw_yamanote_frames(surface, constants):
     ).draw(surface)
 
 
+def draw_jr_frames(surface, constants):
+    # Change background color
+    gz.rectangle(
+        lx=constants.width * 2, ly=constants.height * 2,
+        fill=JR.bottom_bg_color
+    ).draw(surface)
+
+    # Fill station info in the top with background
+    gz.rectangle(
+        lx=constants.width, ly=constants.sep_height,
+        xy=[constants.width/2,constants.sep_height/2],
+        fill=JR.top_bg_color
+    ).draw(surface)
+
+    # Fill station text with background
+    gz.rectangle(
+        lx=constants.width * JR.box_width_mul,
+        ly=constants.sep_height * JR.box_height_mul,
+        xy=[constants.width/2, constants.sep_height/2 + 50],
+        fill=JR.station_bg_color
+    ).draw(surface)
+
+
 @curry
 def make_frames(
     t, constants, settings, next_settings, terminal_settings,
@@ -108,7 +142,8 @@ def make_frames(
 
     case = {
         'metro': draw_metro_frames,
-        'yamanote': draw_yamanote_frames
+        'yamanote': draw_yamanote_frames,
+        'jr': draw_jr_frames,
     }
     if (func := case.get(constants.theme.lower(), None)):
         func(surface, constants)
@@ -302,10 +337,20 @@ class Metro:
 @dataclass(frozen=True)
 class Yamanote:
     rectangle_fill = [0.26, 0.26, 0.24]
-    bg_color = [x/255 for x in [229, 229, 299]]
+    bg_color = rgb([229, 229, 299])
     indicator_width = 100
     indicator_pos = 470
-    indicator_color = [x/255 for x in [84, 175, 0]]
+    indicator_color = rgb([84, 175, 0])
+
+
+@dataclass(frozen=True)
+class JR:
+    top_bg_color = rgb([173, 175, 179])
+    bottom_bg_color = rgb([213, 217, 224])
+    station_bg_color = rgb([242, 242, 242])
+    station_font_color = rgb([24, 135, 72])
+    box_width_mul = 2.3 / 4
+    box_height_mul = 2.5 / 4
 
 
 if __name__ == '__main__':
