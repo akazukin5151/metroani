@@ -83,9 +83,9 @@ def make_frames(
     '''Returns the frames from the transition of three texts as a function of time'''
     surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
 
-    # if theme == metro
-    make_line_frames(surface, constants)
-    make_rectangle_frames(surface, constants)
+    if constants.theme.lower() == 'metro':
+        make_line_frames(surface, constants)
+        make_rectangle_frames(surface, constants)
 
     make_text_frames_from_setting(
         t, constants, surface, settings,
@@ -171,6 +171,7 @@ class Constants:
     height: int
     duration: float
     sep_height: int
+    theme: str  # Enum('Theme', 'Metro Yamanote JR Tokyu')
 
 
 @dataclass
