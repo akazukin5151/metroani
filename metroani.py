@@ -150,6 +150,7 @@ def draw_tokyu_frames(surface, constants):
 
 
 def make_bar(surface, constants):
+    # TODO: use gradient instead of light/dark
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
     # For text at the bottom and bar in the top,
