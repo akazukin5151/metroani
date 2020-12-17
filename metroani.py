@@ -63,15 +63,15 @@ def make_text_frames_from_setting(t, constants, surface, settings, old, new):
 
 def make_line_frames(surface, constants):
     gz.polyline(
-        [(0, constants.line_height), (constants.width, constants.line_height)],
-        stroke=constants.stroke_color, stroke_width=constants.stroke_width
+        [(0, constants.sep_height), (constants.width, constants.sep_height)],
+        stroke=Metro.stroke_color, stroke_width=Metro.stroke_width
     ).draw(surface)
 
 
 def make_rectangle_frames(surface, constants):
     gz.rectangle(
-        lx=constants.width*2, ly=constants.rectangle_height,
-        xy=[0,0], fill=constants.rectangle_fill
+        lx=constants.width*2, ly=Metro.rectangle_height,
+        xy=[0,0], fill=Metro.rectangle_fill
     ).draw(surface)
 
 
@@ -83,6 +83,7 @@ def make_frames(
     '''Returns the frames from the transition of three texts as a function of time'''
     surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
 
+    # if theme == metro
     make_line_frames(surface, constants)
     make_rectangle_frames(surface, constants)
 
@@ -169,11 +170,7 @@ class Constants:
     width: int
     height: int
     duration: float
-    line_height: int
-    stroke_color: tuple[int]
-    stroke_width: int
-    rectangle_height: int
-    rectangle_fill: tuple[float]
+    sep_height: int
 
 
 @dataclass
@@ -265,6 +262,14 @@ def all_settings_from_json(file_):
          for key in settings['states'].keys()]
     )
 
+# Themes
+
+@dataclass(frozen=True)
+class Metro:
+    stroke_color = [0, 0, 0]
+    stroke_width = 10
+    rectangle_height = 220
+    rectangle_fill = [0.95, 0.95, 0.95]
 
 
 if __name__ == '__main__':
