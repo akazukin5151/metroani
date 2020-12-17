@@ -162,12 +162,14 @@ def make_line(surface, constants):
     bar_x = constants.width/2 - triangle_width/2
     triangle_x = bar_x + bar_width/2 - 1
 
+    # Light line
     gz.rectangle(
         lx=bar_width, ly=bar_height,
         xy=[bar_x, bar_y],
         fill=constants.line_color
     ).draw(surface)
 
+    # Dark line
     gz.rectangle(
         lx=bar_width, ly=bar_height,
         xy=[bar_x, bar_y + bar_height],
@@ -175,6 +177,7 @@ def make_line(surface, constants):
     ).draw(surface)
 
 
+    # Light triangle
     gz.polyline(
         [
             (triangle_x                 , bar_y - bar_height/2),
@@ -184,6 +187,7 @@ def make_line(surface, constants):
         close_path=True, fill=constants.line_color
     ).draw(surface)
 
+    # Dark triangle
     gz.polyline(
         [
             (triangle_x                 , bar_y + bar_height/2),
@@ -193,6 +197,25 @@ def make_line(surface, constants):
         close_path=True, fill=constants.line_color_dark
     ).draw(surface)
 
+
+    # Rectangle representing stations
+    rect_width = bar_width * 0.07
+    padding = constants.width * 0.05
+    rect_x = (
+        (constants.width - bar_width - triangle_width)/2
+        + rect_width/2
+        + padding
+    )
+    max_stations = 8
+    max_rect_x = triangle_x - padding - rect_width/2
+    spacing = (max_rect_x - rect_x) / (max_stations - 1)
+
+    for n in range(8):
+        gz.rectangle(
+            lx=rect_width, ly=bar_height*2*0.8,
+            fill=[1,1,1, .9],
+            xy=[rect_x + spacing * n, bar_y + bar_height/2]
+        ).draw(surface)
 
 
 @curry
