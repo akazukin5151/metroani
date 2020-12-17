@@ -52,7 +52,7 @@ def make_text_frames(
 
 def make_text_frames_from_setting(t, constants, surface, settings, old, new):
     make_text_frames(
-        t, constants['duration'], surface, new.name, old.name,
+        t, constants.duration, surface, new.name, old.name,
         settings.xy, new.font, old.font,
         new.fontsize, old.fontsize,
         old.scale_x, new.scale_x, new.enter_xy,
@@ -67,7 +67,7 @@ def make_frames(
     old, new, old_next, new_next, old_term, new_term
 ):
     '''Returns the frames from the transition of three texts as a function of time'''
-    surface = gz.Surface(constants['width'], constants['height'], bg_color=(1,1,1))
+    surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
 
     make_text_frames_from_setting(
         t, constants, surface, settings,
@@ -99,7 +99,7 @@ def animate(settings, next_settings, terminal_settings, constants):
                 old=names[0], new=names[1], old_next=next_[0], new_next=next_[1],
                 old_term=terminal[0], new_term=terminal[1]
             ),
-            duration=constants['duration']
+            duration=constants.duration
         )
 
         for names, next_, terminal in zip(
@@ -114,7 +114,7 @@ def combine_language_transitions(
 ):
     '''Combines multiple language transitions for a given train state'''
     return mpy.concatenate_videoclips([
-        clip.fx(vfx.freeze, t=constants['duration'], freeze_duration=1)
+        clip.fx(vfx.freeze, t=constants.duration, freeze_duration=1)
             .fx(vfx.freeze, t=0, freeze_duration=1)
         for clip in animate(station_setting, state_setting, terminal_settings, constants)
     ])
@@ -146,6 +146,12 @@ def write_video(
 
 
 # Setting classes
+@dataclass
+class Constants:
+    width: int
+    height: int
+    duration: float
+
 
 @dataclass
 class Translation:
@@ -229,7 +235,7 @@ def all_settings_from_json(file_):
         settings = json.load(f)
 
     return (
-        settings['constants'],
+        Constants(**settings['constants']),
         Transition.from_json_list(settings, 'stations'),
         Transition.from_json(settings, 'terminal'),
         [Transition.from_json(settings['states'], key)
