@@ -68,6 +68,13 @@ def make_line_frames(surface, constants):
     ).draw(surface)
 
 
+def make_rectangle_frames(surface, constants):
+    gz.rectangle(
+        lx=constants.width*2, ly=constants.rectangle_height,
+        xy=[0,0], fill=constants.rectangle_fill
+    ).draw(surface)
+
+
 @curry
 def make_frames(
     t, constants, settings, next_settings, terminal_settings,
@@ -75,6 +82,9 @@ def make_frames(
 ):
     '''Returns the frames from the transition of three texts as a function of time'''
     surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
+
+    make_line_frames(surface, constants)
+    make_rectangle_frames(surface, constants)
 
     make_text_frames_from_setting(
         t, constants, surface, settings,
@@ -90,8 +100,6 @@ def make_frames(
         t, constants, surface, terminal_settings,
         old_term, new_term
     )
-
-    make_line_frames(surface, constants)
 
     return surface.get_npimage()
 
@@ -164,6 +172,8 @@ class Constants:
     line_height: int
     stroke_color: tuple[int]
     stroke_width: int
+    rectangle_height: int
+    rectangle_fill: tuple[float]
 
 
 @dataclass

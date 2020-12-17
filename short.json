@@ -5,7 +5,9 @@
         "duration": 0.7,
         "line_height": 350,
         "stroke_color": [0, 0, 0],
-        "stroke_width": 10
+        "stroke_width": 10,
+        "rectangle_height": 220,
+        "rectangle_fill": [0.95, 0.95, 0.95]
     },
     "stations": [
         {
