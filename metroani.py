@@ -149,7 +149,7 @@ def draw_tokyu_frames(surface, constants):
     ).draw(surface)
 
 
-def make_line(surface, constants):
+def make_bar(surface, constants):
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
     # For text at the bottom and bar in the top,
@@ -161,18 +161,18 @@ def make_line(surface, constants):
     )
 
     triangle_width = constants.width * 0.03
-    # bar_x is the center of the bar, but triangle_x is the start of the line
+    # bar_x is the center of the bar, but triangle_x is the start of the bar
     bar_x = constants.width/2 - triangle_width/2
     triangle_x = bar_x + bar_width/2 - 1
 
-    # Light line
+    # Light bar
     gz.rectangle(
         lx=bar_width, ly=bar_height,
         xy=[bar_x, bar_y],
         fill=constants.line_color
     ).draw(surface)
 
-    # Dark line
+    # Dark bar
     gz.rectangle(
         lx=bar_width, ly=bar_height,
         xy=[bar_x, bar_y + bar_height],
@@ -253,7 +253,7 @@ def make_frames(
         old_term, new_term
     )
 
-    make_line(surface, constants)
+    make_bar(surface, constants)
 
     return surface.get_npimage()
 
