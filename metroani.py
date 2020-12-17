@@ -107,7 +107,7 @@ def draw_yamanote_frames(surface, constants):
     gz.rectangle(
         lx=Yamanote.indicator_width, ly=constants.sep_height,
         xy=[Yamanote.indicator_pos, constants.sep_height/2],
-        fill=Yamanote.indicator_color
+        fill=constants.line_color
     ).draw(surface)
 
 
@@ -149,6 +149,14 @@ def draw_tokyu_frames(surface, constants):
     ).draw(surface)
 
 
+def make_line(surface, constants):
+    gz.rectangle(
+        lx=constants.width * 0.9, ly=constants.height * 0.1,
+        xy=[constants.width/2, constants.height/2],
+        fill=constants.line_color
+    ).draw(surface)
+
+
 @curry
 def make_frames(
     t, constants, settings, next_settings, terminal_settings,
@@ -180,6 +188,8 @@ def make_frames(
         t, constants, surface, terminal_settings,
         old_term, new_term
     )
+
+    make_line(surface, constants)
 
     return surface.get_npimage()
 
@@ -240,7 +250,8 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        .write_videofile(filename, codec=codec, fps=fps))
+        #.write_videofile(filename, codec=codec, fps=fps)
+        .save_frame('frame.png'))
 
 
 # Setting classes
@@ -250,6 +261,7 @@ class Constants:
     height: int
     duration: float
     sep_height: int
+    line_color: tuple[float]
     theme: str  # Metro | Yamanote | JR | Tokyu
 
 
@@ -358,7 +370,6 @@ class Yamanote:
     bg_color = rgb([229, 229, 299])
     indicator_width = 100
     indicator_pos = 470
-    indicator_color = rgb([84, 175, 0])
 
 
 @dataclass(frozen=True)
