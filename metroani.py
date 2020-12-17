@@ -152,9 +152,12 @@ def draw_tokyu_frames(surface, constants):
 def make_line(surface, constants):
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
+    # For text at the bottom and bar in the top,
+    # the bottom of the bars is the center of the section
     bar_y = (
         (constants.height - constants.sep_height) / 2
-        + constants.sep_height - bar_height
+        + constants.sep_height  # center of section
+        - bar_height * 2
     )
 
     triangle_width = constants.width * 0.03
@@ -198,7 +201,7 @@ def make_line(surface, constants):
     ).draw(surface)
 
 
-    # Rectangle representing stations
+    # Station rectangles
     rect_width = bar_width * 0.07
     padding = constants.width * 0.05
     rect_x = (
