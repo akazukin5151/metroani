@@ -1,4 +1,7 @@
-from metroani import CircularList, Transition, Translation, W
+from metroani import Constants, CircularList, Transition, Translation, W
+
+# Constants
+constants = Constants(1920, 1080, 0.7)
 
 # Station settings
 saginomiya_names = CircularList([
