@@ -1,4 +1,9 @@
 {
+    "constants": {
+        "height": 1080,
+        "width": 1920,
+        "duration": 0.7
+    },
     "stations": [
         {
             "translations": [
