@@ -232,9 +232,8 @@ def all_settings_from_json(file_):
         settings['constants'],
         Transition.from_json_list(settings, 'stations'),
         Transition.from_json(settings, 'terminal'),
-        Transition.from_json(settings['states'], 'next'),
-        Transition.from_json(settings['states'], 'arriving'),
-        Transition.from_json(settings['states'], 'stopping'),
+        [Transition.from_json(settings['states'], key)
+         for key in settings['states'].keys()]
     )
 
 
@@ -242,11 +241,12 @@ def all_settings_from_json(file_):
 if __name__ == '__main__':
     # TODO: skip transition for states and terminal; only station name has hiragana
     # Can read settings from json file instead
-    (constants, station_settings, terminal_settings, next_settings,
-        arriving_settings, stopping_settings) = all_settings_from_json('settings.json')
+    (
+        constants, station_settings, terminal_settings, state_settings
+    ) = all_settings_from_json('short.json')
 
     # Make animation
     write_video(
-        'metroani.avi', station_settings, (next_settings, arriving_settings,
-        stopping_settings), terminal_settings, constants
+        'metroani.avi', station_settings, state_settings, terminal_settings,
+        constants
     )
