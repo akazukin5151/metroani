@@ -61,6 +61,13 @@ def make_text_frames_from_setting(t, constants, surface, settings, old, new):
     return surface
 
 
+def make_line_frames(surface, constants):
+    gz.polyline(
+        [(0, constants.line_height), (constants.width, constants.line_height)],
+        stroke=constants.stroke_color, stroke_width=constants.stroke_width
+    ).draw(surface)
+
+
 @curry
 def make_frames(
     t, constants, settings, next_settings, terminal_settings,
@@ -83,6 +90,9 @@ def make_frames(
         t, constants, surface, terminal_settings,
         old_term, new_term
     )
+
+    make_line_frames(surface, constants)
+
     return surface.get_npimage()
 
 
@@ -151,6 +161,9 @@ class Constants:
     width: int
     height: int
     duration: float
+    line_height: int
+    stroke_color: tuple[int]
+    stroke_width: int
 
 
 @dataclass
@@ -246,7 +259,6 @@ def all_settings_from_json(file_):
 
 if __name__ == '__main__':
     # TODO: skip transition for states and terminal; only station name has hiragana
-    # Can read settings from json file instead
     (
         constants, station_settings, terminal_settings, state_settings
     ) = all_settings_from_json('short.json')

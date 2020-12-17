@@ -2,7 +2,10 @@
     "constants": {
         "height": 1080,
         "width": 1920,
-        "duration": 0.7
+        "duration": 0.7,
+        "line_height": 350,
+        "stroke_color": [0, 0, 0],
+        "stroke_width": 10
     },
     "stations": [
         {
