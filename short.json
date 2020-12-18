@@ -10,6 +10,7 @@
     },
     "stations": [
         {
+            "station_number": "SS-09",
             "translations": [
                 {
                     "name": "鷺ノ宮",
@@ -46,6 +47,7 @@
             ]
         },
         {
+            "station_number": "SS-08",
             "translations": [
                 {
                     "name": "都立家政",

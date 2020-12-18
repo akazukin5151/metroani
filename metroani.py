@@ -149,7 +149,7 @@ def draw_tokyu_frames(surface, constants):
     ).draw(surface)
 
 
-def make_bar(surface, constants):
+def make_bar(surface, constants, settings):
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
     # For text at the bottom and bar in the top,
@@ -215,7 +215,7 @@ def make_bar(surface, constants):
     max_rect_x = triangle_x - edge_padding - rect_width/2
     spacing = (max_rect_x - rect_x) / (max_stations - 1)
 
-    for n in range(8):
+    for n, setting in zip(range(8), settings):
         gz.rectangle(
             lx=rect_width, ly=bar_height*2*0.8,
             fill=[1,1,1, .9],
@@ -224,7 +224,7 @@ def make_bar(surface, constants):
 
         # Station numbers
         gz.text(
-            str(n), 'Roboto', 50,
+            setting.station_number, 'Roboto', 50,
             xy=[rect_x + spacing * n, section_center - 40]
         ).draw(surface)
 
@@ -262,7 +262,7 @@ def make_bar(surface, constants):
 
 @curry
 def make_frames(
-    t, constants, settings, next_settings, terminal_settings,
+    t, constants, n, settings, next_settings, terminal_settings,
     old, new, old_next, new_next, old_term, new_term
 ):
     '''Returns the frames from the transition of three texts as a function of time'''
@@ -278,7 +278,7 @@ def make_frames(
         func(surface, constants)
 
     make_text_frames_from_setting(
-        t, constants, surface, settings,
+        t, constants, surface, settings[n],
         old, new
     )
 
@@ -292,7 +292,7 @@ def make_frames(
         old_term, new_term
     )
 
-    make_bar(surface, constants)
+    make_bar(surface, constants, settings)
 
     return surface.get_npimage()
 
@@ -300,12 +300,12 @@ def make_frames(
 # Animation functions
 
 
-def animate(settings, next_settings, terminal_settings, constants):
+def animate(n, settings, next_settings, terminal_settings, constants):
     '''Animates a transition between two languages'''
     return [
         mpy.VideoClip(
             make_frames(
-                constants=constants, settings=settings,
+                constants=constants, n=n, settings=settings,
                 next_settings=next_settings, terminal_settings=terminal_settings,
                 old=names[0], new=names[1], old_next=next_[0], new_next=next_[1],
                 old_term=terminal[0], new_term=terminal[1]
@@ -314,28 +314,32 @@ def animate(settings, next_settings, terminal_settings, constants):
         )
 
         for names, next_, terminal in zip(
-            settings.names.pairs(), next_settings.names.pairs(),
+            settings[n].names.pairs(), next_settings.names.pairs(),
             terminal_settings.names.pairs()
         )
     ]
 
 
 def combine_language_transitions(
-    station_setting, state_setting, terminal_settings, constants
+    n, station_settings, state_setting, terminal_settings, constants
 ):
     '''Combines multiple language transitions for a given train state'''
     return mpy.concatenate_videoclips([
         clip.fx(vfx.freeze, t=constants.duration, freeze_duration=1)
             .fx(vfx.freeze, t=0, freeze_duration=1)
-        for clip in animate(station_setting, state_setting, terminal_settings, constants)
+        for clip in animate(
+            n, station_settings, state_setting, terminal_settings, constants
+        )
     ])
 
 
-def combine_train_states(station_setting, state_settings, terminal_settings, constants):
+def combine_train_states(
+    n, station_settings, state_settings, terminal_settings, constants
+):
     '''Combines multiple train states and multiple language transitions'''
     return [
         combine_language_transitions(
-            station_setting, state_setting, terminal_settings, constants
+            n, station_settings, state_setting, terminal_settings, constants
         )
         for state_setting in state_settings
     ]
@@ -346,9 +350,9 @@ def write_video(
     codec='libx264', fps=60
 ):
     final = []
-    for station_setting in station_settings:
+    for n in range(len(station_settings)):
         final.append(combine_train_states(
-            station_setting, state_settings, terminal_settings, constants
+            n, station_settings, state_settings, terminal_settings, constants
         ))
 
     flatten = [clip for station_clips in final for clip in station_clips]
@@ -389,6 +393,7 @@ class Transition:
     '''
     names: CircularList[Translation]
     xy: list[int]
+    station_number: str = None
 
     @classmethod
     def from_json(cls, settings: 'json', section: str):
@@ -397,6 +402,7 @@ class Transition:
                 [Translation(**ss) for ss in settings[section]['translations']]
             ),
             settings[section]['xy'],
+            None
         )
 
     @classmethod
@@ -407,6 +413,7 @@ class Transition:
                     [Translation(**ss) for ss in station['translations']]
                 ),
                 station['xy'],
+                station['station_number'] if 'station_number' in station else None
             )
             for station in settings[section]
         ]
