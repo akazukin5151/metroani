@@ -150,16 +150,17 @@ def draw_tokyu_frames(surface, constants):
 
 
 def make_bar(surface, constants):
-    # TODO: use gradient instead of light/dark
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
     # For text at the bottom and bar in the top,
     # the bottom of the bars is slightly above the center of the section
     # The center of the section is the center of the station numbers
-    bar_y = (
+    section_center = (
         (constants.height - constants.sep_height) / 2
-        + constants.sep_height  # center of section
-        - bar_height * 2
+        + constants.sep_height
+    )
+    bar_y = (
+        section_center - bar_height * 2
         - 40  # Approx fontheight/2
     )
 
@@ -221,6 +222,18 @@ def make_bar(surface, constants):
             xy=[rect_x + spacing * n, bar_y + bar_height/2]
         ).draw(surface)
 
+        # Station numbers
+        gz.text(
+            str(n), 'Roboto', 50,
+            xy=[rect_x + spacing * n, section_center - 40]
+        ).draw(surface)
+
+        # Placeholder: list of stations
+        gz.text(
+            'P', 'Roboto', 50,
+            xy=[rect_x + spacing * n, section_center + 30]
+        ).draw(surface)
+
     # Draw arrow
     arrow_width = spacing / 2 - rect_width/2
     gz.polyline(
@@ -235,6 +248,7 @@ def make_bar(surface, constants):
         close_path=True, stroke=[1,1,1], stroke_width=5, fill=rgb([251, 3, 1])
     ).draw(surface)
     # TODO flash arrow color
+    # TODO move arrow for last few stations
 
 
 @curry
