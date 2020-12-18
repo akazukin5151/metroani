@@ -149,6 +149,13 @@ def draw_tokyu_frames(surface, constants):
     ).draw(surface)
 
 
+def make_vertical_text(text, surface, first_xy, spacing, **kwargs):
+    for idx, letter in enumerate(text):
+        gz.text(
+            letter, xy=[first_xy[0], first_xy[1] + spacing*idx], **kwargs
+        ).draw(surface)
+
+
 def make_bar(surface, constants, settings):
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
@@ -229,11 +236,12 @@ def make_bar(surface, constants, settings):
         ).draw(surface)
 
         # Station names
-        # TODO: vertical, font, fontsize, change language
-        gz.text(
-            setting.names.curr().name, 'Hiragino Sans GB W3', 50,
-            xy=[rect_x + spacing * n, section_center + 30]
-        ).draw(surface)
+        # TODO: font, fontsize, change language, option to rotate instead
+        make_vertical_text(
+            setting.names.curr().name, surface,
+            first_xy=[rect_x + spacing * n, section_center + 40],
+            spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70
+        )
 
     # Draw separator between station number and name
     gz.polyline(
