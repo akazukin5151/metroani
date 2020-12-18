@@ -228,9 +228,10 @@ def make_bar(surface, constants, settings):
             xy=[rect_x + spacing * n, section_center - 40]
         ).draw(surface)
 
-        # Placeholder: list of stations
+        # Station names
+        # TODO: vertical, font, fontsize
         gz.text(
-            'P', 'Roboto', 50,
+            setting.names.curr().name, 'Hiragino Sans GB W3', 50,
             xy=[rect_x + spacing * n, section_center + 30]
         ).draw(surface)
 
