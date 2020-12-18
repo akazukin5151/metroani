@@ -234,6 +234,15 @@ def make_bar(surface, constants):
             xy=[rect_x + spacing * n, section_center + 30]
         ).draw(surface)
 
+    # Draw separator between station number and name
+    gz.polyline(
+        [
+            (rect_x - rect_width/2 - edge_padding, section_center),
+            (constants.width                     , section_center)
+        ],
+        stroke=constants.line_color, stroke_width=8
+    ).draw(surface)
+
     # Draw arrow
     arrow_width = spacing / 2 - rect_width/2
     gz.polyline(
