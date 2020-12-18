@@ -229,6 +229,8 @@ def make_bar(surface, constants, settings):
             xy=[rect_x + spacing * n, bar_y + bar_height/2]
         ).draw(surface)
 
+        # TODO: shift all text for every station
+        # Only stops when remaining stations is less than 8
         # Station numbers
         gz.text(
             setting.station_number, 'Roboto', 50,
@@ -267,6 +269,11 @@ def make_bar(surface, constants, settings):
     ).draw(surface)
     # TODO flash arrow color
     # TODO move arrow for last few stations
+    # The arrow has three states in total:
+    # 1) First rectangle (train is in leftmost station)
+    # 2) In-between 1st and 2nd rectangle (train is moving to next station)
+    # 3) Moving rightwards by half a rectangle for every station
+    #    (train is near the end of the line with less than 8 stations remaining)
 
 
 @curry
