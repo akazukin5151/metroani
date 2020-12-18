@@ -229,7 +229,7 @@ def make_bar(surface, constants, settings):
         ).draw(surface)
 
         # Station names
-        # TODO: vertical, font, fontsize
+        # TODO: vertical, font, fontsize, change language
         gz.text(
             setting.names.curr().name, 'Hiragino Sans GB W3', 50,
             xy=[rect_x + spacing * n, section_center + 30]
@@ -358,7 +358,7 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        #.write_videofile(filename, codec=codec, fps=fps)
+        #.write_videofile(filename, codec=codec, fps=fps))
         .save_frame('frame.png'))
 
 
