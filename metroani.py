@@ -387,7 +387,7 @@ def make_frames(
 
 def animate(n, settings, next_settings, terminal_settings, constants):
     '''Animates a transition between two languages'''
-    return [
+    return (
         mpy.VideoClip(
             make_frames(
                 constants=constants, n=n, settings=settings,
@@ -402,7 +402,7 @@ def animate(n, settings, next_settings, terminal_settings, constants):
             settings[n].names.pairs(), next_settings.names.pairs(),
             terminal_settings.names.pairs()
         )
-    ]
+    )
 
 
 def combine_language_transitions(
@@ -422,25 +422,31 @@ def combine_train_states(
     n, station_settings, state_settings, terminal_settings, constants
 ):
     '''Combines multiple train states and multiple language transitions'''
-    return [
+    return (
         combine_language_transitions(
             n, station_settings, state_setting, terminal_settings, constants
         )
         for state_setting in state_settings
-    ]
+    )
 
 
 def write_video(
     filename, stations_settings, state_settings, terminal_settings, constants,
     codec='libx264', fps=60
 ):
-    final = []
-    for n in range(len(station_settings)):
-        final.append(combine_train_states(
+    final = (
+        combine_train_states(
             n, station_settings, state_settings, terminal_settings, constants
-        ))
+        )
+        for n in range(len(station_settings))
+    )
 
-    flatten = [clip for station_clips in final for clip in station_clips]
+    flatten = [
+        clip
+        for station_clips in final
+        for clip in station_clips
+    ]
+
     (mpy.concatenate_videoclips(flatten)
         .write_videofile(filename, codec=codec, fps=fps))
         #.save_frame('frame.png'))
