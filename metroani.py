@@ -158,7 +158,7 @@ def make_vertical_text(text, surface, first_xy, spacing, **kwargs):
 
 def make_bar(surface, constants, settings, station_idx):
     bar_height = constants.height * 0.05
-    bar_width = constants.width * 0.9
+    bar_width = constants.width * 0.955
     # For text at the bottom and bar in the top,
     # the bottom of the bars is slightly above the center of the section
     # The center of the section is the center of the station numbers
@@ -173,7 +173,7 @@ def make_bar(surface, constants, settings, station_idx):
 
     triangle_width = constants.width * 0.03
     # bar_x is the center of the bar, but triangle_x is the start of the bar
-    bar_x = constants.width/2 - triangle_width/2
+    bar_x = bar_width/2
     triangle_x = bar_x + bar_width/2 - 1
 
     # Light bar
@@ -266,10 +266,7 @@ def make_bar(surface, constants, settings, station_idx):
 
     # Separator between station number and name
     gz.polyline(
-        [
-            (rect_x - rect_width/2 - edge_padding, section_center),
-            (constants.width                     , section_center)
-        ],
+        [(0, section_center),(constants.width, section_center)],
         stroke=constants.line_color, stroke_width=8
     ).draw(surface)
 
@@ -405,8 +402,8 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        .write_videofile(filename, codec=codec, fps=fps))
-        #.save_frame('frame.png'))
+        #.write_videofile(filename, codec=codec, fps=fps))
+        .save_frame('frame.png'))
 
 
 # Setting classes
