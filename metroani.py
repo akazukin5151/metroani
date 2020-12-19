@@ -229,6 +229,8 @@ def make_bar(surface, constants, settings, station_idx):
     if remaining_stations <= 6:
         # End of the line: show all 8 stations from the last
         settings_to_show = settings[-8:]
+        # Move arrow to between next rectangle
+        arrow_x_offset = spacing * (7 - remaining_stations)
     elif station_idx == 0:
         # 1st -> 2nd station: show 1st station as 'previous'
         settings_to_show = settings[station_idx   : station_idx+8]
@@ -301,12 +303,6 @@ def make_bar(surface, constants, settings, station_idx):
         fill=rgb([251, 3, 1])
     ).draw(surface)
     # TODO flash arrow color
-    # TODO move arrow for last few stations
-    # The arrow has three states in total:
-    # 1) First rectangle (train is in leftmost station)
-    # 2) In-between 1st and 2nd rectangle (train is moving to next station)
-    # 3) Moving rightwards by half a rectangle for every station
-    #    (train is near the end of the line with less than 8 stations remaining)
 
 
 @curry
@@ -406,8 +402,8 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        #.write_videofile(filename, codec=codec, fps=fps))
-        .save_frame('frame.png'))
+        .write_videofile(filename, codec=codec, fps=fps))
+        #.save_frame('frame.png'))
 
 
 # Setting classes
