@@ -265,25 +265,32 @@ def make_arrow(surface, spacing, rect_width, arrow_x_offset, rect_x, bar_y,
 
 def make_line_info(surface, constants, settings, station_idx):
     # Set values
-    bar_height = constants.height * 0.05
-    bar_width = constants.width * 0.955
-    # For text at the bottom and bar in the top,
-    # the bottom of the bars is slightly above the center of the section
-    # The center of the section is the center of the station numbers
+    # Fundamental constants
+    max_stations = 8
+    number_of_stations = len(settings)
+    remaining_stations = number_of_stations - station_idx
     section_center = (
         (constants.height - constants.sep_height) / 2
         + constants.sep_height
     )
+
+    # Bar settings
+    bar_height = constants.height * 0.05
+    bar_width = constants.width * 0.955
+    bar_x = bar_width/2
+    # The bottom of the bars is slightly above the center of the section
     bar_y = (
         section_center - bar_height * 2
         - 40  # Approx fontheight/2
     )
 
+    # Triangle settings
+    draw_triangles = True
     triangle_width = constants.width * 0.03
     # bar_x is the center of the bar, but triangle_x is the start of the bar
-    bar_x = bar_width/2
     triangle_x = bar_x + bar_width/2 - 1
 
+    # Rectangle settings
     rect_width = bar_width * 0.06
     edge_padding = constants.width * 0.05
     rect_x = (
@@ -291,28 +298,26 @@ def make_line_info(surface, constants, settings, station_idx):
         + rect_width/2
         + edge_padding
     )
-    max_stations = 8
     max_rect_x = triangle_x - edge_padding - rect_width/2
     spacing = (max_rect_x - rect_x) / (max_stations - 1)
-    number_of_stations = len(settings)
-    remaining_stations = number_of_stations - station_idx
 
+    # Arrow and station slice settings
     arrow_x_offset = 0
-    draw_triangles = True
-    if remaining_stations <= 6:
+
+    if remaining_stations <= max_stations - 2:
         # End of the line: show all 8 stations from the last
-        settings_to_show = settings[-8:]
+        settings_to_show = settings[-max_stations:]
         # Move arrow to between next rectangle
-        arrow_x_offset = spacing * (7 - remaining_stations)
+        arrow_x_offset = spacing * (max_stations - 1 - remaining_stations)
         draw_triangles = False
     elif station_idx == 0:
         # 1st -> 2nd station: show 1st station as 'previous'
-        settings_to_show = settings[station_idx   : station_idx+8]
+        settings_to_show = settings[station_idx:station_idx + max_stations]
         # Move arrow to center of first rectangle
         arrow_x_offset = - spacing/2
     else:
         # Anywhere else in the line: show previous station
-        settings_to_show = settings[station_idx-1 : station_idx+7]
+        settings_to_show = settings[station_idx-1:station_idx + max_stations - 1]
 
     # Actually draw the frame
     make_bar(surface, constants, bar_width, bar_height, bar_x, bar_y)
