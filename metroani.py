@@ -156,7 +156,7 @@ def make_vertical_text(text, surface, first_xy, spacing, **kwargs):
         ).draw(surface)
 
 
-def make_bar(surface, constants, settings):
+def make_bar(surface, constants, settings, station_idx):
     bar_height = constants.height * 0.05
     bar_width = constants.width * 0.9
     # For text at the bottom and bar in the top,
@@ -222,15 +222,26 @@ def make_bar(surface, constants, settings):
     max_rect_x = triangle_x - edge_padding - rect_width/2
     spacing = (max_rect_x - rect_x) / (max_stations - 1)
 
-    for n, setting in zip(range(8), settings):
+    number_of_stations = len(settings)
+    remaining_stations = number_of_stations - station_idx
+
+    if remaining_stations <= 6:
+        # End of the line: show all 8 stations from the last
+        settings_to_show = settings[-8:]
+    elif station_idx == 0:
+        # 1st -> 2nd station: show 1st station as 'previous'
+        settings_to_show = settings[station_idx   : station_idx+8]
+    else:
+        # Anywhere else in the line: show previous station
+        settings_to_show = settings[station_idx-1 : station_idx+7]
+
+    for n, setting in zip(range(8), settings_to_show):
         gz.rectangle(
             lx=rect_width, ly=bar_height*2*0.8,
             fill=[1,1,1, .9],
             xy=[rect_x + spacing * n, bar_y + bar_height/2]
         ).draw(surface)
 
-        # TODO: shift all text for every station
-        # Only stops when remaining stations is less than 8
         # Station numbers
         gz.text(
             setting.station_number, 'Roboto', 50,
@@ -308,7 +319,7 @@ def make_frames(
         old_term, new_term
     )
 
-    make_bar(surface, constants, settings)
+    make_bar(surface, constants, settings, n)
 
     return surface.get_npimage()
 
@@ -373,8 +384,8 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        #.write_videofile(filename, codec=codec, fps=fps))
-        .save_frame('frame.png'))
+        .write_videofile(filename, codec=codec, fps=fps))
+        #.save_frame('frame.png'))
 
 
 # Setting classes
