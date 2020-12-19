@@ -225,12 +225,15 @@ def make_bar(surface, constants, settings, station_idx):
     number_of_stations = len(settings)
     remaining_stations = number_of_stations - station_idx
 
+    arrow_x_offset = 0
     if remaining_stations <= 6:
         # End of the line: show all 8 stations from the last
         settings_to_show = settings[-8:]
     elif station_idx == 0:
         # 1st -> 2nd station: show 1st station as 'previous'
         settings_to_show = settings[station_idx   : station_idx+8]
+        # Move arrow to center of first rectangle
+        arrow_x_offset = - spacing/2
     else:
         # Anywhere else in the line: show previous station
         settings_to_show = settings[station_idx-1 : station_idx+7]
@@ -267,16 +270,35 @@ def make_bar(surface, constants, settings, station_idx):
 
     # Draw arrow
     arrow_width = spacing / 2 - rect_width/2
+    points = [
+        (
+            arrow_x_offset + rect_x + rect_width/2,
+            bar_y - bar_height/2
+        ),
+        (
+            arrow_x_offset + rect_x + rect_width/2 + arrow_width,
+            bar_y - bar_height/2
+        ),
+        (
+            arrow_x_offset + rect_x + spacing - rect_width/2,
+            bar_y + bar_height/2
+        ),
+        (
+            arrow_x_offset + rect_x + rect_width/2 + arrow_width,
+            bar_y + bar_height*3/2
+        ),
+        (
+            arrow_x_offset + rect_x + rect_width/2,
+            bar_y + bar_height*3/2
+        ),
+        (
+            arrow_x_offset + rect_x + spacing - rect_width/2 - arrow_width,
+            bar_y + bar_height/2
+        ),
+    ]
     gz.polyline(
-        [
-            (rect_x + rect_width/2                        , bar_y - bar_height/2),
-            (rect_x + rect_width/2 + arrow_width          , bar_y - bar_height/2),
-            (rect_x + spacing - rect_width/2              , bar_y + bar_height/2),
-            (rect_x + rect_width/2 + arrow_width          , bar_y + bar_height*3/2),
-            (rect_x + rect_width/2                        , bar_y + bar_height*3/2),
-            (rect_x + spacing - rect_width/2 - arrow_width, bar_y + bar_height/2),
-        ],
-        close_path=True, stroke=[1,1,1], stroke_width=5, fill=rgb([251, 3, 1])
+        points,close_path=True, stroke=[1,1,1], stroke_width=5,
+        fill=rgb([251, 3, 1])
     ).draw(surface)
     # TODO flash arrow color
     # TODO move arrow for last few stations
@@ -384,8 +406,8 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        .write_videofile(filename, codec=codec, fps=fps))
-        #.save_frame('frame.png'))
+        #.write_videofile(filename, codec=codec, fps=fps))
+        .save_frame('frame.png'))
 
 
 # Setting classes
