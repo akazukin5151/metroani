@@ -478,7 +478,6 @@ class Transition:
     '''
     names: CircularList[Translation]
     xy: list[int]
-    station_number: str = None
 
     @classmethod
     def from_json(cls, settings: 'json', section: str):
@@ -486,9 +485,15 @@ class Transition:
             CircularList(
                 [Translation(**ss) for ss in settings[section]['translations']]
             ),
-            settings[section]['xy'],
-            None
+            settings[section]['xy']
         )
+
+
+@dataclass
+class StationTransition(Transition):
+    '''Every station has the same amount of info as a Transition,
+    but also has a station number'''
+    station_number: str
 
     @classmethod
     def from_json_list(cls, settings: 'json', section: str):
@@ -498,7 +503,7 @@ class Transition:
                     [Translation(**ss) for ss in station['translations']]
                 ),
                 station['xy'],
-                station['station_number'] if 'station_number' in station else None
+                station['station_number']
             )
             for station in settings[section]
         ]
@@ -507,7 +512,7 @@ class Transition:
 @dataclass(frozen=True)
 class CircularList:  # CircularList[T]
     '''Immutable Circular List'''
-    it: 'iter[T]'
+    it: 'list[T]'
     head: int = 0
 
     def curr(self):
@@ -532,7 +537,7 @@ def all_settings_from_json(file_):
 
     return (
         Constants(**settings['constants']),
-        Transition.from_json_list(settings, 'stations'),
+        StationTransition.from_json_list(settings, 'stations'),
         Transition.from_json(settings, 'terminal'),
         [Transition.from_json(settings['states'], key)
          for key in settings['states'].keys()]
