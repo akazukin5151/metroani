@@ -156,26 +156,7 @@ def make_vertical_text(text, surface, first_xy, spacing, **kwargs):
         ).draw(surface)
 
 
-def make_bar(surface, constants, settings, station_idx):
-    bar_height = constants.height * 0.05
-    bar_width = constants.width * 0.955
-    # For text at the bottom and bar in the top,
-    # the bottom of the bars is slightly above the center of the section
-    # The center of the section is the center of the station numbers
-    section_center = (
-        (constants.height - constants.sep_height) / 2
-        + constants.sep_height
-    )
-    bar_y = (
-        section_center - bar_height * 2
-        - 40  # Approx fontheight/2
-    )
-
-    triangle_width = constants.width * 0.03
-    # bar_x is the center of the bar, but triangle_x is the start of the bar
-    bar_x = bar_width/2
-    triangle_x = bar_x + bar_width/2 - 1
-
+def make_bar(surface, constants, bar_width, bar_height, bar_x, bar_y):
     # Light bar
     gz.rectangle(
         lx=bar_width, ly=bar_height,
@@ -190,58 +171,32 @@ def make_bar(surface, constants, settings, station_idx):
         fill=constants.line_color_dark
     ).draw(surface)
 
-    rect_width = bar_width * 0.06
-    edge_padding = constants.width * 0.05
-    rect_x = (
-        (constants.width - bar_width - triangle_width)/2
-        + rect_width/2
-        + edge_padding
-    )
-    max_stations = 8
-    max_rect_x = triangle_x - edge_padding - rect_width/2
-    spacing = (max_rect_x - rect_x) / (max_stations - 1)
 
-    number_of_stations = len(settings)
-    remaining_stations = number_of_stations - station_idx
+def make_triangles(surface, constants, triangle_x, triangle_width, bar_y,
+                   bar_height):
+    # Light triangle
+    gz.polyline(
+        [
+            (triangle_x                 , bar_y - bar_height/2),
+            (triangle_x + triangle_width, bar_y + bar_height/2),
+            (triangle_x                 , bar_y + bar_height/2),
+        ],
+        close_path=True, fill=constants.line_color
+    ).draw(surface)
 
-    arrow_x_offset = 0
-    draw_triangles = True
-    if remaining_stations <= 6:
-        # End of the line: show all 8 stations from the last
-        settings_to_show = settings[-8:]
-        # Move arrow to between next rectangle
-        arrow_x_offset = spacing * (7 - remaining_stations)
-        draw_triangles = False
-    elif station_idx == 0:
-        # 1st -> 2nd station: show 1st station as 'previous'
-        settings_to_show = settings[station_idx   : station_idx+8]
-        # Move arrow to center of first rectangle
-        arrow_x_offset = - spacing/2
-    else:
-        # Anywhere else in the line: show previous station
-        settings_to_show = settings[station_idx-1 : station_idx+7]
+    # Dark triangle
+    gz.polyline(
+        [
+            (triangle_x                 , bar_y + bar_height/2),
+            (triangle_x + triangle_width, bar_y + bar_height/2),
+            (triangle_x                 , bar_y + bar_height*3/2),
+        ],
+        close_path=True, fill=constants.line_color_dark
+    ).draw(surface)
 
-    if draw_triangles:
-        # Light triangle
-        gz.polyline(
-            [
-                (triangle_x                 , bar_y - bar_height/2),
-                (triangle_x + triangle_width, bar_y + bar_height/2),
-                (triangle_x                 , bar_y + bar_height/2),
-            ],
-            close_path=True, fill=constants.line_color
-        ).draw(surface)
 
-        # Dark triangle
-        gz.polyline(
-            [
-                (triangle_x                 , bar_y + bar_height/2),
-                (triangle_x + triangle_width, bar_y + bar_height/2),
-                (triangle_x                 , bar_y + bar_height*3/2),
-            ],
-            close_path=True, fill=constants.line_color_dark
-        ).draw(surface)
-
+def make_station_info(surface, settings_to_show, rect_width, bar_height,
+                      rect_x, spacing, bar_y, section_center):
     for n, setting in zip(range(8), settings_to_show):
         # Station rectangles
         gz.rectangle(
@@ -264,13 +219,16 @@ def make_bar(surface, constants, settings, station_idx):
             spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70
         )
 
-    # Separator between station number and name
+
+def make_seperator(surface, constants, section_center):
     gz.polyline(
         [(0, section_center),(constants.width, section_center)],
         stroke=constants.line_color, stroke_width=8
     ).draw(surface)
 
-    # Arrow
+
+def make_arrow(surface, spacing, rect_width, arrow_x_offset, rect_x, bar_y,
+               bar_height):
     arrow_width = spacing / 2 - rect_width/2
     points = [
         (
@@ -305,6 +263,78 @@ def make_bar(surface, constants, settings, station_idx):
     # TODO flash arrow color
 
 
+def make_line_info(surface, constants, settings, station_idx):
+    # Set values
+    bar_height = constants.height * 0.05
+    bar_width = constants.width * 0.955
+    # For text at the bottom and bar in the top,
+    # the bottom of the bars is slightly above the center of the section
+    # The center of the section is the center of the station numbers
+    section_center = (
+        (constants.height - constants.sep_height) / 2
+        + constants.sep_height
+    )
+    bar_y = (
+        section_center - bar_height * 2
+        - 40  # Approx fontheight/2
+    )
+
+    triangle_width = constants.width * 0.03
+    # bar_x is the center of the bar, but triangle_x is the start of the bar
+    bar_x = bar_width/2
+    triangle_x = bar_x + bar_width/2 - 1
+
+    rect_width = bar_width * 0.06
+    edge_padding = constants.width * 0.05
+    rect_x = (
+        (constants.width - bar_width - triangle_width)/2
+        + rect_width/2
+        + edge_padding
+    )
+    max_stations = 8
+    max_rect_x = triangle_x - edge_padding - rect_width/2
+    spacing = (max_rect_x - rect_x) / (max_stations - 1)
+    number_of_stations = len(settings)
+    remaining_stations = number_of_stations - station_idx
+
+    arrow_x_offset = 0
+    draw_triangles = True
+    if remaining_stations <= 6:
+        # End of the line: show all 8 stations from the last
+        settings_to_show = settings[-8:]
+        # Move arrow to between next rectangle
+        arrow_x_offset = spacing * (7 - remaining_stations)
+        draw_triangles = False
+    elif station_idx == 0:
+        # 1st -> 2nd station: show 1st station as 'previous'
+        settings_to_show = settings[station_idx   : station_idx+8]
+        # Move arrow to center of first rectangle
+        arrow_x_offset = - spacing/2
+    else:
+        # Anywhere else in the line: show previous station
+        settings_to_show = settings[station_idx-1 : station_idx+7]
+
+    # Actually draw the frame
+    make_bar(surface, constants, bar_width, bar_height, bar_x, bar_y)
+
+    if draw_triangles:
+        make_triangles(
+            surface, constants, triangle_x, triangle_width, bar_y,
+            bar_height
+        )
+
+    make_station_info(
+        surface, settings_to_show, rect_width, bar_height, rect_x,
+        spacing, bar_y, section_center
+    )
+
+    make_seperator(surface, constants, section_center)
+
+    make_arrow(
+        surface, spacing, rect_width, arrow_x_offset, rect_x, bar_y, bar_height
+    )
+
+
 @curry
 def make_frames(
     t, constants, n, settings, next_settings, terminal_settings,
@@ -313,6 +343,7 @@ def make_frames(
     '''Returns the frames from the transition of three texts as a function of time'''
     surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
 
+    # Apply theme
     case = {
         'metro': draw_metro_frames,
         'yamanote': draw_yamanote_frames,
@@ -322,22 +353,26 @@ def make_frames(
     if (func := case.get(constants.theme.lower(), None)):
         func(surface, constants)
 
+    # Station text
     make_text_frames_from_setting(
         t, constants, surface, settings[n],
         old, new
     )
 
+    # 'Next' text
     make_text_frames_from_setting(
         t, constants, surface, next_settings,
         old_next, new_next
     )
 
+    # Terminus station text
     make_text_frames_from_setting(
         t, constants, surface, terminal_settings,
         old_term, new_term
     )
 
-    make_bar(surface, constants, settings, n)
+    # Line info graphics
+    make_line_info(surface, constants, settings, n)
 
     return surface.get_npimage()
 
@@ -402,8 +437,8 @@ def write_video(
 
     flatten = [clip for station_clips in final for clip in station_clips]
     (mpy.concatenate_videoclips(flatten)
-        #.write_videofile(filename, codec=codec, fps=fps))
-        .save_frame('frame.png'))
+        .write_videofile(filename, codec=codec, fps=fps))
+        #.save_frame('frame.png'))
 
 
 # Setting classes
