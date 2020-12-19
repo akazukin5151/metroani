@@ -190,27 +190,6 @@ def make_bar(surface, constants, settings, station_idx):
         fill=constants.line_color_dark
     ).draw(surface)
 
-    # Light triangle
-    gz.polyline(
-        [
-            (triangle_x                 , bar_y - bar_height/2),
-            (triangle_x + triangle_width, bar_y + bar_height/2),
-            (triangle_x                 , bar_y + bar_height/2),
-        ],
-        close_path=True, fill=constants.line_color
-    ).draw(surface)
-
-    # Dark triangle
-    gz.polyline(
-        [
-            (triangle_x                 , bar_y + bar_height/2),
-            (triangle_x + triangle_width, bar_y + bar_height/2),
-            (triangle_x                 , bar_y + bar_height*3/2),
-        ],
-        close_path=True, fill=constants.line_color_dark
-    ).draw(surface)
-
-    # Station rectangles
     rect_width = bar_width * 0.07
     edge_padding = constants.width * 0.02
     rect_x = (
@@ -226,11 +205,13 @@ def make_bar(surface, constants, settings, station_idx):
     remaining_stations = number_of_stations - station_idx
 
     arrow_x_offset = 0
+    draw_triangles = True
     if remaining_stations <= 6:
         # End of the line: show all 8 stations from the last
         settings_to_show = settings[-8:]
         # Move arrow to between next rectangle
         arrow_x_offset = spacing * (7 - remaining_stations)
+        draw_triangles = False
     elif station_idx == 0:
         # 1st -> 2nd station: show 1st station as 'previous'
         settings_to_show = settings[station_idx   : station_idx+8]
@@ -240,7 +221,29 @@ def make_bar(surface, constants, settings, station_idx):
         # Anywhere else in the line: show previous station
         settings_to_show = settings[station_idx-1 : station_idx+7]
 
+    if draw_triangles:
+        # Light triangle
+        gz.polyline(
+            [
+                (triangle_x                 , bar_y - bar_height/2),
+                (triangle_x + triangle_width, bar_y + bar_height/2),
+                (triangle_x                 , bar_y + bar_height/2),
+            ],
+            close_path=True, fill=constants.line_color
+        ).draw(surface)
+
+        # Dark triangle
+        gz.polyline(
+            [
+                (triangle_x                 , bar_y + bar_height/2),
+                (triangle_x + triangle_width, bar_y + bar_height/2),
+                (triangle_x                 , bar_y + bar_height*3/2),
+            ],
+            close_path=True, fill=constants.line_color_dark
+        ).draw(surface)
+
     for n, setting in zip(range(8), settings_to_show):
+        # Station rectangles
         gz.rectangle(
             lx=rect_width, ly=bar_height*2*0.8,
             fill=[1,1,1, .9],
@@ -261,7 +264,7 @@ def make_bar(surface, constants, settings, station_idx):
             spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70
         )
 
-    # Draw separator between station number and name
+    # Separator between station number and name
     gz.polyline(
         [
             (rect_x - rect_width/2 - edge_padding, section_center),
@@ -270,7 +273,7 @@ def make_bar(surface, constants, settings, station_idx):
         stroke=constants.line_color, stroke_width=8
     ).draw(surface)
 
-    # Draw arrow
+    # Arrow
     arrow_width = spacing / 2 - rect_width/2
     points = [
         (
