@@ -190,8 +190,8 @@ def make_bar(surface, constants, settings, station_idx):
         fill=constants.line_color_dark
     ).draw(surface)
 
-    rect_width = bar_width * 0.07
-    edge_padding = constants.width * 0.02
+    rect_width = bar_width * 0.06
+    edge_padding = constants.width * 0.05
     rect_x = (
         (constants.width - bar_width - triangle_width)/2
         + rect_width/2
