@@ -445,18 +445,6 @@ class CircularList:  # CircularList[T]
         '''Returns the item that the head currently points to'''
         return self.it[self.head]
 
-    def next(self):
-        '''Returns a CircularList with head in the next position'''
-        if self.head == len(self.it) - 1:
-            return CircularList(self.it, 0)
-        return CircularList(self.it, self.head + 1)
-
-    def prev(self):
-        '''Returns a CircularList with head in the previous position'''
-        if self.head <= 0:
-            return CircularList(self.it, len(self.it) - 1)
-        return CircularList(self.it, self.head - 1)
-
     def iter(self):
         '''Returns a list of items 'clockwise'/'rightwards',
         including the current item at the end
