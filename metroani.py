@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from typing import NamedTuple
+from collections import namedtuple
 
 import numpy as np
 import gizeh as gz
@@ -285,7 +286,6 @@ def make_line_info(surface, constants, settings, station_idx):
     )
 
     # Triangle settings
-    draw_triangles = True
     triangle_width = constants.width * 0.03
     # bar_x is the center of the bar, but triangle_x is the start of the bar
     triangle_x = bar_x + bar_width/2 - 1
@@ -309,7 +309,6 @@ def make_line_info(surface, constants, settings, station_idx):
         settings_to_show = settings[-max_stations:]
         # Move arrow to between next rectangle
         arrow_x_offset = spacing * (max_stations - 1 - remaining_stations)
-        draw_triangles = False
     elif station_idx == 0:
         # 1st -> 2nd station: show 1st station as 'previous'
         settings_to_show = settings[station_idx:station_idx + max_stations]
@@ -322,7 +321,7 @@ def make_line_info(surface, constants, settings, station_idx):
     # Actually draw the frame
     make_bar(surface, constants, bar_width, bar_height, bar_x, bar_y)
 
-    if draw_triangles:
+    if remaining_stations > max_stations - 1:
         make_triangles(
             surface, constants, triangle_x, triangle_width, bar_y,
             bar_height
@@ -453,8 +452,7 @@ def write_video(
 
 
 # Setting classes
-@dataclass
-class Constants:
+class Constants(NamedTuple):
     width: int
     height: int
     duration: float
@@ -464,8 +462,7 @@ class Constants:
     theme: str  # Metro | Yamanote | JR | Tokyu
 
 
-@dataclass
-class Translation:
+class Translation(NamedTuple):
     '''Collection of values unique for every language'''
     name: str
     font: str
@@ -475,8 +472,7 @@ class Translation:
     scale_x: float
 
 
-@dataclass
-class Transition:
+class Transition(NamedTuple):
     '''
     Represents a collection of translations to transition between,
     and transition-wide settings
@@ -495,8 +491,8 @@ class Transition:
         )
 
 
-@dataclass
-class StationTransition(Transition):
+ST = namedtuple('StationTransition', Transition._fields + ('station_number',))
+class StationTransition(ST):
     '''Every station has the same amount of info as a Transition,
     but also has a station number'''
     station_number: str
@@ -515,8 +511,7 @@ class StationTransition(Transition):
         ]
 
 
-@dataclass(frozen=True)
-class CircularList:  # CircularList[T]
+class CircularList(NamedTuple):  # CircularList[T]
     '''Immutable Circular List'''
     it: 'list[T]'
     head: int = 0
@@ -551,24 +546,21 @@ def all_settings_from_json(file_):
 
 # Themes
 
-@dataclass(frozen=True)
-class Metro:
+class Metro(NamedTuple):
     stroke_color = [0, 0, 0]
     stroke_width = 10
     rectangle_height = 220
     rectangle_fill = [0.95, 0.95, 0.95]
 
 
-@dataclass(frozen=True)
-class Yamanote:
+class Yamanote(NamedTuple):
     rectangle_fill = [0.26, 0.26, 0.24]
     bg_color = rgb([229, 229, 299])
     indicator_width = 100
     indicator_pos = 470
 
 
-@dataclass(frozen=True)
-class JR:
+class JR(NamedTuple):
     top_bg_color = rgb([173, 175, 179])
     bottom_bg_color = rgb([213, 217, 224])
     station_bg_color = rgb([242, 242, 242])
@@ -577,8 +569,7 @@ class JR:
     box_height_mul = 2.5 / 4
 
 
-@dataclass(frozen=True)
-class Tokyu:
+class Tokyu(NamedTuple):
     rectangle_fill = rgb([22, 22, 22])
     bg_color = rgb([233, 235, 239])
     station_color = [1, 1, 1]
