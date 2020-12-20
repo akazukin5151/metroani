@@ -16,75 +16,83 @@ def rgb(values: list[int]) -> list[float]:
 
 
 # Functions of time that draws animation frames
-def modify_inc_func(f: 'func[float, float] -> float', pivot, pivot_value):
+def modify_inc_func(pivot, pivot_value):
     '''
     Given an increasing linear function of t, f(t, d), return a new
     function g such that:
     1) g(t, d) = pivot_value when t <= pivot
     2) g(d, d) = f(d, d)
     '''
-    def g(t, d):
-        if t <= pivot:
-            return pivot_value
-        x1 = pivot
-        x2 = d
-        y1 = pivot_value
-        y2 = f(x2, d)
-        gradient = (y2 - y1) / (x2 - x1)
-        c = y2 - gradient*x2
-        return gradient*t + c
-    return g
+    def wrapper(f: 'func[T, T] -> T') -> 'func[T, T] -> T':
+        def g(t, d):
+            if t <= pivot:
+                return pivot_value
+            x1 = pivot
+            x2 = d
+            y1 = pivot_value
+            y2 = f(x2, d)
+            gradient = (y2 - y1) / (x2 - x1)
+            c = y2 - gradient*x2
+            return gradient*t + c
+        return g
+    return wrapper
 
 
-def modify_dec_func(f: 'func[float, float] -> float', pivot, pivot_value):
+def modify_dec_func(pivot, pivot_value):
     '''
     Given a decreasing linear function of t, f(t, d), return a new
     function g such that:
     1) g(t, d) = pivot_value when t >= d - pivot
     2) g(0, d) = f(0, d)
     '''
-    def g(t, d):
-        if t >= d - pivot:
-            return pivot_value
-        x1 = 0
-        x2 = d - pivot
-        y1 = f(x1, d)
-        y2 = pivot_value
-        gradient = (y2 - y1) / (x2 - x1)
-        c = y2 - gradient*x2
-        return gradient*t + c
-    return g
+    def wrapper(f: 'func[T, T] -> T') -> 'func[T, T] -> T':
+        def g(t, d):
+            if t >= d - pivot:
+                return pivot_value
+            x1 = 0
+            x2 = d - pivot
+            y1 = f(x1, d)
+            y2 = pivot_value
+            gradient = (y2 - y1) / (x2 - x1)
+            c = y2 - gradient*x2
+            return gradient*t + c
+        return g
+    return wrapper
 
 
+@modify_inc_func(0.1, 0.01)
 def show_text_scaler(t, duration):
     '''Scaling function for text-showing animation; Piecewise looks like _/
     Core function is f(t, d) = t/d, so scale ranges from 0 to 1
     '''
-    return modify_inc_func(lambda t, d: t/d, 0.1, 0.01)(t, duration)
+    return t / duration
 
 
+@modify_dec_func(0.1, 0.01)
 def hide_text_scaler(t, duration):
     '''Scaling function for text-hiding animation; Piecewise looks like \_
     Core function is f(t, d) = 1-(t/d), so scale ranges from 0 to 1
     where p <= 0.1
     '''
-    return modify_dec_func(lambda t, d: 1-(t/d), 0.1, 0.01)(t, duration)
+    return 1 - (t / duration)
 
 
+@modify_inc_func(0.1, 0.01)
 def show_text_alpha(t, duration):
     '''Piecewise function that looks like _/
     Core function is f(t, d) = 2t, modified such that f(p, d) = 0
     where p <= 0.1
     '''
-    return modify_inc_func(lambda t, d: 2*t, 0.1, 0.01)(t, duration)
+    return 2 * t
 
 
+@modify_dec_func(0.1, 0.01)
 def hide_text_alpha(t, duration):
     '''Piecewise function that looks like \_
     Core function is f(t, d) = -2t + 2d, modified such that f(d-p, d) = 0
     where p <= 0.1
     '''
-    return modify_dec_func(lambda t, d: -2*t + 2*d, 0.1, 0.01)(t, duration)
+    return -2*t + 2*duration
 
 
 def make_scale_text_frames(
