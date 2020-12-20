@@ -38,7 +38,7 @@ def modify_inc_func(f: 'func[float, float] -> float', pivot, pivot_value):
 
 def modify_dec_func(f: 'func[float, float] -> float', pivot, pivot_value):
     '''
-    Given decreasing linear function of t, f(t, d), return a new
+    Given a decreasing linear function of t, f(t, d), return a new
     function g such that:
     1) g(t, d) = pivot_value when t >= d - pivot
     2) g(0, d) = f(0, d)
