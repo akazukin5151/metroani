@@ -150,12 +150,14 @@
                     {
                         "name": "都営大江戸線",
                         "font": "Hiragino Sans GB W3",
-                        "fontsize": 40
+                        "fontsize": 30,
+                        "scale_x": 0.9
                     },
                     {
                         "name": "Toei Ōedo Line",
                         "font": "Roboto",
-                        "fontsize": 40
+                        "fontsize": 30,
+                        "scale_x": 1
                     }
                 ]
             ]
@@ -175,8 +177,8 @@
                     "name": "Shimo-Ochiai",
                     "font": "Roboto",
                     "fontsize": 170,
-                    "enter_xy": [1400,120],
-                    "exit_xy": [1400,320],
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
                     "scale_x": 0.8
                 }
             ],
@@ -198,8 +200,8 @@
                     "name": "Takadonobaba",
                     "font": "Roboto",
                     "fontsize": 170,
-                    "enter_xy": [1400,120],
-                    "exit_xy": [1400,320],
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
                     "scale_x": 0.8
                 }
             ],
@@ -209,24 +211,28 @@
                     {
                         "name": "JR 山手線",
                         "font": "Hiragino Sans GB W3",
-                        "fontsize": 40
+                        "fontsize": 30,
+                        "scale_x": 1
                     },
                     {
                         "name": "JR Yamanote Line",
                         "font": "Roboto",
-                        "fontsize": 40
+                        "fontsize": 30,
+                        "scale_x": 1
                     }
                 ],
                 [
                     {
                         "name": "東西線",
                         "font": "Hiragino Sans GB W3",
-                        "fontsize": 40
+                        "fontsize": 30,
+                        "scale_x": 1
                     },
                     {
                         "name": "Tōzai Line",
                         "font": "Roboto",
-                        "fontsize": 40
+                        "fontsize": 30,
+                        "scale_x": 1
                     }
                 ]
             ]

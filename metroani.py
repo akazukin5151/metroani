@@ -262,36 +262,44 @@ def make_triangles(surface, constants, triangle_x, triangle_width, bar_y,
 def make_station_info(surface, settings_to_show, rect_width, bar_height,
                       rect_x, spacing, bar_y, section_center):
     for n, setting in zip(range(8), settings_to_show):
+        x_pos = rect_x + spacing * n
+
         # Station rectangles
         gz.rectangle(
             lx=rect_width, ly=bar_height*2*0.8,
             fill=[1,1,1, .9],
-            xy=[rect_x + spacing * n, bar_y + bar_height/2]
+            xy=[x_pos, bar_y + bar_height/2]
         ).draw(surface)
 
         # Station numbers
         gz.text(
             setting.station_number, 'Roboto', 50,
-            xy=[rect_x + spacing * n, section_center - 40]
+            xy=[x_pos, section_center - 40]
         ).draw(surface)
 
         # Station names
         # TODO: font, fontsize, change language, option to rotate instead
         make_vertical_text(
             setting.names.curr().name, surface,
-            first_xy=[rect_x + spacing * n, section_center + 40],
+            first_xy=[x_pos, section_center + 40],
             spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70
         )
 
         # Display every transfer line for every station in its first language
         for idx, transfer in enumerate(setting.transfers):
+            y_pos = (bar_y - bar_height) + 10 - idx*40
             # TODO: Transition between different translations
             current_translation = transfer[0]
+
             gz.text(
                 current_translation.name,
                 fontfamily=current_translation.font,
                 fontsize=current_translation.fontsize,
-                xy=[rect_x + spacing * n, bar_y - bar_height*(idx+1)]
+                xy=[x_pos, y_pos]
+            ).scale(
+                rx=current_translation.scale_x,
+                ry=1,
+                center=[x_pos, y_pos]
             ).draw(surface)
 
 
@@ -541,16 +549,16 @@ class LineTranslation(NamedTuple):
     name: str
     font: str
     fontsize: int
+    scale_x: float
 
 
 T = namedtuple(
-    'Translation', LineTranslation._fields + ('enter_xy', 'exit_xy', 'scale_x')
+    'Translation', LineTranslation._fields + ('enter_xy', 'exit_xy')
 )
 class Translation(T):
     '''Collection of values unique for every language, for stations'''
     enter_xy: list[int]
     exit_xy: list[int]
-    scale_x: float
 
 
 class Transition(NamedTuple):
