@@ -16,7 +16,7 @@
                     "name": "鷺ノ宮",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -38,7 +38,7 @@
                     "name": "都立家政",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -60,7 +60,7 @@
                     "name": "野方",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -82,7 +82,7 @@
                     "name": "沼袋",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -104,7 +104,7 @@
                     "name": "新井薬師前",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -126,7 +126,7 @@
                     "name": "中井",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -148,7 +148,7 @@
                     "name": "下落合",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -170,7 +170,7 @@
                     "name": "高田馬場",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },
@@ -192,7 +192,7 @@
                     "name": "西武新宿",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
-                    "enter_xy": [960,150],
+                    "enter_xy": [960,110],
                     "exit_xy": [960,320],
                     "scale_x": 1
                 },

@@ -16,25 +16,87 @@ def rgb(values: list[int]) -> list[float]:
 
 
 # Functions of time that draws animation frames
+def modify_inc_func(f: 'func[float, float] -> float', pivot, pivot_value):
+    '''
+    Given an increasing linear function of t, f(t, d), return a new
+    function g such that:
+    1) g(t, d) = pivot_value when t <= pivot
+    2) g(d, d) = f(d, d)
+    '''
+    def g(t, d):
+        if t <= pivot:
+            return pivot_value
+        x1 = pivot
+        x2 = d
+        y1 = pivot_value
+        y2 = f(x2, d)
+        gradient = (y2 - y1) / (x2 - x1)
+        c = y2 - gradient*x2
+        return gradient*t + c
+    return g
+
+
+def modify_dec_func(f: 'func[float, float] -> float', pivot, pivot_value):
+    '''
+    Given decreasing linear function of t, f(t, d), return a new
+    function g such that:
+    1) g(t, d) = pivot_value when t >= d - pivot
+    2) g(0, d) = f(0, d)
+    '''
+    def g(t, d):
+        if t >= d - pivot:
+            return pivot_value
+        x1 = 0
+        x2 = d - pivot
+        y1 = f(x1, d)
+        y2 = pivot_value
+        gradient = (y2 - y1) / (x2 - x1)
+        c = y2 - gradient*x2
+        return gradient*t + c
+    return g
+
 
 def show_text_scaler(t, duration):
-    '''Scaling function for text-showing animation'''
-    return 0.01 if t == 0 else t / duration
+    '''Scaling function for text-showing animation; Piecewise looks like _/
+    Core function is f(t, d) = t/d, so scale ranges from 0 to 1
+    '''
+    return modify_inc_func(lambda t, d: t/d, 0.1, 0.01)(t, duration)
+
 
 def hide_text_scaler(t, duration):
-    '''Scaling function for text-hiding animation'''
-    return 1 if t == 0 else 1 - (t / duration)
+    '''Scaling function for text-hiding animation; Piecewise looks like \_
+    Core function is f(t, d) = 1-(t/d), so scale ranges from 0 to 1
+    where p <= 0.1
+    '''
+    return modify_dec_func(lambda t, d: 1-(t/d), 0.1, 0.01)(t, duration)
+
+
+def show_text_alpha(t, duration):
+    '''Piecewise function that looks like _/
+    Core function is f(t, d) = 2t, modified such that f(p, d) = 0
+    where p <= 0.1
+    '''
+    return modify_inc_func(lambda t, d: 2*t, 0.1, 0.01)(t, duration)
+
+
+def hide_text_alpha(t, duration):
+    '''Piecewise function that looks like \_
+    Core function is f(t, d) = -2t + 2d, modified such that f(d-p, d) = 0
+    where p <= 0.1
+    '''
+    return modify_dec_func(lambda t, d: -2*t + 2*d, 0.1, 0.01)(t, duration)
 
 
 def make_scale_text_frames(
     t, duration, surface, skip_if_t, scaler_func,
     text, xy, font, fontsize, fontcolor, x_scale,
-    center_xy
+    center_xy, alpha_func
 ):
     '''Draws either a text showing or hiding animation'''
     if t != skip_if_t:
+        color = fontcolor + (alpha_func(t, duration),)
         scaler = scaler_func(t, duration)
-        new = gz.text(text, font, fontsize, xy=xy, fill=fontcolor)
+        new = gz.text(text, font, fontsize, xy=xy, fill=color)
         new.scale(rx=x_scale, ry=scaler, center=center_xy).draw(surface)
 
 
@@ -46,11 +108,12 @@ def make_text_frames(
     '''Draws one text showing animation and one text hiding animation'''
     make_scale_text_frames(
         t, duration, surface, 0, show_text_scaler, new_text, xy, new_font,
-        new_fontsize, fontcolor, new_scale_x, new_center_xy
+        new_fontsize, fontcolor, new_scale_x, new_center_xy, show_text_alpha
     )
+
     make_scale_text_frames(
         t, duration, surface, duration, hide_text_scaler, old_text, xy, old_font,
-        old_fontsize, fontcolor, old_scale_x, old_center_xy
+        old_fontsize, fontcolor, old_scale_x, old_center_xy, hide_text_alpha
     )
     return surface
 
