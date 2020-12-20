@@ -554,11 +554,14 @@ class Transition(NamedTuple):
         )
 
 
-ST = namedtuple('StationTransition', Transition._fields + ('station_number',))
+ST = namedtuple(
+    'StationTransition', Transition._fields + ('station_number', 'transfers')
+)
 class StationTransition(ST):
     '''Every station has the same amount of info as a Transition,
     but also has a station number'''
     station_number: str
+    transfers: CircularList[Translation]
 
     @classmethod
     def from_json_list(cls, settings: 'json', section: str):
@@ -568,7 +571,8 @@ class StationTransition(ST):
                     [Translation(**ss) for ss in station['translations']]
                 ),
                 station['xy'],
-                station['station_number']
+                station['station_number'],
+                station['transfers']
             )
             for station in settings[section]
         ]

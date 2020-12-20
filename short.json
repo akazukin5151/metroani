@@ -29,7 +29,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-08",
@@ -51,7 +52,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-07",
@@ -73,7 +75,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-06",
@@ -95,7 +98,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-05",
@@ -117,7 +121,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-04",
@@ -139,7 +144,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-03",
@@ -161,7 +167,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-02",
@@ -183,7 +190,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         },
         {
             "station_number": "SS-01",
@@ -205,7 +213,8 @@
                     "scale_x": 0.8
                 }
             ],
-            "xy": [1300,220]
+            "xy": [1300,220],
+            "transfers": []
         }
     ],
     "terminal": {
