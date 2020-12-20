@@ -145,7 +145,20 @@
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [
+                [
+                    {
+                        "name": "都営大江戸線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 40
+                    },
+                    {
+                        "name": "Toei Ōedo Line",
+                        "font": "Roboto",
+                        "fontsize": 40
+                    }
+                ]
+            ]
         },
         {
             "station_number": "SS-03",
@@ -191,7 +204,32 @@
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [
+                [
+                    {
+                        "name": "JR 山手線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 40
+                    },
+                    {
+                        "name": "JR Yamanote Line",
+                        "font": "Roboto",
+                        "fontsize": 40
+                    }
+                ],
+                [
+                    {
+                        "name": "東西線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 40
+                    },
+                    {
+                        "name": "Tōzai Line",
+                        "font": "Roboto",
+                        "fontsize": 40
+                    }
+                ]
+            ]
         },
         {
             "station_number": "SS-01",

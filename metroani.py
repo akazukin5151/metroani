@@ -283,6 +283,17 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
             spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70
         )
 
+        # Display every transfer line for every station in its first language
+        for idx, transfer in enumerate(setting.transfers):
+            # TODO: Transition between different translations
+            current_translation = transfer[0]
+            gz.text(
+                current_translation.name,
+                fontfamily=current_translation.font,
+                fontsize=current_translation.fontsize,
+                xy=[rect_x + spacing * n, bar_y - bar_height*(idx+1)]
+            ).draw(surface)
+
 
 def make_seperator(surface, constants, section_center):
     gz.polyline(
@@ -525,6 +536,13 @@ class Constants(NamedTuple):
     theme: str  # Metro | Yamanote | JR | Tokyu
 
 
+class LineTranslation(NamedTuple):
+    '''Collection of values unique for every language'''
+    name: str
+    font: str
+    fontsize: int
+
+
 class Translation(NamedTuple):
     '''Collection of values unique for every language'''
     name: str
@@ -561,7 +579,9 @@ class StationTransition(ST):
     '''Every station has the same amount of info as a Transition,
     but also has a station number'''
     station_number: str
-    transfers: CircularList[Translation]
+    # Inner list is same line in different languages
+    # Outer list is collection of different lines
+    transfers: list[list[LineTranslation]]
 
     @classmethod
     def from_json_list(cls, settings: 'json', section: str):
@@ -572,7 +592,10 @@ class StationTransition(ST):
                 ),
                 station['xy'],
                 station['station_number'],
-                station['transfers']
+                [
+                    [LineTranslation(**translation) for translation in line]
+                    for line in station['transfers']
+                ]
             )
             for station in settings[section]
         ]
