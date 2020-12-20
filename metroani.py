@@ -537,17 +537,17 @@ class Constants(NamedTuple):
 
 
 class LineTranslation(NamedTuple):
-    '''Collection of values unique for every language'''
+    '''Collection of values unique for every language, for lines'''
     name: str
     font: str
     fontsize: int
 
 
-class Translation(NamedTuple):
-    '''Collection of values unique for every language'''
-    name: str
-    font: str
-    fontsize: int
+T = namedtuple(
+    'Translation', LineTranslation._fields + ('enter_xy', 'exit_xy', 'scale_x')
+)
+class Translation(T):
+    '''Collection of values unique for every language, for stations'''
     enter_xy: list[int]
     exit_xy: list[int]
     scale_x: float
