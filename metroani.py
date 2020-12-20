@@ -60,38 +60,31 @@ def modify_dec_func(pivot, pivot_value):
     return wrapper
 
 
-@modify_inc_func(0.1, 0.01)
+@modify_inc_func(pivot=0.1, pivot_value=0.01)
 def show_text_scaler(t, duration):
     '''Scaling function for text-showing animation; Piecewise looks like _/
-    Core function is f(t, d) = t/d, so scale ranges from 0 to 1
+    Scale ranges from 0 to 1
     '''
     return t / duration
 
 
-@modify_dec_func(0.1, 0.01)
+@modify_dec_func(pivot=0.1, pivot_value=0.01)
 def hide_text_scaler(t, duration):
     '''Scaling function for text-hiding animation; Piecewise looks like \_
-    Core function is f(t, d) = 1-(t/d), so scale ranges from 0 to 1
-    where p <= 0.1
+    Scale ranges from 0 to 1
     '''
     return 1 - (t / duration)
 
 
-@modify_inc_func(0.1, 0.01)
+@modify_inc_func(pivot=0.1, pivot_value=0.01)
 def show_text_alpha(t, duration):
-    '''Piecewise function that looks like _/
-    Core function is f(t, d) = 2t, modified such that f(p, d) = 0
-    where p <= 0.1
-    '''
+    '''Piecewise function that looks like _/'''
     return 2 * t
 
 
-@modify_dec_func(0.1, 0.01)
+@modify_dec_func(pivot=0.1, pivot_value=0.01)
 def hide_text_alpha(t, duration):
-    '''Piecewise function that looks like \_
-    Core function is f(t, d) = -2t + 2d, modified such that f(d-p, d) = 0
-    where p <= 0.1
-    '''
+    '''Piecewise function that looks like \_'''
     return -2*t + 2*duration
 
 
