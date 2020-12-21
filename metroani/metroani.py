@@ -95,7 +95,7 @@ def make_scale_text_frames(
 ):
     '''Draws either a text showing or hiding animation'''
     if t != skip_if_t:
-        color = fontcolor + (alpha_func(t, duration),)
+        color = list(fontcolor) + [alpha_func(t, duration)]
         scaler = scaler_func(t, duration)
         new = gz.text(text, font, fontsize, xy=xy, fill=color)
         new.scale(rx=x_scale, ry=scaler, center=center_xy).draw(surface)
@@ -748,8 +748,8 @@ class Metro(NamedTuple):
 
 
 class Yamanote(NamedTuple):
-    rectangle_fill = [0.26, 0.26, 0.24]
-    bg_color = rgb([229, 229, 299])
+    rectangle_fill = rgb([26, 26, 24])
+    bg_color = rgb([229, 229, 229])
     indicator_width = 100
     indicator_pos = 470
 
