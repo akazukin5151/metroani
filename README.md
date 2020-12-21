@@ -4,7 +4,8 @@ Programatically create multilingual train announcement animations, Japan style.
 
 ![example](examples/example.gif)
 
-`python examples/gif.py` and `python examples/webm.py`
+(In `python examples/gif.py`, `python examples/webm.py` and `python examples/python_settings.py`)
+
 
 # Features
 
@@ -19,10 +20,6 @@ Programatically create multilingual train announcement animations, Japan style.
 # Examples
 
 TODO: examples for each theme
-
-TODO: example using settings written in python
-
-`python examples/python_settings.py`
 
 
 # Usage
