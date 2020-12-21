@@ -15,8 +15,8 @@ video = metroani.make_video(
     constants
 )
 
-gif_duration = (1 + 0.7 + 1 + 0.7 + 1) * 2
+duration = (1 + 0.7 + 1 + 0.7 + 1) * 2
 
 (video
-    .subclip(0, gif_duration)
-    .write_videofile('output/metroani.webm', codec='libvpx', fps=24, threads=4))
+    .subclip(0, duration)
+    .write_videofile('examples/example.webm', codec='libvpx', fps=24, threads=4))
