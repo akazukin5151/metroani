@@ -19,4 +19,9 @@ gif_duration = (1 + 0.7 + 1 + 0.7 + 1) * 2
 
 (video
     .subclip(0, gif_duration)
-    .write_gif('output/example.gif', fps=24))
+    .resize(0.5)
+    .write_gif('examples/example.gif', fps=24))
+
+os.system('gifsicle -O3 examples/example.gif -o examples/out.gif')
+os.system('rm examples/example.gif')
+os.system('mv examples/out.gif examples/example.gif')
