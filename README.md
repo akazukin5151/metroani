@@ -1,8 +1,10 @@
 # Metroani
 
+Programatically create multilingual train announcement animations, Japan style.
+
 ![example](examples/example.gif)
 
-Programatically create multilingual train announcement animations, Japan style.
+`python examples/gif.py` and `python examples/webm.py`
 
 # Features
 
@@ -16,11 +18,9 @@ Programatically create multilingual train announcement animations, Japan style.
 
 # Examples
 
-1. Git clone and cd to metroani
+TODO: examples for each theme
 
-`python examples/gif.py`
-
-`python examples/webm.py`
+TODO: example using settings written in python
 
 `python examples/python_settings.py`
 
