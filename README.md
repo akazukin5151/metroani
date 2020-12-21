@@ -13,8 +13,8 @@ Programatically create multilingual train announcement animations, Japan style.
 - Script itself can be edited for advanced customization
 - Four built-in themes
     - `Metro`: Tokyo Metro light theme with line color as accent. Used by Tokyo Metro
-    - `Yamanote`: Dark background for station name. Used by newer JR East lines such as the Yamanote and Saikyo Line
-    - `JR`: Gray background and older look with more boxes. Used by other JR East lines such as the Keihin-Tohoku and Chuo Line
+    - `Yamanote`: Dark background for station name. Used by newer JR East lines such as the Yamanote, Saikyo and Joban Lines
+    - `JR`: Gray background and older look with more boxes. Used by other JR East lines such as the Keihin-Tohoku and Chuo Lines
     - `Tokyu`: Dark background for station name and circles for stations (TODO). Used by Tokyu Lines
 
 # Examples
@@ -51,6 +51,26 @@ The basic workflow for a clean build is:
 6. (Optional: edit the MoviePy clip however you want)
 7. Write the MoviePy clip into a file (see their [manual](https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html#videoclip))
 
+It is encouraged to edit script, especially the Themes classes
+
 # License
 
 The code is licensed under the Mozilla Public License v2, but it does not apply to any content. Any content you create with this script is fully owned by you, and you have the full copyright over them.
+
+# Credits
+
+Inspired by and external links:
+
+- Tokyo Metro
+    - [【自動放送】東西線 中野ゆき B線 05系 東京メトロ LCD再現 トレインビジョン 西船橋始発](https://invidious.snopyta.org/watch?v=6PvKRUFpu0w)
+    - [【自動放送】銀座線 A線 浅草 → 渋谷 1000系 東京メトロ LCD再現 トレインビジョン 車内放送 発車メロディ](https://invidious.snopyta.org/watch?v=vuq8JkANTm4)
+    - [【自動放送】有楽町線 B線 新木場 → 和光市 LCD再現 東京メトロ トレインビジョン](https://invidious.snopyta.org/watch?v=kEpzDdhgtv4)
+- JR new
+    - [【自動放送】山手線 内回り車内放送【高輪ゲートウェイ】](https://invidious.snopyta.org/watch?v=KHr2n4neEy8&t=40)
+    - [【自動放送】常磐線快速電車 上野→取手【旧放送・架空LCD】](https://invidious.snopyta.org/watch?v=L_urE_tlrVg)
+    - [【自動放送】埼京線 [快速] 川越→新木場【駅ナンバリング対応】](https://invidious.snopyta.org/watch?v=cXxpG6aX96I)
+- JR old
+    - [【ナンバリング対応】京浜東北･根岸線 北行 各駅停車 全区間車内放送 (トレビ簡易再現)](https://invidious.snopyta.org/watch?v=StY-B--BHNo)
+    - [【自動放送】中央線 快速 東京 → 高尾 JR東日本 LCD再現 トレインビジョン 車内放送 発車メロディ](https://invidious.snopyta.org/watch?v=AinHMIO1jfA)
+- Tokyu
+    - [【自動放送】東急田園都市線•半蔵門線•東武スカイツリーライン 急行 南栗橋ゆき 中央林間始発　2020系 LCD再現 トレインビジョン 車内放送 東京メトロ 東武日光線 ](https://invidious.snopyta.org/watch?v=-5Nejuj2qyk)
