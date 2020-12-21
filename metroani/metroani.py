@@ -454,6 +454,7 @@ def make_station_icon(surface, settings, n, constants):
     x_pos, y_pos = constants.icon_xy
 
     if constants.icon_shape.lower() == 'square':
+        mod = 40
         gz.square(
             constants.icon_size,
             xy=[x_pos, y_pos],
@@ -462,6 +463,7 @@ def make_station_icon(surface, settings, n, constants):
             fill=[1,1,1]
         ).draw(surface)
     else:
+        mod = 45
         gz.circle(
             constants.icon_size,
             xy=[x_pos, y_pos],
@@ -473,7 +475,7 @@ def make_station_icon(surface, settings, n, constants):
     line, num = settings[n].station_number.split('-')
     gz.text(
         line, constants.icon_text_font,
-        constants.icon_line_fontsize, xy=[x_pos, y_pos-45]
+        constants.icon_line_fontsize, xy=[x_pos, y_pos-mod]
     ).draw(surface)
     gz.text(
         num, constants.icon_text_font,
