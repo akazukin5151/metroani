@@ -1,6 +1,6 @@
 # Metroani
 
-TODO: put gif/webm here
+![example](examples/example.gif)
 
 Programatically create multilingual train announcement animations, Japan style.
 
