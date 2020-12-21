@@ -22,13 +22,13 @@ Programatically create multilingual train announcement animations, Japan style.
 TODO: examples for each theme
 
 
-# Usage
+# Installation
 
 1. `git clone https://github.com/twenty5151/metroani`
 2. `cd metroani`
 3. `pip install -r requirements.txt`
 4. (Optional: install `gifsicle` to compress gifs)
-5. Start by running the examples and adjusting the settings in `settings/`
+5. Start by running `examples/webm.py` and adjusting `settings/gif.json`
 
 Notes:
 
@@ -37,13 +37,17 @@ Notes:
 
 **TODO: document every setting**
 
-The basic workflow is:
+# Usage
+
+Start by running `examples/webm.py` (more optimized than gif and avi), and adjusting `settings/gif.json`. Line 21 controls the duration of the clip that is generated.
+
+The basic workflow for a clean build is:
 
 1. Write the settings in either JSON or Python
-2. For JSON, use `metroani.all_settings_from_json()` to convert the JSON setting file into Python settings objects
+2. For JSON, use `all_settings_from_json()` to convert the JSON setting file into Python settings objects
 3. For Python, directly instantiate the settings objects. Use `rgb()` to convert 0-255 RGB values to 0-1 values required by gizeh.
 4. (Optional: edit the script itself, for advanced users)
-5. Pass those settings objects into `metroani.make_video()`, which returns a MoviePy clip
+5. Pass those settings objects into `make_video()`, which returns a MoviePy clip
 6. (Optional: edit the MoviePy clip however you want)
 7. Write the MoviePy clip into a file (see their [manual](https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html#videoclip))
 
