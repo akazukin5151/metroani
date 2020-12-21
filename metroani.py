@@ -569,23 +569,27 @@ def animate(n, settings, next_settings, terminal_settings, constants):
     )
 
 
-def freeze_end(clip, duration):
-    return clip.fx(vfx.freeze, t=duration, freeze_duration=1)
+def freeze_end(clip, constants):
+    return clip.fx(
+        vfx.freeze, t=constants.duration,
+        freeze_duration=constants.freeze_duration
+    )
 
 
-def freeze_both(clip, duration):
-    return freeze_end(clip, duration).fx(vfx.freeze, t=0, freeze_duration=1)
+def freeze_both(clip, constants):
+    return freeze_end(clip, constants).fx(
+        vfx.freeze, t=0, freeze_duration=constants.freeze_duration
+    )
 
 
 def combine_language_transitions(
-    n, station_settings, state_setting, terminal_settings, constants
+    n, station_settings, state_setting, terminal_settings, c: Constants
 ):
     '''Combines multiple language transitions for a given train state'''
-    d = constants.duration
     return mpy.concatenate_videoclips([
-        freeze_end(clip, d) if idx % 2 != 0 else freeze_both(clip, d)
+        freeze_end(clip, c) if idx % 2 != 0 else freeze_both(clip, c)
         for idx, clip in enumerate(animate(
-            n, station_settings, state_setting, terminal_settings, constants
+            n, station_settings, state_setting, terminal_settings, c
         ))
     ])
 
@@ -630,6 +634,7 @@ class Constants(NamedTuple):
     width: int
     height: int
     duration: float
+    freeze_duration: float
     sep_height: int
     line_color: tuple[float]
     line_color_dark: tuple[float]
