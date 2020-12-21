@@ -16,7 +16,7 @@ def rgb(values: list[int]) -> list[float]:
 
 
 # Functions of time that draws animation frames
-def modify_inc_func(pivot, pivot_value):
+def thresholdify_inc(pivot, pivot_value):
     '''
     Given an increasing linear function of t, f(t, d), return a new
     function g such that:
@@ -38,7 +38,7 @@ def modify_inc_func(pivot, pivot_value):
     return wrapper
 
 
-def modify_dec_func(pivot, pivot_value):
+def thresholdify_dec(pivot, pivot_value):
     '''
     Given a decreasing linear function of t, f(t, d), return a new
     function g such that:
@@ -60,7 +60,7 @@ def modify_dec_func(pivot, pivot_value):
     return wrapper
 
 
-@modify_inc_func(pivot=0.1, pivot_value=0.01)
+@thresholdify_inc(pivot=0.1, pivot_value=0.01)
 def show_text_scaler(t, duration):
     '''Scaling function for text-showing animation; Piecewise looks like _/
     Scale ranges from 0 to 1
@@ -68,7 +68,7 @@ def show_text_scaler(t, duration):
     return t / duration
 
 
-@modify_dec_func(pivot=0.1, pivot_value=0.01)
+@thresholdify_dec(pivot=0.1, pivot_value=0.01)
 def hide_text_scaler(t, duration):
     '''Scaling function for text-hiding animation; Piecewise looks like \_
     Scale ranges from 0 to 1
@@ -76,13 +76,13 @@ def hide_text_scaler(t, duration):
     return 1 - (t / duration)
 
 
-@modify_inc_func(pivot=0.1, pivot_value=0.01)
+@thresholdify_inc(pivot=0.1, pivot_value=0.01)
 def show_text_alpha(t, duration):
     '''Piecewise function that looks like _/'''
     return 2 * t
 
 
-@modify_dec_func(pivot=0.1, pivot_value=0.01)
+@thresholdify_dec(pivot=0.1, pivot_value=0.01)
 def hide_text_alpha(t, duration):
     '''Piecewise function that looks like \_'''
     return -2*t + 2*duration
