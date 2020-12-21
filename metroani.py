@@ -463,8 +463,14 @@ def make_station_icon(surface, settings, n, constants):
     ).draw(surface)
 
     line, num = settings[n].station_number.split('-')
-    gz.text(line, 'Roboto', 60, xy=[x_pos, y_pos-45]).draw(surface)
-    gz.text(num, 'Roboto', 70, xy=[x_pos, y_pos+30]).draw(surface)
+    gz.text(
+        line, constants.icon_text_font,
+        constants.icon_line_fontsize, xy=[x_pos, y_pos-45]
+    ).draw(surface)
+    gz.text(
+        num, constants.icon_text_font,
+        constants.icon_station_fontsize, xy=[x_pos, y_pos+30]
+    ).draw(surface)
 
 
 @curry
@@ -592,6 +598,9 @@ class Constants(NamedTuple):
     line_color_dark: tuple[float]
     theme: str  # Metro | Yamanote | JR | Tokyu
     icon_xy: tuple[int]
+    icon_text_font: str
+    icon_line_fontsize: int
+    icon_station_fontsize: int
 
 
 class LineTranslation(NamedTuple):
