@@ -107,6 +107,14 @@ def make_text_frames(
     , new_center_xy, old_center_xy
 ):
     '''Draws one text showing animation and one text hiding animation'''
+    # If both texts are the same, no animation is needed
+    if new_text == old_text:
+        make_scale_text_frames(
+            0, duration, surface, duration, hide_text_scaler, new_text, xy, new_font,
+            new_fontsize, fontcolor, new_scale_x, new_center_xy, hide_text_alpha
+        )
+        return surface
+
     make_scale_text_frames(
         t, duration, surface, 0, show_text_scaler, new_text, xy, new_font,
         new_fontsize, fontcolor, new_scale_x, new_center_xy, show_text_alpha
@@ -742,7 +750,6 @@ class Tokyu(NamedTuple):
 
 
 if __name__ == '__main__':
-    # TODO: skip transition for states and terminal; only station name has hiragana
     (
         constants, station_settings, terminal_settings, state_settings
     ) = all_settings_from_json('short.json')
