@@ -30,7 +30,22 @@ TODO: examples for each theme
 4. (Optional: install `gifsicle` to compress gifs)
 5. Start by running the examples and adjusting the settings in `settings/`
 
-Note that running `python metroani/metroani.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`. See `settings/README.md`
+Notes:
+
+- Running `python metroani/metroani.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`. See `settings/README.md`
+- Python 3.9 was used to develop the script, but Python 3.7 (or later) should be fine (as long as it supports `from __future__ import annotations`).
+
+**TODO: document every setting**
+
+The basic workflow is:
+
+1. Write the settings in either JSON or Python
+2. For JSON, use `metroani.all_settings_from_json()` to convert the JSON setting file into Python settings objects
+3. For Python, directly instantiate the settings objects. Use `rgb()` to convert 0-255 RGB values to 0-1 values required by gizeh.
+4. (Optional: edit the script itself, for advanced users)
+5. Pass those settings objects into `metroani.make_video()`, which returns a MoviePy clip
+6. (Optional: edit the MoviePy clip however you want)
+7. Write the MoviePy clip into a file (see their [manual](https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html#videoclip))
 
 # License
 
