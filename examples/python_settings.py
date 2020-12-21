@@ -128,3 +128,6 @@ clip = metroani.make_video(
 
 # We can write the clip into a video file, but this file is just a demostration
 # of the python settings API
+# This setting file actually doesn't generate example.gif because only two
+# stations are given. Nevertheless, adding more stations is essentially
+# copy, paste, replace the name.
