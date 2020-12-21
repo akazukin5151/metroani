@@ -29,13 +29,12 @@ TODO: examples for each theme
 3. `pip install -r requirements.txt`
 4. (Optional: install `gifsicle` to compress gifs)
 5. Start by running `examples/webm.py` and adjusting `settings/gif.json`
+6. Read the settings documentation in `settings/README.md`
 
 Notes:
 
 - Running `python metroani/metroani.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`. See `settings/README.md`
 - Python 3.9 was used to develop the script, but Python 3.7 (or later) should be fine (as long as it supports `from __future__ import annotations`).
-
-**TODO: document every setting**
 
 # Usage
 
@@ -51,7 +50,7 @@ The basic workflow for a clean build is:
 6. (Optional: edit the MoviePy clip however you want)
 7. Write the MoviePy clip into a file (see their [manual](https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html#videoclip))
 
-It is encouraged to edit script, especially the Themes classes
+It is encouraged to edit the script, especially the Themes classes
 
 # License
 
