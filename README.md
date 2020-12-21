@@ -23,3 +23,12 @@ Programatically create multilingual train announcement animations, Japan style.
 `python examples/webm.py`
 
 `python examples/python_settings.py`
+
+
+# Usage
+
+1. `git clone https://github.com/twenty5151/metroani`
+2. `cd metroani`
+3. `pip install -r requirements.txt`
+4. (Optional: install `gifsicle` to compress gifs)
+5. Start by running the examples and adjusting the settings in `settings/`
