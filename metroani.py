@@ -584,7 +584,7 @@ def write_video(
     ]
 
     (mpy.concatenate_videoclips(flatten)
-        .write_videofile(filename, codec=codec, fps=fps))
+        .write_videofile(filename, codec=codec, fps=fps, threads=4))
         #.save_frame('frame.png'))
 
 
