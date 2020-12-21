@@ -777,7 +777,7 @@ class Tokyu(NamedTuple):
 if __name__ == '__main__':
     (
         constants, station_settings, terminal_settings, state_settings
-    ) = all_settings_from_json('short.json')
+    ) = all_settings_from_json('dev.json')
 
     # Make animation
     write_video(
