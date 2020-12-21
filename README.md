@@ -13,7 +13,7 @@ Programatically create multilingual train announcement animations, Japan style.
 - Script itself can be edited for advanced customization
 - Four built-in themes
     - `Metro`: Tokyo Metro light theme with line color as accent. Used by Tokyo Metro
-    - `Yamanote`: Dark background for station name. Used by newer JR East lines such as the Yamanote, Saikyo and Joban Lines
+    - `Yamanote`: Dark background for station name. Used by newer JR East lines such as the Yamanote and Joban Lines
     - `JR`: Gray background and older look with more boxes. Used by other JR East lines such as the Keihin-Tohoku and Chuo Lines
     - `Tokyu`: Dark background for station name and circles for stations (TODO). Used by Tokyu Lines
 
@@ -67,7 +67,6 @@ Inspired by and external links:
 - JR new
     - [【自動放送】山手線 内回り車内放送【高輪ゲートウェイ】](https://invidious.snopyta.org/watch?v=KHr2n4neEy8&t=40)
     - [【自動放送】常磐線快速電車 上野→取手【旧放送・架空LCD】](https://invidious.snopyta.org/watch?v=L_urE_tlrVg)
-    - [【自動放送】埼京線 [快速] 川越→新木場【駅ナンバリング対応】](https://invidious.snopyta.org/watch?v=cXxpG6aX96I)
 - JR old
     - [【ナンバリング対応】京浜東北･根岸線 北行 各駅停車 全区間車内放送 (トレビ簡易再現)](https://invidious.snopyta.org/watch?v=StY-B--BHNo)
     - [【自動放送】中央線 快速 東京 → 高尾 JR東日本 LCD再現 トレインビジョン 車内放送 発車メロディ](https://invidious.snopyta.org/watch?v=AinHMIO1jfA)
