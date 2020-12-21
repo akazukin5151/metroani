@@ -29,3 +29,5 @@ TODO: examples for each theme
 3. `pip install -r requirements.txt`
 4. (Optional: install `gifsicle` to compress gifs)
 5. Start by running the examples and adjusting the settings in `settings/`
+
+Note that running `python metroani/metroani.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`

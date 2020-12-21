@@ -1,0 +1,355 @@
+{
+    "constants": {
+        "height": 1080,
+        "width": 1920,
+        "duration": 0.7,
+        "freeze_duration": 2,
+        "sep_height": 350,
+        "line_color": [0.19, 0.71, 0.85],
+        "line_color_dark": [0.12, 0.6, 0.81],
+        "theme": "metro",
+        "icon_xy": [650, 240],
+        "icon_text_font": "Roboto",
+        "icon_line_fontsize": 60,
+        "icon_station_fontsize": 70
+    },
+    "stations": [
+        {
+            "station_number": "SS-09",
+            "translations": [
+                {
+                    "name": "鷺ノ宮",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Saginomiya",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        },
+        {
+            "station_number": "SS-08",
+            "translations": [
+                {
+                    "name": "都立家政",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Toritsu-Kasei",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        },
+        {
+            "station_number": "SS-07",
+            "translations": [
+                {
+                    "name": "野方",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Nogata",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        },
+        {
+            "station_number": "SS-06",
+            "translations": [
+                {
+                    "name": "沼袋",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Numabukuro",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        },
+        {
+            "station_number": "SS-05",
+            "translations": [
+                {
+                    "name": "新井薬師前",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Araiyakushi-mae",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        },
+        {
+            "station_number": "SS-04",
+            "translations": [
+                {
+                    "name": "中井",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Nakai",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [
+                [
+                    {
+                        "name": "都営大江戸線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9
+                    },
+                    {
+                        "name": "Toei Ōedo Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "station_number": "SS-03",
+            "translations": [
+                {
+                    "name": "下落合",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Shimo-Ochiai",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        },
+        {
+            "station_number": "SS-02",
+            "translations": [
+                {
+                    "name": "高田馬場",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Takadonobaba",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [
+                [
+                    {
+                        "name": "JR 山手線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    },
+                    {
+                        "name": "JR Yamanote Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    }
+                ],
+                [
+                    {
+                        "name": "東西線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    },
+                    {
+                        "name": "Tōzai Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "station_number": "SS-01",
+            "translations": [
+                {
+                    "name": "西武新宿",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Seibu-Shinjuku",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": []
+        }
+    ],
+    "terminal": {
+        "translations": [
+            {
+                "name": "西武新宿 ゆき",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 70,
+                "enter_xy": [960,35],
+                "exit_xy": [960,100],
+                "scale_x": 1
+            },
+            {
+                "name": "For Seibu Shinjuku",
+                "font": "Roboto",
+                "fontsize": 60,
+                "enter_xy": [960,35],
+                "exit_xy": [960,110],
+                "scale_x": 0.8
+            }
+        ],
+        "xy": [650,70]
+    },
+    "states": {
+        "next": {
+            "translations": [
+                {
+                    "name": "つぎは",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Next",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [300,280]
+        },
+        "arriving": {
+            "translations": [
+                {
+                    "name": "まもなく",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Arriving at",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [300,280]
+        },
+        "currently": {
+            "translations": [
+                {
+                    "name": "ただいま",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Now stopping at",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [300,280]
+        }
+    }
+}
