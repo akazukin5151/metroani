@@ -423,8 +423,7 @@ def make_line_info(surface, constants, settings, station_idx):
 
 
 def make_station_icon(surface, settings, n, constants):
-    x_pos = 650
-    y_pos = 240
+    x_pos, y_pos = constants.icon_xy
 
     # Squircle too slow
     #mul = 80
@@ -592,6 +591,7 @@ class Constants(NamedTuple):
     line_color: tuple[float]
     line_color_dark: tuple[float]
     theme: str  # Metro | Yamanote | JR | Tokyu
+    icon_xy: tuple[int]
 
 
 class LineTranslation(NamedTuple):
