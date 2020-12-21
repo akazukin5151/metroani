@@ -746,3 +746,5 @@ if __name__ == '__main__':
         'metroani.avi', station_settings, state_settings, terminal_settings,
         constants
     )
+    # TODO: use clip.write_gif() to make a gif for demostration purposes
+    # TODO: use codec='libvpx' to make a webm for an extended example
