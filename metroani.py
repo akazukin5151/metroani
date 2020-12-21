@@ -606,9 +606,8 @@ def combine_train_states(
     )
 
 
-def write_video(
-    filename, stations_settings, state_settings, terminal_settings, constants,
-    codec='libx264', fps=60
+def make_video(
+    station_settings, state_settings, terminal_settings, constants,
 ):
     final = (
         combine_train_states(
@@ -617,16 +616,12 @@ def write_video(
         for n in range(len(station_settings))
     )
 
-    flatten = [
+    return mpy.concatenate_videoclips([
         clip
         for station_clips in final
         for clip in station_clips
-    ]
+    ])
 
-    (mpy.concatenate_videoclips(flatten)
-        .subclip(0, 10)  # For debugging purposes
-        .write_videofile(filename, codec=codec, fps=fps, threads=4))
-        #.save_frame('frame.png'))  # For debugging purposes
 
 
 # Setting classes
@@ -780,9 +775,17 @@ if __name__ == '__main__':
     ) = all_settings_from_json('dev.json')
 
     # Make animation
-    write_video(
-        'metroani.avi', station_settings, state_settings, terminal_settings,
+    video = make_video(
+        station_settings, state_settings, terminal_settings,
         constants
     )
+
+    gif_duration = (1 + 0.7 + 1 + 0.7 + 1) * 2
+
+    (video
+        .subclip(0, gif_duration)
+        .write_videofile('metroani.avi', codec='libx264', fps=60, threads=4))
+        #.save_frame('frame.png'))
+
     # TODO: use clip.write_gif() to make a gif for demostration purposes
     # TODO: use codec='libvpx' to make a webm for an extended example
