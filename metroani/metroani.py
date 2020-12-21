@@ -453,42 +453,22 @@ def make_line_info(surface, constants, settings, station_idx):
 def make_station_icon(surface, settings, n, constants):
     x_pos, y_pos = constants.icon_xy
 
-    # Squircle too slow
-    #mul = 80
-    #r_a, r_b = 1, 1
-    #n = 4
-
-    #def squircle_half(x):
-    #    return r_b * np.power(1 - np.power(np.abs(x/r_a), n), 1/n)
-
-    ## Bottom
-    #gz.polyline(
-    #    [(x*mul, squircle_half(x)*mul) for x in np.linspace(-1, 1, num=100)],
-    #    stroke_width=5,
-    #    stroke=[0.19, 0.71, 0.85],
-    #).translate([x_pos, y_pos]).draw(surface)
-
-    ## Top
-    #points = [(x*mul, -squircle_half(x)*mul) for x in np.linspace(-1, 1, num=7500)]
-    #gz.polyline(
-    #    points,
-    #    stroke_width=5,
-    #    stroke=[0.19, 0.71, 0.85],
-    #).translate([x_pos, y_pos]).draw(surface)
-
-    #gz.polyline(
-    #    [point for point in points if point[1] <= -10],
-    #    close_path=True,
-    #    fill=[0.19, 0.71, 0.85]
-    #).translate([x_pos, y_pos]).draw(surface)
-
-    gz.circle(
-        110,
-        xy=[x_pos, y_pos],
-        stroke=constants.line_color,
-        stroke_width=30,
-        fill=[1,1,1]
-    ).draw(surface)
+    if constants.icon_shape.lower() == 'square':
+        gz.square(
+            constants.icon_size,
+            xy=[x_pos, y_pos],
+            stroke=constants.line_color,
+            stroke_width=15,
+            fill=[1,1,1]
+        ).draw(surface)
+    else:
+        gz.circle(
+            constants.icon_size,
+            xy=[x_pos, y_pos],
+            stroke=constants.line_color,
+            stroke_width=30,
+            fill=[1,1,1]
+        ).draw(surface)
 
     line, num = settings[n].station_number.split('-')
     gz.text(
@@ -634,6 +614,8 @@ class Constants(NamedTuple):
     line_color: tuple[float]
     line_color_dark: tuple[float]
     theme: str  # Metro | Yamanote | JR | Tokyu
+    icon_shape: str  # circle | square
+    icon_size: int
     icon_xy: tuple[int]
     icon_text_font: str
     icon_line_fontsize: int

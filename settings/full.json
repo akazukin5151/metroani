@@ -8,6 +8,8 @@
         "line_color": [0.19, 0.71, 0.85],
         "line_color_dark": [0.12, 0.6, 0.81],
         "theme": "metro",
+        "icon_shape": "circle",
+        "icon_size": 110,
         "icon_xy": [650, 240],
         "icon_text_font": "Roboto",
         "icon_line_fontsize": 60,

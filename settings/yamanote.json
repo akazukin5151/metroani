@@ -8,6 +8,8 @@
         "line_color": [0.19, 0.71, 0.85],
         "line_color_dark": [0.12, 0.6, 0.81],
         "theme": "yamanote",
+        "icon_shape": "square",
+        "icon_size": 155,
         "icon_xy": [700, 240],
         "icon_text_font": "Roboto",
         "icon_line_fontsize": 60,
