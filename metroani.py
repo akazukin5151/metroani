@@ -541,18 +541,24 @@ def animate(n, settings, next_settings, terminal_settings, constants):
     )
 
 
+def freeze_end(clip, duration):
+    return clip.fx(vfx.freeze, t=duration, freeze_duration=1)
+
+
+def freeze_both(clip, duration):
+    return freeze_end(clip, duration).fx(vfx.freeze, t=0, freeze_duration=1)
+
+
 def combine_language_transitions(
     n, station_settings, state_setting, terminal_settings, constants
 ):
     '''Combines multiple language transitions for a given train state'''
-    # FIXME: 1st language is 1s but 2nd language is 2s
-    # Need to freeze on frames showing the 1st language only
+    d = constants.duration
     return mpy.concatenate_videoclips([
-        clip.fx(vfx.freeze, t=constants.duration, freeze_duration=1)
-            .fx(vfx.freeze, t=0, freeze_duration=1)
-        for clip in animate(
+        freeze_end(clip, d) if idx % 2 != 0 else freeze_both(clip, d)
+        for idx, clip in enumerate(animate(
             n, station_settings, state_setting, terminal_settings, constants
-        )
+        ))
     ])
 
 
