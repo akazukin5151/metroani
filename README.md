@@ -8,8 +8,8 @@ Programatically create multilingual train announcement animations, Japan style.
 
 # Features
 
-- Use JSON to store settings
-- A Python API is also available for settings
+- Most essential settings can be customized in a JSON file or through a Python API
+- Script itself can be edited for advanced customization
 - Four built-in themes
     - `Metro`: Tokyo Metro light theme with line color as accent. Used by Tokyo Metro
     - `Yamanote`: Dark background for station name. Used by newer JR East lines such as the Yamanote and Saikyo Line
