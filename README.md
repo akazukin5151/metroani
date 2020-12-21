@@ -31,3 +31,7 @@ TODO: examples for each theme
 5. Start by running the examples and adjusting the settings in `settings/`
 
 Note that running `python metroani/metroani.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`. See `settings/README.md`
+
+# License
+
+The code is licensed under the Mozilla Public License v2, but it does not apply to any content. Any content you create with this script is fully owned by you, and you have the full copyright over them.
