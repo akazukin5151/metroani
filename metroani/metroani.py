@@ -772,7 +772,7 @@ class Tokyu(NamedTuple):
 if __name__ == '__main__':
     (
         constants, station_settings, terminal_settings, state_settings
-    ) = all_settings_from_json('dev.json')
+    ) = all_settings_from_json('settings/dev.json')
 
     # Make animation
     video = make_video(
@@ -780,12 +780,8 @@ if __name__ == '__main__':
         constants
     )
 
-    gif_duration = (1 + 0.7 + 1 + 0.7 + 1) * 2
-
+    # For development purposes, output only first 10 seconds, or just save first frame
     (video
-        .subclip(0, gif_duration)
-        .write_videofile('metroani.avi', codec='libx264', fps=60, threads=4))
-        #.save_frame('frame.png'))
-
-    # TODO: use clip.write_gif() to make a gif for demostration purposes
-    # TODO: use codec='libvpx' to make a webm for an extended example
+        .subclip(0, 10)
+        .write_videofile('output/metroani.avi', codec='libx264', fps=60, threads=4))
+        #.save_frame('output/frame.png'))

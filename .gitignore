@@ -1,3 +1,2 @@
-*.avi
-__pycache__/*
-frame.png
+__pycache__/
+output/*
