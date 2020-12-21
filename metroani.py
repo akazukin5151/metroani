@@ -99,13 +99,14 @@ def make_scale_text_frames(
         scaler = scaler_func(t, duration)
         new = gz.text(text, font, fontsize, xy=xy, fill=color)
         new.scale(rx=x_scale, ry=scaler, center=center_xy).draw(surface)
+    return surface
 
 
 def make_show_text_frames(
     t, duration, surface, new_text, xy, new_font, new_fontsize,
     fontcolor, new_scale_x, new_center_xy
 ):
-    make_scale_text_frames(
+    return make_scale_text_frames(
         t, duration, surface, 0, show_text_scaler, new_text, xy, new_font,
         new_fontsize, fontcolor, new_scale_x, new_center_xy, show_text_alpha
     )
@@ -115,7 +116,7 @@ def make_hide_text_frames(
     t, duration, surface, old_text, xy, old_font, old_fontsize, fontcolor,
     old_scale_x, old_center_xy
 ):
-    make_scale_text_frames(
+    return make_scale_text_frames(
         t, duration, surface, duration, hide_text_scaler, old_text, xy, old_font,
         old_fontsize, fontcolor, old_scale_x, old_center_xy, hide_text_alpha
     )
@@ -129,11 +130,10 @@ def make_text_frames(
     '''Draws one text showing animation and one text hiding animation'''
     # If both texts are the same, no animation is needed
     if new_text == old_text:
-        make_hide_text_frames(
+        return make_hide_text_frames(
             0, duration, surface, old_text, xy, old_font, old_fontsize, fontcolor,
             old_scale_x, old_center_xy
         )
-        return surface
 
     make_show_text_frames(
         t, duration, surface, new_text, xy, new_font, new_fontsize,
