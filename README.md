@@ -25,6 +25,10 @@ TODO: examples for each theme
 
 (The Joban Line using the Yamanote theme `examples/joban.py`)
 
+![jr theme](examples/keihin.gif)
+
+(The Keihin-Tohoku Line using the JR theme `examples/keihin.py`)
+
 
 # Installation
 

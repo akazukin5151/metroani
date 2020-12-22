@@ -1,0 +1,388 @@
+{
+    "constants": {
+        "height": 1080,
+        "width": 1920,
+        "duration": 0.7,
+        "freeze_duration": 1,
+        "sep_height": 350,
+        "line_color": [0, 0.75, 1],
+        "line_color_dark": [0, 0.65, 0.87],
+        "theme": "jr",
+        "icon_shape": "square",
+        "icon_size": 155,
+        "icon_xy": [520, 225],
+        "icon_text_font": "Roboto",
+        "icon_line_fontsize": 60,
+        "icon_station_fontsize": 70
+    },
+    "stations": [
+        {
+            "station_number": "JK-47",
+            "translations": [
+                {
+                    "name": "大宮",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Ōmiya",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,225],
+            "transfers": []
+        },
+        {
+            "station_number": "JK-46",
+            "translations": [
+                {
+                    "name": "さいたま新都心",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 140,
+                    "enter_xy": [1560,110],
+                    "exit_xy": [1560,320],
+                    "scale_x": 0.9,
+                    "skip": false
+                },
+                {
+                    "name": "Saitama-Shintoshin",
+                    "font": "Roboto",
+                    "fontsize": 120,
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": [
+                [
+                    {
+                        "name": "宇都宮線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9,
+                        "skip": false
+                    },
+                    {
+                        "name": "Utsunomiya Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ],
+                [
+                    {
+                        "name": "高崎線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9,
+                        "skip": false
+                    },
+                    {
+                        "name": "Takasaki Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ]
+            ]
+        },
+        {
+            "station_number": "JK-45",
+            "translations": [
+                {
+                    "name": "与野",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Yono",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": []
+        },
+        {
+            "station_number": "JK-44",
+            "translations": [
+                {
+                    "name": "北浦和",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Kita-Urawa",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": []
+        },
+        {
+            "station_number": "JK-43",
+            "translations": [
+                {
+                    "name": "浦和",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Urawa",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": [
+                [
+                    {
+                        "name": "宇都宮線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9,
+                        "skip": false
+                    },
+                    {
+                        "name": "Utsunomiya Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ],
+                [
+                    {
+                        "name": "高崎線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9,
+                        "skip": false
+                    },
+                    {
+                        "name": "Takasaki Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ],
+                [
+                    {
+                        "name": "湘南新宿ライン",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9,
+                        "skip": false
+                    },
+                    {
+                        "name": "Shōnan-Shinjuku Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ]
+            ]
+        },
+        {
+            "station_number": "JK-42",
+            "translations": [
+                {
+                    "name": "南浦和",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Minami-Urawa",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": [
+                [
+                    {
+                        "name": "武蔵野線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 0.9,
+                        "skip": false
+                    },
+                    {
+                        "name": "Musashino Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ]
+            ]
+        },
+        {
+            "station_number": "JK-41",
+            "translations": [
+                {
+                    "name": "蕨",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Warabi",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1000,120],
+                    "exit_xy": [1000,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": []
+        },
+        {
+            "station_number": "JK-40",
+            "translations": [
+                {
+                    "name": "西川口",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Nishi-Kawaguchi",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1000,120],
+                    "exit_xy": [1000,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": []
+        },
+        {
+            "station_number": "JK-39",
+            "translations": [
+                {
+                    "name": "川口",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Kawaguchi",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1000,220],
+            "transfers": []
+        }
+    ],
+    "terminal": {
+        "translations": [
+            {
+                "name": "大船 行",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 70,
+                "enter_xy": [960,35],
+                "exit_xy": [960,100],
+                "scale_x": 1
+            },
+            {
+                "name": "For Ōfuna",
+                "font": "Roboto",
+                "fontsize": 60,
+                "enter_xy": [500,35],
+                "exit_xy": [500,110],
+                "scale_x": 0.8
+            }
+        ],
+        "xy": [530,70]
+    },
+    "states": {
+        "next": {
+            "translations": [
+                {
+                    "name": "つぎは",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Next",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [960,250],
+                    "exit_xy": [960,330],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [280,280]
+        }
+    }
+}
