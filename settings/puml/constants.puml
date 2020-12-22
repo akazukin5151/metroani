@@ -1,0 +1,24 @@
+@startuml
+@startjson
+
+{
+    "constants": {
+        "height": 1080,
+        "width": 1920,
+        "duration": 0.7,
+        "freeze_duration": 1,
+        "sep_height": 350,
+        "line_color": [0.19, 0.71, 0.85],
+        "line_color_dark": [0.12, 0.6, 0.81],
+        "theme": "metro",
+        "icon_shape": "circle",
+        "icon_size": 110,
+        "icon_xy": [650, 240],
+        "icon_text_font": "Roboto",
+        "icon_line_fontsize": 60,
+        "icon_station_fontsize": 70
+    }
+}
+
+@endjson
+@enduml

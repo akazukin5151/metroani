@@ -1,0 +1,68 @@
+@startuml
+@startjson
+
+{
+    "stations": [
+        {
+            "station_number": "SS-02",
+            "translations": [
+                {
+                    "name": "高田馬場",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1,
+                    "skip": false
+                },
+                {
+                    "name": "Takadonobaba",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
+                    "scale_x": 0.8,
+                    "skip": false
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [
+                [
+                    {
+                        "name": "JR 山手線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    },
+                    {
+                        "name": "JR Yamanote Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ],
+                [
+                    {
+                        "name": "東西線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    },
+                    {
+                        "name": "Tōzai Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1,
+                        "skip": false
+                    }
+                ]
+            ]
+        }
+    ]
+}
+
+@endjson
+@enduml

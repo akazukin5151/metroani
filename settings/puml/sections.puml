@@ -1,0 +1,12 @@
+@startuml
+@startjson
+
+{
+    "constants": "...",
+    "stations": "...",
+    "terminal": "...",
+    "states": "..."
+}
+
+@endjson
+@enduml

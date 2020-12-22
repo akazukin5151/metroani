@@ -21,6 +21,10 @@ The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freez
 
 For xy coordinates, note that the origin is in the top left. Higher x values means to the right, and higher y values mean to the bottom.
 
+There are essentially four separate sections (objects in the Python API)
+
+![sections](puml/render/sections.png)
+
 ## Constants
 
 Video-wide settings.
@@ -40,6 +44,8 @@ Video-wide settings.
 - `icon_line_fontsize` (int) - font size of the line number in the station icon
 - `icon_station_fontsize` (int) - font size of the station number in the station icon
 
+![constants](puml/render/constants.png)
+
 ## Stations
 
 Every single station has multiple translations. Each translation has some translation-specific settings, and each station has station-wide (or station-specific) settings.
@@ -51,6 +57,10 @@ The values for the "stations" key should be a list of dictionaries (key-value ma
 - `xy` (list[int]) - the position of the station name (when it is the next station)
 - `transfers` (list[list[LineTranslation]]) - The inner list is the line in different languages and their settings. The outer list is all the different lines that can be transferred to. See [LineTranslation](#LineTranslation)
 
+A visualization showing only Takadanobaba station on the Seibu-Shinjuku Line:
+
+![stations](puml/render/stations.png)
+
 ## Terminal
 
 The terminus station of the line. Indicates the direction of the train.
@@ -60,6 +70,8 @@ The value for the "terminal" key should be a single dictionary. Only two keys ar
 - `translations` (list[Translation]) - A list of different translations for the terminus indicator. See [Translation](#Translation)
 - `xy` (list[int]) - the position of the text
 
+![terminal](puml/render/terminal.png)
+
 ## States
 
 The 'state' of a train, i.e. whether it is moving or stationary. The 'next' state should always be present as it indicates what the next station is. Train announcements in Japan also shows if the train is arriving at the station and if it is currently stopping in the station. Those states are 'arriving' and 'currently' respectively.
@@ -68,6 +80,10 @@ The values for the "states" key should be a dictionary where the key represents 
 
 - `translations` (list[Translation]) - A list of different translations for this state. See [Translation](#Translation)
 - `xy` (list[int]) - the position of the text
+
+A visualization showing only one state (next):
+
+![states](puml/render/states.png)
 
 
 ## Translation
