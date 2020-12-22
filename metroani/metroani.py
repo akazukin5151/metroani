@@ -292,6 +292,7 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
                       rect_x, spacing, bar_y, section_center):
     for n, setting in zip(range(8), settings_to_show):
         x_pos = rect_x + spacing * n
+        color = (.5, .5, .5) if setting.names.curr().skip else (0, 0, 0)
 
         # Station rectangles
         gz.rectangle(
@@ -303,7 +304,8 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
         # Station numbers
         gz.text(
             setting.station_number, 'Roboto', 50,
-            xy=[x_pos, section_center - 40]
+            xy=[x_pos, section_center - 40],
+            fill=color
         ).draw(surface)
 
         # Station names
@@ -311,7 +313,8 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
         make_vertical_text(
             setting.names.curr().name, surface,
             first_xy=[x_pos, section_center + 40],
-            spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70
+            spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70,
+            fill=color
         )
 
         # Display every transfer line for every station in its first language
@@ -324,7 +327,8 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
                 current_translation.name,
                 fontfamily=current_translation.font,
                 fontsize=current_translation.fontsize,
-                xy=[x_pos, y_pos]
+                xy=[x_pos, y_pos],
+                fill=color
             ).scale(
                 rx=current_translation.scale_x,
                 ry=1,
