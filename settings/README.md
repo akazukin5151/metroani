@@ -104,3 +104,10 @@ A collection of values that every line (that can be transferred to) translation 
 - `fontsize` (int) - font size of this translation
 - `scale_x` (int) - horizontal scale of the translation
 - `skip` (bool) - whether this line is a transfer of a station that is skipped (See above)
+
+
+## UML diagram
+
+Confused about Translation/StationTranslation/LineTranslation and Transition/StationTransition? Consult the following diagram
+
+![classes](settings/puml/render/classes.png)

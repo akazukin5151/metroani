@@ -1,0 +1,56 @@
+@startuml
+
+abstract class AbstractTranslation <<(A, red)>> {
+    +name
+    +font
+    +fontsize
+    +scale_x
+}
+
+class LineTranslation extends AbstractTranslation {
+    +skip
+}
+
+class StationTranslation extends LineTranslation {
+    +enter_xy
+    +exit_xy
+}
+
+class Translation extends AbstractTranslation {
+    +enter_xy
+    +exit_xy
+}
+
+class CircularList<T> {
+    +it: list[T]
+    +head: int
+    +curr()
+    +iter()
+    +pairs()
+}
+
+class Transition {
+    +names: CircularList[Translation]
+    +xy: list[int]
+    +from_json()
+}
+
+class StationTransition {
+    +names : CircularList[StationTranslation]
+    +xy: list[int]
+    +station_number: str
+    +transfers: list[list[LineTranslation]]
+    +from_json_list()
+}
+
+
+"CircularList[Translation]" -left-> CircularList: T -> Translation
+"CircularList[StationTranslation]" -right-> CircularList: T -> StationTranslation
+"CircularList[Translation]" *-up-> Translation
+"CircularList[StationTranslation]" *-up-> StationTranslation
+
+Transition *-up-> "CircularList[Translation]"
+StationTransition *-up-> "CircularList[StationTranslation]"
+StationTransition *-up--> LineTranslation
+
+@enduml
