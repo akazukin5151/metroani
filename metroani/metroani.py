@@ -624,27 +624,52 @@ class Constants(NamedTuple):
     icon_station_fontsize: int
 
 
+#class AbstractTranslation(NamedTuple):
+#    '''Not used in runtime'''
+#    name: str
+#    font: str
+#    fontsize: int
+#    scale_x: float
+
+
 class LineTranslation(NamedTuple):
     '''Collection of values unique for every language, for lines'''
+    # 'Inherit' from AbstractTranslation
     name: str
     font: str
     fontsize: int
     scale_x: float
+    # New
+    skip: bool
 
 
-T = namedtuple(
-    'Translation', LineTranslation._fields + ('enter_xy', 'exit_xy')
-)
-class Translation(T):
+class StationTranslation(NamedTuple):
     '''Collection of values unique for every language, for stations'''
+    # 'Inherit' from LineTranslation
+    name: str
+    font: str
+    fontsize: int
+    scale_x: float
+    skip: bool
+    # New
+    enter_xy: list[int]
+    exit_xy: list[int]
+
+
+class Translation(NamedTuple):
+    '''Collection of values unique for every language, for terminal and next'''
+    # 'Inherit' from AbstractTranslation
+    name: str
+    font: str
+    fontsize: int
+    scale_x: float
+    # New
     enter_xy: list[int]
     exit_xy: list[int]
 
 
 class Transition(NamedTuple):
-    '''
-    Represents a collection of translations to transition between,
-    and transition-wide settings
+    '''Transition-wide settings for terminal and state settings
     Contains circular-list of the text in every language
     '''
     names: CircularList[Translation]
@@ -660,12 +685,12 @@ class Transition(NamedTuple):
         )
 
 
-ST = namedtuple(
-    'StationTransition', Transition._fields + ('station_number', 'transfers')
-)
-class StationTransition(ST):
-    '''Every station has the same amount of info as a Transition,
-    but also has a station number'''
+class StationTransition(NamedTuple):
+    '''Transition-wide settings for station settings
+    Contains circular-list of the text in every language
+    '''
+    names: CircularList[StationTranslation]
+    xy: list[int]
     station_number: str
     # Inner list is same line in different languages
     # Outer list is collection of different lines
@@ -676,7 +701,7 @@ class StationTransition(ST):
         return [
             cls(
                 CircularList(
-                    [Translation(**ss) for ss in station['translations']]
+                    [StationTranslation(**ss) for ss in station['translations']]
                 ),
                 station['xy'],
                 station['station_number'],

@@ -15,6 +15,8 @@ constants = metroani.Constants(
     line_color=[0.19, 0.71, 0.85],
     line_color_dark=[0.12, 0.6, 0.81],
     theme='metro',
+    icon_shape='circle',
+    icon_size=110,
     icon_xy=[650, 240],
     icon_text_font='Roboto',
     icon_line_fontsize=60,
@@ -23,21 +25,23 @@ constants = metroani.Constants(
 
 # Station settings
 saginomiya_names = metroani.CircularList([
-    metroani.Translation(
+    metroani.StationTranslation(
         name='鷺ノ宮',
         font='Hiragino Sans GB W3',
         fontsize=200,
         enter_xy=[960,110],
         exit_xy=[960,320],
-        scale_x=1
+        scale_x=1,
+        skip=False
     ),
-    metroani.Translation(
+    metroani.StationTranslation(
         name='Saginomiya',
         font='Robot',
         fontsize=170,
         enter_xy=[1400,120],
         exit_xy=[1400,320],
-        scale_x=0.8
+        scale_x=0.8,
+        skip=False
     )
 ])
 saginomiya = metroani.StationTransition(
@@ -48,21 +52,23 @@ saginomiya = metroani.StationTransition(
 )
 
 toritsu_kasei_names = metroani.CircularList([
-    metroani.Translation(
+    metroani.StationTranslation(
         name='都立家政',
         font='Hiragino Sans GB W3',
         fontsize=200,
         enter_xy=[960,110],
         exit_xy=[960,320],
-        scale_x=1
+        scale_x=1,
+        skip=False
     ),
-    metroani.Translation(
+    metroani.StationTranslation(
         name='Toritsu-Kasei',
         font='Robot',
         fontsize=170,
         enter_xy=[1400,120],
         exit_xy=[1400,320],
-        scale_x=0.8
+        scale_x=0.8,
+        skip=False
     )
 ])
 toritsu_kasei = metroani.StationTransition(
