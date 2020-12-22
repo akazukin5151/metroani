@@ -548,6 +548,7 @@ def animate(n, settings, next_settings, terminal_settings, constants):
             settings[n].names.pairs(), next_settings.names.pairs(),
             terminal_settings.names.pairs()
         )
+        if any([not name.skip for name in names])
     )
 
 
@@ -564,14 +565,26 @@ def freeze_both(clip, constants):
     )
 
 
+def freeze(idx, clip, constants):
+    if idx % 2 != 0:
+        return freeze_end(clip, constants)
+    return freeze_both(clip, constants)
+
+
+def concat_or_skip(clips):
+    if clips:
+        return mpy.concatenate_videoclips(clips)
+    return None
+
+
 def combine_language_transitions(
-    n, station_settings, state_setting, terminal_settings, c: Constants
+    n, station_settings, state_setting, terminal_settings, constants
 ):
     '''Combines multiple language transitions for a given train state'''
-    return mpy.concatenate_videoclips([
-        freeze_end(clip, c) if idx % 2 != 0 else freeze_both(clip, c)
+    return concat_or_skip([
+        freeze(idx, clip, constants)
         for idx, clip in enumerate(animate(
-            n, station_settings, state_setting, terminal_settings, c
+            n, station_settings, state_setting, terminal_settings, constants
         ))
     ])
 
@@ -602,6 +615,7 @@ def make_video(
         clip
         for station_clips in final
         for clip in station_clips
+        if clip is not None
     ])
 
 
