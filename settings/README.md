@@ -110,4 +110,4 @@ A collection of values that every line (that can be transferred to) translation 
 
 Confused about Translation/StationTranslation/LineTranslation and Transition/StationTransition? Consult the following diagram
 
-![classes](settings/puml/render/classes.png)
+![classes](puml/render/classes.png)
