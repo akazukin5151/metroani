@@ -21,9 +21,9 @@ Programatically create multilingual train announcement animations, Japan style.
 
 TODO: examples for each theme
 
-![yamanote](examples/yamanote.gif)
+![yamanote theme](examples/joban.gif)
 
-(From `examples/yamanote.py`) TODO: split up terminal text into multiple lines for Yamanote
+(The Joban Line using the Yamanote theme `examples/joban.py`)
 
 
 # Installation
