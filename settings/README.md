@@ -33,6 +33,8 @@ Video-wide settings.
 - `line_color` (list[float]) - the color of the current train line in 0-1 RGB
 - `line_color_dark` (list[float]) - a darker version of `line_color`
 - `theme` (string) - the theme to use (any of: 'metro', 'yamanote', 'jr', 'tokyu'). Case insensitive
+- `icon_shape` (string) -  the shape of the station icon (any of: 'circle', 'square')
+- `icon_size` (int) - for circle, the radius; for square, the side length of the icon
 - `icon_xy` (list[int]) - position of the station icon
 - `icon_text_font` (string) - font to use for text in the station icon
 - `icon_line_fontsize` (int) - font size of the line number in the station icon
@@ -45,7 +47,7 @@ Every single station has multiple translations. Each translation has some transl
 The values for the "stations" key should be a list of dictionaries (key-value mapping). Each dictionary represents a single station. The keys needed for each dictionary is:
 
 - `station_number` (string) - Some sort of language-agnostic numbering representing that station
-- `translations` (list[Translation]) - A list of different translations for this station. See [Translation](#Translation)
+- `translations` (list[StationTranslation]) - A list of different translations for this station. See [StationTranslation](#StationTranslation)
 - `xy` (list[int]) - the position of the station name (when it is the next station)
 - `transfers` (list[list[LineTranslation]]) - The inner list is the line in different languages and their settings. The outer list is all the different lines that can be transferred to. See [LineTranslation](#LineTranslation)
 
@@ -70,16 +72,27 @@ The values for the "states" key should be a dictionary where the key represents 
 
 ## Translation
 
-(The class is called StationTranslation)
+A collection of values that every translation for the terminus and train state.
+
+- `name` (string) - the name of the terminus/state in a language
+- `font` (string) - the font to use for this language (some fonts cannot display CJK)
+- `fontsize` (int) - font size of this translation
+- `scale_x` (int) - horizontal scale of the translation
+- `enter_xy` (list[int]) - where the center of the enter transition is
+- `exit_xy` (list[int]) - where the center of the exit transition is
+
+
+## StationTranslation
 
 A collection of values that every station translation has. Remember that this script is for *multilingual* animations, that contains multiple translations of the stations. There needs to be a transition between each translation, so every translation needs to have an enter and exit transition. `enter_xy` and `exit_xy` is best figured out experimentally.
 
 - `name` (string) - the name of the station in a language
 - `font` (string) - the font to use for this language (some fonts cannot display CJK)
 - `fontsize` (int) - font size of this translation
+- `scale_x` (int) - horizontal scale of the translation
+- `skip` (bool) - whether this station is skipped (ie, this train is a rapid service skipping a station served by a local/slower service)
 - `enter_xy` (list[int]) - where the center of the enter transition is
 - `exit_xy` (list[int]) - where the center of the exit transition is
-- `scale_x` (int) - horizontal scale of the translation
 
 
 ## LineTranslation
@@ -90,3 +103,4 @@ A collection of values that every line (that can be transferred to) translation 
 - `font` (string) - the font to use for this language (some fonts cannot display CJK)
 - `fontsize` (int) - font size of this translation
 - `scale_x` (int) - horizontal scale of the translation
+- `skip` (bool) - whether this line is a transfer of a station that is skipped (See above)
