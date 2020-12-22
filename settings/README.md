@@ -8,6 +8,10 @@ The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freez
 
 The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 2-second freeze duration and three train states (next, arriving, currently). Takes a long time to render the full video.
 
+## joban.json
+
+The Joban line from Toride to Mabashi (actually Kashiwa), with a 1-second freeze duration and one train state (next). The Joban Line doesn't use the Yamanote style in real life, so here is a mockup of one.
+
 ## dev.json
 
 The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freeze duration and one train state (next). May change at any time; for development and debugging purposes, do not rely on this. Running `python metroani/metroani.py` will create a video with this setting.
