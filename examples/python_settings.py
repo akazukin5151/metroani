@@ -79,7 +79,7 @@ station_settings = [saginomiya, toritsu_kasei]
 
 # Terminus station setting
 terminal = metroani.CircularList([
-    metroani.Translation(
+    metroani.StationTranslation(
         name='西武新宿 ゆき',
         font='Hiragino Sans GB W3',
         fontsize=70,
@@ -87,7 +87,7 @@ terminal = metroani.CircularList([
         exit_xy=[960,100],
         scale_x=1
     ),
-    metroani.Translation(
+    metroani.StationTranslation(
         name='For Seibu Shinjuku',
         font='Roboto',
         fontsize=60,
@@ -100,7 +100,7 @@ terminal_settings = metroani.Transition(terminal, [650, 70])
 
 # Train state settings
 next_ = metroani.CircularList([
-    metroani.Translation(
+    metroani.StationTranslation(
         name='つぎは',
         font='Hiragino Sans GB W3',
         fontsize=70,
@@ -108,7 +108,7 @@ next_ = metroani.CircularList([
         exit_xy=[960,330],
         scale_x=1
     ),
-    metroani.Translation(
+    metroani.StationTranslation(
         name='Next',
         font='Roboto',
         fontsize=60,
@@ -124,10 +124,10 @@ next_settings = metroani.Transition(next_, [300, 280])
 # ただいま -> Now stopping at
 
 clip = metroani.make_video(
+    constants,
     station_settings,
-    [next_settings],
     terminal_settings,
-    constants
+    [next_settings],
 )
 
 # We can write the clip into a video file, but this file is just a demostration
