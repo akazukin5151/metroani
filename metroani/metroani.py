@@ -1,12 +1,9 @@
 import json
 
-from .animate import combine_train_states
-from .s_types import (
-    Constants, LineTranslation, StationTranslation,
-    Transition, StationTransition, CircularList
-)
-
 import moviepy.editor as mpy
+
+from .animate import combine_train_states
+from .s_types import Constants, Transition, StationTransition
 
 
 def make_video(

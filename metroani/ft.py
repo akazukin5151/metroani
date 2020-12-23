@@ -1,23 +1,17 @@
 '''Functions of time that draws animation frames'''
 import gizeh as gz
 
+from cytoolz import curry
+
 from .s_types import Yamanote, Tokyu
 from .graphics import (
     draw_metro_frames,
     draw_yamanote_frames,
     draw_jr_frames,
     draw_tokyu_frames,
-    make_vertical_text,
-    make_bar,
-    make_triangles,
-    make_station_info,
-    make_seperator,
-    make_arrow,
     make_line_info,
     make_station_icon,
 )
-
-from cytoolz import curry
 
 __all__ = ['make_frames']
 

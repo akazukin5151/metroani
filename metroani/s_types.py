@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import NamedTuple
 
-from .utils import rgb
-
 from cytoolz import sliding_window
+
+from .utils import rgb
 
 
 class Constants(NamedTuple):

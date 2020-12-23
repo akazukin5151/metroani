@@ -1,8 +1,8 @@
 '''Animation functions'''
-from .ft import make_frames
-
 import moviepy.editor as mpy
 import moviepy.video.fx.all as vfx
+
+from .ft import make_frames
 
 
 def animate(n, settings, next_settings, terminal_settings, constants):
