@@ -300,13 +300,29 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
     for n, setting in zip(range(8), settings_to_show):
         x_pos = rect_x + spacing * n
         color = (.5, .5, .5) if setting.names.curr().skip else (0, 0, 0)
+        arrow_x_pos = x_pos - 15
+        arrow_width = 5
 
         # Station rectangles/circles
-        func(
-            fill=[1,1,1,0.9],
-            xy=[x_pos, bar_y + bar_height/2],
-            **args
-        ).draw(surface)
+        if setting.names.curr().skip:
+            gz.polyline(
+                [
+                    (arrow_x_pos - arrow_width, bar_y - 5),
+                    (arrow_x_pos + arrow_width, bar_y - 5),
+                    (arrow_x_pos + 7*arrow_width, bar_y + 30),
+                    (arrow_x_pos + arrow_width, bar_y + 65),
+                    (arrow_x_pos - arrow_width, bar_y + 65),
+                    (arrow_x_pos + 5*arrow_width, bar_y + 30),
+                ],
+                stroke=[1,1,1], stroke_width=5,
+                fill=[1,1,1], close_path=True
+            ).draw(surface)
+        else:
+            func(
+                fill=[1,1,1,0.9],
+                xy=[x_pos, bar_y + bar_height/2],
+                **args
+            ).draw(surface)
 
         # Station numbers
         gz.text(
