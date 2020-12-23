@@ -56,6 +56,7 @@ The values for the "stations" key should be a list of dictionaries (key-value ma
 - `translations` (list[StationTranslation]) - A list of different translations for this station. See [StationTranslation](#StationTranslation)
 - `xy` (list[int]) - the position of the station name (when it is the next station)
 - `transfers` (list[list[LineTranslation]]) - The inner list is the line in different languages and their settings. The outer list is all the different lines that can be transferred to. See [LineTranslation](#LineTranslation)
+- `skip` (bool) - whether this station is skipped (ie, this train is a rapid service skipping a station served by a local/slower service)
 
 A visualization showing only Takadanobaba station on the Seibu-Shinjuku Line:
 
@@ -106,7 +107,6 @@ A collection of values that every station translation has. Remember that this sc
 - `font` (string) - the font to use for this language (some fonts cannot display CJK)
 - `fontsize` (int) - font size of this translation
 - `scale_x` (int) - horizontal scale of the translation
-- `skip` (bool) - whether this station is skipped (ie, this train is a rapid service skipping a station served by a local/slower service)
 - `enter_xy` (list[int]) - where the center of the enter transition is
 - `exit_xy` (list[int]) - where the center of the exit transition is
 
@@ -119,7 +119,6 @@ A collection of values that every line (that can be transferred to) translation 
 - `font` (string) - the font to use for this language (some fonts cannot display CJK)
 - `fontsize` (int) - font size of this translation
 - `scale_x` (int) - horizontal scale of the translation
-- `skip` (bool) - whether this line is a transfer of a station that is skipped (See above)
 
 
 ## UML diagram

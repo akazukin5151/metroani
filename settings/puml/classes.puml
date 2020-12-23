@@ -8,7 +8,6 @@ abstract class AbstractTranslation <<(A, red)>> {
 }
 
 class LineTranslation extends AbstractTranslation {
-    +skip
 }
 
 class StationTranslation extends LineTranslation {
@@ -40,6 +39,7 @@ class StationTransition {
     +xy: list[int]
     +station_number: str
     +transfers: list[list[LineTranslation]]
+    +skip: bool
     +from_json_list()
 }
 

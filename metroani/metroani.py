@@ -680,7 +680,6 @@ class LineTranslation(NamedTuple):
     font: str
     fontsize: int
     scale_x: float
-    # New
 
 
 class StationTranslation(NamedTuple):
