@@ -32,7 +32,6 @@ saginomiya_names = metroani.CircularList([
         enter_xy=[960,110],
         exit_xy=[960,320],
         scale_x=1,
-        skip=False
     ),
     metroani.StationTranslation(
         name='Saginomiya',
@@ -41,14 +40,14 @@ saginomiya_names = metroani.CircularList([
         enter_xy=[1400,120],
         exit_xy=[1400,320],
         scale_x=0.8,
-        skip=False
     )
 ])
 saginomiya = metroani.StationTransition(
     names=saginomiya_names,
     xy=[1300, 220],
     station_number='SS-09',
-    transfers=[]
+    transfers=[],
+    skip=False
 )
 
 toritsu_kasei_names = metroani.CircularList([
@@ -59,7 +58,6 @@ toritsu_kasei_names = metroani.CircularList([
         enter_xy=[960,110],
         exit_xy=[960,320],
         scale_x=1,
-        skip=False
     ),
     metroani.StationTranslation(
         name='Toritsu-Kasei',
@@ -68,14 +66,14 @@ toritsu_kasei_names = metroani.CircularList([
         enter_xy=[1400,120],
         exit_xy=[1400,320],
         scale_x=0.8,
-        skip=False
     )
 ])
 toritsu_kasei = metroani.StationTransition(
     names=toritsu_kasei_names,
     xy=[1300, 220],
     station_number='SS-08',
-    transfers=[]
+    transfers=[],
+    skip=False
 )
 station_settings = [saginomiya, toritsu_kasei]
 

@@ -25,8 +25,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Saginomiya",
@@ -34,12 +33,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "SS-08",
@@ -50,8 +49,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Toritsu-Kasei",
@@ -59,12 +57,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "SS-07",
@@ -75,8 +73,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Nogata",
@@ -84,12 +81,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "SS-06",
@@ -100,8 +97,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Numabukuro",
@@ -109,12 +105,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "SS-05",
@@ -125,8 +121,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Araiyakushi-mae",
@@ -134,12 +129,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "SS-04",
@@ -150,8 +145,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Nakai",
@@ -159,8 +153,7 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
@@ -170,18 +163,17 @@
                         "name": "都営大江戸線",
                         "font": "Hiragino Sans GB W3",
                         "fontsize": 30,
-                        "scale_x": 0.9,
-                        "skip": false
+                        "scale_x": 0.9
                     },
                     {
                         "name": "Toei Ōedo Line",
                         "font": "Roboto",
                         "fontsize": 30,
-                        "scale_x": 1,
-                        "skip": false
+                        "scale_x": 1
                     }
                 ]
-            ]
+            ],
+            "skip": false
         },
         {
             "station_number": "SS-03",
@@ -192,8 +184,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Shimo-Ochiai",
@@ -201,12 +192,12 @@
                     "fontsize": 170,
                     "enter_xy": [1300,120],
                     "exit_xy": [1300,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "SS-02",
@@ -217,8 +208,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Takadonobaba",
@@ -226,8 +216,7 @@
                     "fontsize": 170,
                     "enter_xy": [1300,120],
                     "exit_xy": [1300,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
@@ -237,15 +226,13 @@
                         "name": "JR 山手線",
                         "font": "Hiragino Sans GB W3",
                         "fontsize": 30,
-                        "scale_x": 1,
-                        "skip": false
+                        "scale_x": 1
                     },
                     {
                         "name": "JR Yamanote Line",
                         "font": "Roboto",
                         "fontsize": 30,
-                        "scale_x": 1,
-                        "skip": false
+                        "scale_x": 1
                     }
                 ],
                 [
@@ -253,18 +240,17 @@
                         "name": "東西線",
                         "font": "Hiragino Sans GB W3",
                         "fontsize": 30,
-                        "scale_x": 1,
-                        "skip": false
+                        "scale_x": 1
                     },
                     {
                         "name": "Tōzai Line",
                         "font": "Roboto",
                         "fontsize": 30,
-                        "scale_x": 1,
-                        "skip": false
+                        "scale_x": 1
                     }
                 ]
-            ]
+            ],
+            "skip": false
         },
         {
             "station_number": "SS-01",
@@ -275,8 +261,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Seibu-Shinjuku",
@@ -284,12 +269,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         }
     ],
     "terminal": {

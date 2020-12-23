@@ -25,8 +25,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Toride",
@@ -34,12 +33,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "JJ-09",
@@ -50,8 +49,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Tennōdai",
@@ -59,12 +57,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "JJ-08",
@@ -75,8 +73,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Abiko",
@@ -84,12 +81,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "-",
@@ -100,8 +97,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": true
+                    "scale_x": 1
                 },
                 {
                     "name": "Kita-Kashiwa",
@@ -109,12 +105,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": true
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": true
         },
         {
             "station_number": "JJ-07",
@@ -125,8 +121,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": false
+                    "scale_x": 1
                 },
                 {
                     "name": "Kashiwa",
@@ -134,12 +129,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": false
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": false
         },
         {
             "station_number": "-",
@@ -150,8 +145,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": true
+                    "scale_x": 1
                 },
                 {
                     "name": "Minami-Kashiwa",
@@ -159,12 +153,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": true
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": true
         },
         {
             "station_number": "-",
@@ -175,8 +169,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": true
+                    "scale_x": 1
                 },
                 {
                     "name": "Kita-Kogane",
@@ -184,12 +177,12 @@
                     "fontsize": 170,
                     "enter_xy": [1300,120],
                     "exit_xy": [1300,320],
-                    "scale_x": 0.8,
-                    "skip": true
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": true
         },
         {
             "station_number": "-",
@@ -200,8 +193,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": true
+                    "scale_x": 1
                 },
                 {
                     "name": "Shim-Matsudo",
@@ -209,12 +201,12 @@
                     "fontsize": 170,
                     "enter_xy": [1300,120],
                     "exit_xy": [1300,320],
-                    "scale_x": 0.8,
-                    "skip": true
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": true
         },
         {
             "station_number": "-",
@@ -225,8 +217,7 @@
                     "fontsize": 200,
                     "enter_xy": [960,110],
                     "exit_xy": [960,320],
-                    "scale_x": 1,
-                    "skip": true
+                    "scale_x": 1
                 },
                 {
                     "name": "Mabashi",
@@ -234,12 +225,12 @@
                     "fontsize": 170,
                     "enter_xy": [1400,120],
                     "exit_xy": [1400,320],
-                    "scale_x": 0.8,
-                    "skip": true
+                    "scale_x": 0.8
                 }
             ],
             "xy": [1300,220],
-            "transfers": []
+            "transfers": [],
+            "skip": true
         }
     ],
     "terminal": {

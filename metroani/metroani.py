@@ -299,12 +299,12 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
 
     for n, setting in zip(range(8), settings_to_show):
         x_pos = rect_x + spacing * n
-        color = (.5, .5, .5) if setting.names.curr().skip else (0, 0, 0)
+        color = (.5, .5, .5) if setting.skip else (0, 0, 0)
         arrow_x_pos = x_pos - 15
         arrow_width = 5
 
         # Station rectangles/circles
-        if setting.names.curr().skip:
+        if setting.skip:
             gz.polyline(
                 [
                     (arrow_x_pos - arrow_width, bar_y - 5),
@@ -575,7 +575,7 @@ def animate(n, settings, next_settings, terminal_settings, constants):
             settings[n].names.pairs(), next_settings.names.pairs(),
             terminal_settings.names.pairs()
         )
-        if any([not name.skip for name in names])
+        if any([not settings[n].skip for name in names])
     )
 
 
@@ -681,7 +681,6 @@ class LineTranslation(NamedTuple):
     fontsize: int
     scale_x: float
     # New
-    skip: bool
 
 
 class StationTranslation(NamedTuple):
@@ -691,7 +690,6 @@ class StationTranslation(NamedTuple):
     font: str
     fontsize: int
     scale_x: float
-    skip: bool
     # New
     enter_xy: list[int]
     exit_xy: list[int]
@@ -736,6 +734,7 @@ class StationTransition(NamedTuple):
     # Inner list is same line in different languages
     # Outer list is collection of different lines
     transfers: list[list[LineTranslation]]
+    skip: bool
 
     @classmethod
     def from_json_list(cls, settings: 'json', section: str):
@@ -749,7 +748,8 @@ class StationTransition(NamedTuple):
                 [
                     [LineTranslation(**translation) for translation in line]
                     for line in station['transfers']
-                ]
+                ],
+                station['skip'],
             )
             for station in settings[section]
         ]
