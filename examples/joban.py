@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath('.'))
 import metroani
 
 
-video = metroani.make_video(*metroani.all_settings_from_json('settings/joban.json'))
+video = metroani.make_video(*metroani.settings_from_json('settings/joban.json'))
 
 gif_duration = (1 + 0.7 + 1 + 0.7 + 1) * 2
 

@@ -754,7 +754,7 @@ class CircularList(NamedTuple):  # CircularList[T]
         return sliding_window(2, self.iter())
 
 
-def all_settings_from_json(file_):
+def settings_from_json(file_):
     with open(file_, 'r') as f:
         settings = json.load(f)
 
@@ -799,7 +799,7 @@ class Tokyu(NamedTuple):
 
 if __name__ == '__main__':
     # Make animation
-    video = make_video(*all_settings_from_json('settings/dev.json'))
+    video = make_video(*settings_from_json('settings/dev.json'))
 
     # For development purposes, output only first 10 seconds, or just save first frame
     (video
