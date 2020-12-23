@@ -289,16 +289,23 @@ def make_triangles(surface, constants, triangle_x, triangle_width, bar_y,
 
 
 def make_station_info(surface, settings_to_show, rect_width, bar_height,
-                      rect_x, spacing, bar_y, section_center):
+                      rect_x, spacing, bar_y, section_center, constants):
+    if constants.theme.lower() == 'tokyu':
+        func = gz.circle
+        args = {'r': bar_height*0.9}
+    else:
+        func = gz.rectangle
+        args = {'lx': rect_width, 'ly': bar_height*2*0.8}
+
     for n, setting in zip(range(8), settings_to_show):
         x_pos = rect_x + spacing * n
         color = (.5, .5, .5) if setting.names.curr().skip else (0, 0, 0)
 
-        # Station rectangles
-        gz.rectangle(
-            lx=rect_width, ly=bar_height*2*0.8,
-            fill=[1,1,1, .9],
-            xy=[x_pos, bar_y + bar_height/2]
+        # Station rectangles/circles
+        func(
+            fill=[1,1,1,0.9],
+            xy=[x_pos, bar_y + bar_height/2],
+            **args
         ).draw(surface)
 
         # Station numbers
@@ -444,7 +451,7 @@ def make_line_info(surface, constants, settings, station_idx):
 
     make_station_info(
         surface, settings_to_show, rect_width, bar_height, rect_x,
-        spacing, bar_y, section_center
+        spacing, bar_y, section_center, constants
     )
 
     make_seperator(surface, constants, section_center)
@@ -810,5 +817,5 @@ if __name__ == '__main__':
     # For development purposes, output only first 10 seconds, or just save first frame
     (video
         .subclip(0, 10)
-        .write_videofile('output/metroani.avi', codec='libx264', fps=60, threads=4))
-        #.save_frame('output/frame.png'))
+        #.write_videofile('output/metroani.avi', codec='libx264', fps=60, threads=4))
+        .save_frame('output/frame.png'))
