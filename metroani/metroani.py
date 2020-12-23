@@ -665,17 +665,8 @@ class Constants(NamedTuple):
     icon_station_fontsize: int
 
 
-#class AbstractTranslation(NamedTuple):
-#    '''Not used in runtime'''
-#    name: str
-#    font: str
-#    fontsize: int
-#    scale_x: float
-
-
 class LineTranslation(NamedTuple):
     '''Collection of values unique for every language, for lines'''
-    # 'Inherit' from AbstractTranslation
     name: str
     font: str
     fontsize: int
@@ -694,30 +685,18 @@ class StationTranslation(NamedTuple):
     exit_xy: list[int]
 
 
-class Translation(NamedTuple):
-    '''Collection of values unique for every language, for terminal and next'''
-    # 'Inherit' from AbstractTranslation
-    name: str
-    font: str
-    fontsize: int
-    scale_x: float
-    # New
-    enter_xy: list[int]
-    exit_xy: list[int]
-
-
 class Transition(NamedTuple):
     '''Transition-wide settings for terminal and state settings
     Contains circular-list of the text in every language
     '''
-    names: CircularList[Translation]
+    names: CircularList[StationTranslation]
     xy: list[int]
 
     @classmethod
     def from_json(cls, settings: 'json', section: str):
         return cls(
             CircularList(
-                [Translation(**ss) for ss in settings[section]['translations']]
+                [StationTranslation(**ss) for ss in settings[section]['translations']]
             ),
             settings[section]['xy']
         )

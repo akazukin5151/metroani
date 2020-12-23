@@ -1,21 +1,13 @@
 @startuml
 
-abstract class AbstractTranslation <<(A, red)>> {
+class LineTranslation {
     +name
     +font
     +fontsize
     +scale_x
 }
 
-class LineTranslation extends AbstractTranslation {
-}
-
 class StationTranslation extends LineTranslation {
-    +enter_xy
-    +exit_xy
-}
-
-class Translation extends AbstractTranslation {
     +enter_xy
     +exit_xy
 }
@@ -29,7 +21,7 @@ class CircularList<T> {
 }
 
 class Transition {
-    +names: CircularList[Translation]
+    +names: CircularList[StationTranslation]
     +xy: list[int]
     +from_json()
 }
@@ -44,12 +36,10 @@ class StationTransition {
 }
 
 
-"CircularList[Translation]" -left-> CircularList: T -> Translation
-"CircularList[StationTranslation]" -right-> CircularList: T -> StationTranslation
-"CircularList[Translation]" *-up-> Translation
+"CircularList[StationTranslation]" --up-> CircularList: T -> StationTranslation
 "CircularList[StationTranslation]" *-up-> StationTranslation
 
-Transition *-up-> "CircularList[Translation]"
+Transition *-up-> "CircularList[StationTranslation]"
 StationTransition *-up-> "CircularList[StationTranslation]"
 StationTransition *-up--> LineTranslation
 
