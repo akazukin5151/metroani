@@ -629,7 +629,7 @@ def combine_train_states(
 
 
 def make_video(
-    station_settings, state_settings, terminal_settings, constants,
+    constants, station_settings, terminal_settings, state_settings
 ):
     final = (
         combine_train_states(
@@ -798,15 +798,8 @@ class Tokyu(NamedTuple):
 
 
 if __name__ == '__main__':
-    (
-        constants, station_settings, terminal_settings, state_settings
-    ) = all_settings_from_json('settings/dev.json')
-
     # Make animation
-    video = make_video(
-        station_settings, state_settings, terminal_settings,
-        constants
-    )
+    video = make_video(*all_settings_from_json('settings/dev.json'))
 
     # For development purposes, output only first 10 seconds, or just save first frame
     (video
