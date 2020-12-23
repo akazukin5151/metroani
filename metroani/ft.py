@@ -77,7 +77,7 @@ def hide_text_scaler(t, duration):
 
 
 @thresholdify_inc(pivot=0.1, pivot_value=0.01)
-def show_text_alpha(t, duration):
+def show_text_alpha(t, _):
     '''Piecewise function that looks like _/'''
     return 2 * t
 
