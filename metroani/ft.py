@@ -123,25 +123,27 @@ def make_hide_text_frames(
 
 
 def make_text_frames(
-    t, duration, surface, new_text, old_text, xy, new_font, old_font,
-    new_fontsize, old_fontsize, fontcolor, old_scale_x, new_scale_x
-    , new_center_xy, old_center_xy
+    t, duration, surface, new_text, old_text, show_xy, new_font, old_font,
+    new_fontsize, old_fontsize, fontcolor, old_scale_x, new_scale_x,
+    new_center_xy, old_center_xy, hide_xy=None
 ):
     '''Draws one text showing animation and one text hiding animation'''
     # If both texts are the same, no animation is needed
     if new_text == old_text:
         return make_hide_text_frames(
-            0, duration, surface, old_text, xy, old_font, old_fontsize, fontcolor,
+            0, duration, surface, old_text, show_xy, old_font, old_fontsize, fontcolor,
             old_scale_x, old_center_xy
         )
 
     make_show_text_frames(
-        t, duration, surface, new_text, xy, new_font, new_fontsize,
+        t, duration, surface, new_text, show_xy, new_font, new_fontsize,
         fontcolor, new_scale_x, new_center_xy
     )
 
+    if hide_xy is None:
+        hide_xy = show_xy
     make_hide_text_frames(
-        t, duration, surface, old_text, xy, old_font, old_fontsize, fontcolor,
+        t, duration, surface, old_text, hide_xy, old_font, old_fontsize, fontcolor,
         old_scale_x, old_center_xy
     )
     return surface
@@ -214,11 +216,13 @@ def make_frames(
 
     # Terminus station text
     if n == 0 and constants.show_direction:
-        # TODO: move 'yuki' to right side
         # TODO: scale x should always be 0
-        make_text_frames_from_setting(
-            t, constants, surface, terminal_settings,
-            old_term, new_term, color if force else (0, 0, 0)
+        make_text_frames(
+            t, constants.duration, surface, new_term.name, old_term.name,
+            new_term.xy, new_term.font, old_term.font,
+            new_term.fontsize, old_term.fontsize, color if force else (0, 0, 0),
+            old_term.scale_x, new_term.scale_x, new_term.enter_xy,
+            old_term.exit_xy, hide_xy=old_term.xy
         )
     else:
         if new_term.name_after_terminus:
@@ -235,8 +239,8 @@ def make_frames(
             t, constants.duration, surface, new_text, old_text,
             terminal_settings.xy, new_term.font, old_term.font,
             new_term.fontsize, old_term.fontsize, color if force else (0, 0, 0),
-            old_term.scale_x, new_term.scale_x, new_term.enter_xy,
-            old_term.exit_xy
+            old_term.scale_x, new_term.scale_x, new_term.combined_enter_xy,
+            old_term.combined_exit_xy
         )
 
     # Line info graphics

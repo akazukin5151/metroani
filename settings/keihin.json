@@ -328,20 +328,26 @@
                 "terminus": "大船",
                 "font": "Hiragino Sans GB W3",
                 "fontsize": 70,
-                "enter_xy": [960,35],
-                "exit_xy": [960,100],
+                "combined_enter_xy": [960,35],
+                "combined_exit_xy": [960,100],
+                "enter_xy": [960,250],
+                "exit_xy": [960,330],
                 "scale_x": 1,
-                "name_after_terminus": true
+                "name_after_terminus": true,
+                "xy": [1600,280]
             },
             {
                 "name": "For",
                 "terminus": "Ōfuna",
                 "font": "Roboto",
                 "fontsize": 60,
+                "combined_enter_xy": [500,35],
+                "combined_exit_xy": [500,110],
                 "enter_xy": [500,35],
                 "exit_xy": [500,110],
                 "scale_x": 0.8,
-                "name_after_terminus": false
+                "name_after_terminus": false,
+                "xy": [530,70]
             }
         ],
         "xy": [530,70],

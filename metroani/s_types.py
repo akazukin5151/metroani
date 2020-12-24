@@ -56,6 +56,10 @@ class TerminusTranslation(NamedTuple):
     # New
     terminus: str
     name_after_terminus: bool
+    xy: list[int]
+    # TODO: consider splitting it up for 'normal' and 'direction' settings
+    combined_enter_xy: list[int]
+    combined_exit_xy: list[int]
     # TODO: station icon line color
 
 

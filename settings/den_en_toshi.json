@@ -285,20 +285,26 @@
                 "terminus": "渋谷",
                 "font": "Hiragino Sans GB W3",
                 "fontsize": 70,
+                "combined_enter_xy": [300, 250],
+                "combined_exit_xy": [300, 330],
                 "enter_xy": [300, 250],
                 "exit_xy": [300, 330],
                 "scale_x": 1,
-                "name_after_terminus": true
+                "name_after_terminus": true,
+                "xy": [215, 280]
             },
             {
                 "name": "For",
                 "terminus": "Shibuya",
                 "font": "Roboto",
                 "fontsize": 60,
+                "combined_enter_xy": [250, 250],
+                "combined_exit_xy": [250, 330],
                 "enter_xy": [250, 250],
                 "exit_xy": [250, 330],
                 "scale_x": 0.8,
-                "name_after_terminus": false
+                "name_after_terminus": false,
+                "xy": [215, 280]
             }
         ],
         "xy": [215, 280],
