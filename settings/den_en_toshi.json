@@ -13,7 +13,8 @@
         "icon_xy": [700, 240],
         "icon_text_font": "Roboto",
         "icon_line_fontsize": 60,
-        "icon_station_fontsize": 70
+        "icon_station_fontsize": 70,
+        "show_direction": false
     },
     "stations": [
         {

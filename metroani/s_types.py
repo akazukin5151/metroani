@@ -21,6 +21,7 @@ class Constants(NamedTuple):
     icon_text_font: str
     icon_line_fontsize: int
     icon_station_fontsize: int
+    show_direction: bool
 
 
 class LineTranslation(NamedTuple):

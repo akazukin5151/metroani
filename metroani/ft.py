@@ -189,7 +189,7 @@ def make_frames(
         color = (0,0,0)
 
     # Station text
-    if n == 0:
+    if n == 0 and constants.show_direction:
         new_text = new_term.terminus
         old_text = old_term.terminus
         make_text_frames(
@@ -206,14 +206,14 @@ def make_frames(
         )
 
     # 'Next' text
-    if n != 0:
+    if not (n == 0 and constants.show_direction):
         make_text_frames_from_setting(
             t, constants, surface, next_settings,
             old_next, new_next, color if force else (0, 0, 0)
         )
 
     # Terminus station text
-    if n == 0:
+    if n == 0 and constants.show_direction:
         # TODO: move 'yuki' to right side
         # TODO: scale x should always be 0
         make_text_frames_from_setting(
