@@ -95,10 +95,15 @@ def make_bar(surface, constants, bar_width, bar_height, bar_x, bar_y):
     ).draw(surface)
 
     # Dark bar
+    if constants.theme.lower() != 'tokyu':
+        color = constants.line_color_dark
+    else:
+        color = constants.line_color
+
     gz.rectangle(
         lx=bar_width, ly=bar_height,
         xy=[bar_x, bar_y + bar_height],
-        fill=constants.line_color_dark
+        fill=color
     ).draw(surface)
 
 
@@ -115,13 +120,17 @@ def make_triangles(surface, constants, triangle_x, triangle_width, bar_y,
     ).draw(surface)
 
     # Dark triangle
+    if constants.theme.lower() != 'tokyu':
+        color = constants.line_color_dark
+    else:
+        color = constants.line_color
     gz.polyline(
         [
             (triangle_x                 , bar_y + bar_height/2),
             (triangle_x + triangle_width, bar_y + bar_height/2),
             (triangle_x                 , bar_y + bar_height*3/2),
         ],
-        close_path=True, fill=constants.line_color_dark
+        close_path=True, fill=color
     ).draw(surface)
 
 
@@ -130,9 +139,17 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
     if constants.theme.lower() == 'tokyu':
         func = gz.circle
         args = {'r': bar_height*0.9}
+        num_y_pos = (bar_y - bar_height) + 5
+        fontsize = 30
+        adj = 40
+        name_y_pos = section_center - 20
     else:
         func = gz.rectangle
         args = {'lx': rect_width, 'ly': bar_height*2*0.8}
+        num_y_pos = section_center - 40
+        fontsize = 50
+        adj = 0
+        name_y_pos = section_center + 40
 
     for n, setting in zip(range(8), settings_to_show):
         x_pos = rect_x + spacing * n
@@ -163,8 +180,8 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
 
         # Station numbers
         gz.text(
-            setting.station_number, 'Roboto', 50,
-            xy=[x_pos, section_center - 40],
+            setting.station_number, 'Roboto', fontsize,
+            xy=[x_pos, num_y_pos],
             fill=color
         ).draw(surface)
 
@@ -172,14 +189,14 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
         # TODO: font, fontsize, change language, option to rotate instead
         make_vertical_text(
             setting.names.curr().name, surface,
-            first_xy=[x_pos, section_center + 40],
+            first_xy=[x_pos, name_y_pos],
             spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70,
             fill=color
         )
 
         # Display every transfer line for every station in its first language
         for idx, transfer in enumerate(setting.transfers):
-            y_pos = (bar_y - bar_height) + 10 - idx*40
+            line_y_pos = (bar_y - bar_height) + 10 - idx*40 - adj
             # TODO: Transition between different translations
             current_translation = transfer[0]
 
@@ -187,16 +204,18 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
                 current_translation.name,
                 fontfamily=current_translation.font,
                 fontsize=current_translation.fontsize,
-                xy=[x_pos, y_pos],
+                xy=[x_pos, line_y_pos],
                 fill=color
             ).scale(
                 rx=current_translation.scale_x,
                 ry=1,
-                center=[x_pos, y_pos]
+                center=[x_pos, line_y_pos]
             ).draw(surface)
 
 
 def make_seperator(surface, constants, section_center):
+    if constants.theme.lower() == 'tokyu':
+        return
     gz.polyline(
         [(0, section_center),(constants.width, section_center)],
         stroke=constants.line_color, stroke_width=8
@@ -316,15 +335,28 @@ def make_line_info(surface, constants, settings, station_idx):
 
 def make_station_icon(surface, settings, n, constants):
     x_pos, y_pos = constants.icon_xy
+    if constants.theme.lower() == 'tokyu':
+        fill = constants.line_color
+        stroke = [1,1,1]
+        stroke_width = 5
+        text_fill = [1,1,1]
+        letter_mod = -10
+    else:
+        fill = [1,1,1]
+        stroke = constants.line_color
+        stroke_width = 15
+        text_fill = [0,0,0]
+        letter_mod = 0
+
 
     if constants.icon_shape.lower() == 'square':
         mod = 40
         gz.square(
             constants.icon_size,
             xy=[x_pos, y_pos],
-            stroke=constants.line_color,
-            stroke_width=15,
-            fill=[1,1,1]
+            stroke=stroke,
+            stroke_width=stroke_width,
+            fill=fill
         ).draw(surface)
     else:
         mod = 45
@@ -339,9 +371,13 @@ def make_station_icon(surface, settings, n, constants):
     line, num = settings[n].station_number.split('-')
     gz.text(
         line, constants.icon_text_font,
-        constants.icon_line_fontsize, xy=[x_pos, y_pos-mod]
+        constants.icon_line_fontsize + letter_mod,
+        xy=[x_pos, y_pos-mod],
+        fill=text_fill
     ).draw(surface)
     gz.text(
         num, constants.icon_text_font,
-        constants.icon_station_fontsize, xy=[x_pos, y_pos+30]
+        constants.icon_station_fontsize - letter_mod,
+        xy=[x_pos, y_pos+30],
+        fill=text_fill
     ).draw(surface)
