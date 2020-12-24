@@ -243,8 +243,13 @@ def make_frames(
     make_line_info(surface, constants, settings, n)
 
     # Station icon
-    # TODO: for start station, use terminus station number
-    make_station_icon(surface, settings, n, constants)
+    if n == 0 and constants.show_direction:
+        make_station_icon(
+            surface, settings, n, constants,
+            text=terminal_settings.terminus_number
+        )
+    else:
+        make_station_icon(surface, settings, n, constants)
 
     return surface.get_npimage()
 

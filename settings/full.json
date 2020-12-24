@@ -301,7 +301,8 @@
                 "name_after_terminus": false
             }
         ],
-        "xy": [650,70]
+        "xy": [650,70],
+        "terminus_number": "SS-01"
     },
     "states": {
         "next": {

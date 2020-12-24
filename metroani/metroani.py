@@ -3,7 +3,7 @@ import json
 import moviepy.editor as mpy
 
 from .animate import combine_train_states
-from .s_types import Constants, Transition, StationTransition
+from .s_types import Constants, Transition, StationTransition, TerminusTransition
 
 
 def make_video(
@@ -31,7 +31,7 @@ def settings_from_json(file_):
     return (
         Constants(**settings['constants']),
         StationTransition.from_json_list(settings, 'stations'),
-        Transition.from_json_terminus(settings, 'terminal'),
+        TerminusTransition.from_json(settings, 'terminal'),
         [Transition.from_json(settings['states'], key)
          for key in settings['states'].keys()]
     )

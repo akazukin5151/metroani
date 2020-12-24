@@ -301,7 +301,8 @@
                 "name_after_terminus": false
             }
         ],
-        "xy": [215, 280]
+        "xy": [215, 280],
+        "terminus_number": "DT-01"
     },
     "states": {
         "next": {

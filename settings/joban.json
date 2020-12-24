@@ -257,7 +257,8 @@
                 "name_after_terminus": false
             }
         ],
-        "xy": [215, 280]
+        "xy": [215, 280],
+        "terminus_number": "JT-03"
     },
     "states": {
         "next": {

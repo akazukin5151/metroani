@@ -333,7 +333,7 @@ def make_line_info(surface, constants, settings, station_idx):
     )
 
 
-def make_station_icon(surface, settings, n, constants):
+def make_station_icon(surface, settings, n, constants, text=None):
     x_pos, y_pos = constants.icon_xy
     if constants.theme.lower() == 'tokyu':
         fill = constants.line_color
@@ -368,7 +368,10 @@ def make_station_icon(surface, settings, n, constants):
             fill=[1,1,1]
         ).draw(surface)
 
-    line, num = settings[n].station_number.split('-')
+    if text:
+        line, num = text.split('-')
+    else:
+        line, num = settings[n].station_number.split('-')
     gz.text(
         line, constants.icon_text_font,
         constants.icon_line_fontsize + letter_mod,

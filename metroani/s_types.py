@@ -45,7 +45,7 @@ class StationTranslation(NamedTuple):
 
 
 class TerminusTranslation(NamedTuple):
-    '''Collection of values unique for every language, for terminus tex'''
+    '''Collection of values unique for every language, for terminus text'''
     # 'Inherit' from StationTranslation
     name: str
     font: str
@@ -56,10 +56,11 @@ class TerminusTranslation(NamedTuple):
     # New
     terminus: str
     name_after_terminus: bool
+    # TODO: station icon line color
 
 
 class Transition(NamedTuple):
-    '''Transition-wide settings for terminal and state settings
+    '''Transition-wide settings for state settings
     Contains circular-list of the text in every language
     '''
     names: CircularList[StationTranslation]
@@ -74,13 +75,25 @@ class Transition(NamedTuple):
             settings[section]['xy']
         )
 
+
+class TerminusTransition(NamedTuple):
+    '''Transition-wide settings for terminal settings
+    Contains circular-list of the text in every language
+    '''
+    # 'Inherit' from Transition
+    names: CircularList[StationTranslation]
+    xy: list[int]
+    # New
+    terminus_number: str
+
     @classmethod
-    def from_json_terminus(cls, settings: 'json', section: str):
+    def from_json(cls, settings: 'json', section: str):
         return cls(
             CircularList(
                 [TerminusTranslation(**ss) for ss in settings[section]['translations']]
             ),
-            settings[section]['xy']
+            settings[section]['xy'],
+            settings[section]['terminus_number'],
         )
 
 

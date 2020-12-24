@@ -344,7 +344,8 @@
                 "name_after_terminus": false
             }
         ],
-        "xy": [530,70]
+        "xy": [530,70],
+        "terminus_number": "JK-01"
     },
     "states": {
         "next": {
