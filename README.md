@@ -15,11 +15,9 @@ Programatically create multilingual train announcement animations, Japan style.
     - `Metro`: Tokyo Metro light theme with line color as accent. Used by Tokyo Metro
     - `Yamanote`: Dark background for station name. Used by newer JR East lines such as the Yamanote and Joban Lines
     - `JR`: Gray background and older look with more boxes. Used by other JR East lines such as the Keihin-Tohoku and Chuo Lines
-    - `Tokyu`: Dark background for station name and circles for stations (TODO). Used by Tokyu Lines
+    - `Tokyu`: Dark background for station name and circles for stations. Used by Tokyu Lines
 
 # Examples
-
-TODO: examples for each theme
 
 The Joban Line using the Yamanote theme `examples/joban.py`:
 
