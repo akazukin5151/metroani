@@ -189,27 +189,61 @@ def make_frames(
         color = (0,0,0)
 
     # Station text
-    make_text_frames_from_setting(
-        t, constants, surface, settings[n],
-        old, new, color
-    )
+    if n == 0:
+        new_text = new_term.terminus
+        old_text = old_term.terminus
+        make_text_frames(
+            t, constants.duration, surface, new_text, old_text,
+            settings[n].xy, new.font, old.font,
+            new.fontsize, old.fontsize, color if force else (0, 0, 0),
+            old.scale_x, new.scale_x, new.enter_xy,
+            old.exit_xy
+        )
+    else:
+        make_text_frames_from_setting(
+            t, constants, surface, settings[n],
+            old, new, color
+        )
 
     # 'Next' text
-    make_text_frames_from_setting(
-        t, constants, surface, next_settings,
-        old_next, new_next, color if force else (0, 0, 0)
-    )
+    if n != 0:
+        make_text_frames_from_setting(
+            t, constants, surface, next_settings,
+            old_next, new_next, color if force else (0, 0, 0)
+        )
 
     # Terminus station text
-    make_text_frames_from_setting(
-        t, constants, surface, terminal_settings,
-        old_term, new_term, color if force else (0, 0, 0)
-    )
+    if n == 0:
+        # TODO: move 'yuki' to right side
+        # TODO: scale x should always be 0
+        make_text_frames_from_setting(
+            t, constants, surface, terminal_settings,
+            old_term, new_term, color if force else (0, 0, 0)
+        )
+    else:
+        if new_term.name_after_terminus:
+            new_text = ' '.join([new_term.terminus, new_term.name])
+        else:
+            new_text = ' '.join([new_term.name, new_term.terminus])
+
+        if old_term.name_after_terminus:
+            old_text = ' '.join([old_term.terminus, old_term.name])
+        else:
+            old_text = ' '.join([old_term.name, old_term.terminus])
+
+        make_text_frames(
+            t, constants.duration, surface, new_text, old_text,
+            terminal_settings.xy, new_term.font, old_term.font,
+            new_term.fontsize, old_term.fontsize, color if force else (0, 0, 0),
+            old_term.scale_x, new_term.scale_x, new_term.enter_xy,
+            old_term.exit_xy
+        )
 
     # Line info graphics
     make_line_info(surface, constants, settings, n)
 
     # Station icon
+    # TODO: for start station, use terminus station number
     make_station_icon(surface, settings, n, constants)
 
     return surface.get_npimage()

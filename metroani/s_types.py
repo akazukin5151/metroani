@@ -43,6 +43,20 @@ class StationTranslation(NamedTuple):
     exit_xy: list[int]
 
 
+class TerminusTranslation(NamedTuple):
+    '''Collection of values unique for every language, for terminus tex'''
+    # 'Inherit' from StationTranslation
+    name: str
+    font: str
+    fontsize: int
+    scale_x: float
+    enter_xy: list[int]
+    exit_xy: list[int]
+    # New
+    terminus: str
+    name_after_terminus: bool
+
+
 class Transition(NamedTuple):
     '''Transition-wide settings for terminal and state settings
     Contains circular-list of the text in every language
@@ -55,6 +69,15 @@ class Transition(NamedTuple):
         return cls(
             CircularList(
                 [StationTranslation(**ss) for ss in settings[section]['translations']]
+            ),
+            settings[section]['xy']
+        )
+
+    @classmethod
+    def from_json_terminus(cls, settings: 'json', section: str):
+        return cls(
+            CircularList(
+                [TerminusTranslation(**ss) for ss in settings[section]['translations']]
             ),
             settings[section]['xy']
         )

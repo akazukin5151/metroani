@@ -280,20 +280,24 @@
     "terminal": {
         "translations": [
             {
-                "name": "西武新宿 ゆき",
+                "name": "ゆき",
+                "terminus": "西武新宿",
                 "font": "Hiragino Sans GB W3",
                 "fontsize": 70,
-                "enter_xy": [960,35],
-                "exit_xy": [960,100],
-                "scale_x": 1
+                "enter_xy": [1500,35],
+                "exit_xy": [1500,100],
+                "scale_x": 1,
+                "name_after_terminus": true
             },
             {
-                "name": "For Seibu Shinjuku",
+                "name": "For",
+                "terminus": "Seibu Shinjuku",
                 "font": "Roboto",
                 "fontsize": 60,
-                "enter_xy": [960,35],
-                "exit_xy": [960,110],
-                "scale_x": 0.8
+                "enter_xy": [700,35],
+                "exit_xy": [700,110],
+                "scale_x": 0.8,
+                "name_after_terminus": false
             }
         ],
         "xy": [650,70]

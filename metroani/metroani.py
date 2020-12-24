@@ -31,7 +31,7 @@ def settings_from_json(file_):
     return (
         Constants(**settings['constants']),
         StationTransition.from_json_list(settings, 'stations'),
-        Transition.from_json(settings, 'terminal'),
+        Transition.from_json_terminus(settings, 'terminal'),
         [Transition.from_json(settings['states'], key)
          for key in settings['states'].keys()]
     )
