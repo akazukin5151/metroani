@@ -160,6 +160,28 @@ def make_text_frames_from_setting(t, constants, surface, settings, old, new, col
     return surface
 
 
+def make_text_frames_simple(
+    t, constants, surface, new_text, old_text, show_xy,
+    new, old, fontcolor, old_scale_x, new_scale_x,
+    new_center_xy, old_center_xy, hide_xy=None
+):
+    '''More complicated than make_text_frames_from_setting but less than
+    make_text_frames
+    '''
+    return make_text_frames(
+        t, constants.duration, surface, new_text, old_text, show_xy,
+        new.font, old.font, new.fontsize, old.fontsize, fontcolor,
+        old.scale_x, new.scale_x, new_center_xy, old_center_xy,
+        hide_xy=hide_xy
+    )
+
+
+def join_text(term):
+    if term.name_after_terminus:
+        return ' '.join([term.terminus, term.name])
+    return ' '.join([term.name, term.terminus])
+
+
 @curry
 def make_frames(
     t, constants, n, settings, next_settings, terminal_settings,
@@ -194,12 +216,10 @@ def make_frames(
     if n == 0 and constants.show_direction:
         new_text = new_term.terminus
         old_text = old_term.terminus
-        make_text_frames(
-            t, constants.duration, surface, new_text, old_text,
-            settings[n].xy, new.font, old.font,
-            new.fontsize, old.fontsize, color,
-            old.scale_x, new.scale_x, new.enter_xy,
-            old.exit_xy
+        make_text_frames_simple(
+            t, constants, surface, new_text, old_text,
+            settings[n].xy, new, old, color, old.scale_x, new.scale_x,
+            new.enter_xy, old.exit_xy
         )
     else:
         make_text_frames_from_setting(
@@ -217,30 +237,20 @@ def make_frames(
     # Terminus station text
     if n == 0 and constants.show_direction:
         # TODO: scale x should always be 0
-        make_text_frames(
-            t, constants.duration, surface, new_term.name, old_term.name,
-            new_term.xy, new_term.font, old_term.font,
-            new_term.fontsize, old_term.fontsize, color if force else (0, 0, 0),
+        make_text_frames_simple(
+            t, constants, surface, new_term.name, old_term.name,
+            new_term.xy, new_term, old_term, color if force else (0, 0, 0),
             old_term.scale_x, new_term.scale_x, new_term.enter_xy,
             old_term.exit_xy, hide_xy=old_term.xy
         )
     else:
-        if new_term.name_after_terminus:
-            new_text = ' '.join([new_term.terminus, new_term.name])
-        else:
-            new_text = ' '.join([new_term.name, new_term.terminus])
+        new_text = join_text(new_term)
+        old_text = join_text(old_term)
 
-        if old_term.name_after_terminus:
-            old_text = ' '.join([old_term.terminus, old_term.name])
-        else:
-            old_text = ' '.join([old_term.name, old_term.terminus])
-
-        make_text_frames(
-            t, constants.duration, surface, new_text, old_text,
-            terminal_settings.xy, new_term.font, old_term.font,
-            new_term.fontsize, old_term.fontsize, color if force else (0, 0, 0),
-            old_term.scale_x, new_term.scale_x, new_term.combined_enter_xy,
-            old_term.combined_exit_xy
+        make_text_frames_simple(
+            t, constants, surface, new_text, old_text, terminal_settings.xy,
+            new_term, old_term, color if force else (0, 0, 0), old_term.scale_x,
+            new_term.scale_x, new_term.combined_enter_xy, old_term.combined_exit_xy
         )
 
     # Line info graphics
