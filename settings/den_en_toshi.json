@@ -1,0 +1,324 @@
+{
+    "constants": {
+        "height": 1080,
+        "width": 1920,
+        "duration": 0.7,
+        "freeze_duration": 1,
+        "sep_height": 350,
+        "line_color": [0.11, 0.61, 0.51],
+        "line_color_dark": [0.11, 0.61, 0.51],
+        "theme": "tokyu",
+        "icon_shape": "square",
+        "icon_size": 150,
+        "icon_xy": [700, 240],
+        "icon_text_font": "Roboto",
+        "icon_line_fontsize": 60,
+        "icon_station_fontsize": 70
+    },
+    "stations": [
+        {
+            "station_number": "DT-16",
+            "translations": [
+                {
+                    "name": "あざみ野 ",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Azamino",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [
+                [
+                    {
+                        "name": "横浜市営地下鉄",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    },
+                    {
+                        "name": "Yokohama Subway Blue Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    }
+                ]
+            ],
+            "skip": false
+        },
+        {
+            "station_number": "DT-15",
+            "translations": [
+                {
+                    "name": "たまプラーザ",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [1400,110],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                },
+                {
+                    "name": "Tama-Plaza",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": false
+        },
+        {
+            "station_number": "DT-14",
+            "translations": [
+                {
+                    "name": "鷺沼",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Saginuma",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": false
+        },
+        {
+            "station_number": "DT-13",
+            "translations": [
+                {
+                    "name": "宮前平",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Miyamaedaira",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
+            "station_number": "DT-12",
+            "translations": [
+                {
+                    "name": "宮崎台",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Miyazakidai",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
+            "station_number": "DT-11",
+            "translations": [
+                {
+                    "name": "梶が谷",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Kajigaya",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
+            "station_number": "DT-10",
+            "translations": [
+                {
+                    "name": "溝の口",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Mizonokuchi",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [
+                [
+                    {
+                        "name": "大井町線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    },
+                    {
+                        "name": "Oimachi Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    }
+                ],
+                [
+                    {
+                        "name": "JR 南武線",
+                        "font": "Hiragino Sans GB W3",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    },
+                    {
+                        "name": "Nambu Line",
+                        "font": "Roboto",
+                        "fontsize": 30,
+                        "scale_x": 1
+                    }
+                ]
+            ],
+            "skip": false
+        },
+        {
+            "station_number": "DT-09",
+            "translations": [
+                {
+                    "name": "高津",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Takatsu",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1300,120],
+                    "exit_xy": [1300,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
+            "station_number": "DT-08",
+            "translations": [
+                {
+                    "name": "二子新地",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Futako-Shinchi",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 0.8
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": false
+        }
+    ],
+    "terminal": {
+        "translations": [
+            {
+                "name": "渋谷 ゆき",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 70,
+                "enter_xy": [300, 250],
+                "exit_xy": [300, 330],
+                "scale_x": 1
+            },
+            {
+                "name": "For Shibuya",
+                "font": "Roboto",
+                "fontsize": 60,
+                "enter_xy": [250, 250],
+                "exit_xy": [250, 330],
+                "scale_x": 0.8
+            }
+        ],
+        "xy": [215, 280]
+    },
+    "states": {
+        "next": {
+            "translations": [
+                {
+                    "name": "つぎは",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 70,
+                    "enter_xy": [960,35],
+                    "exit_xy": [960, 100],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Next",
+                    "font": "Roboto",
+                    "fontsize": 60,
+                    "enter_xy": [960, 35],
+                    "exit_xy": [960, 100],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [700, 70]
+        }
+    }
+}

@@ -21,13 +21,17 @@ Programatically create multilingual train announcement animations, Japan style.
 
 TODO: examples for each theme
 
+The Joban Line using the Yamanote theme `examples/joban.py`:
+
 ![yamanote theme](examples/joban.gif)
 
-(The Joban Line using the Yamanote theme `examples/joban.py`)
+The Keihin-Tohoku Line using the JR theme `examples/keihin.py`:
 
 ![jr theme](examples/keihin.gif)
 
-(The Keihin-Tohoku Line using the JR theme `examples/keihin.py`)
+The Tokyu Den-en-toshi Line using the Tokyu theme `examples/den_en_toshi.py`:
+
+![tokyu theme](examples/den_en_toshi.gif)
 
 
 # Installation
