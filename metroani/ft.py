@@ -197,7 +197,7 @@ def make_frames(
         make_text_frames(
             t, constants.duration, surface, new_text, old_text,
             settings[n].xy, new.font, old.font,
-            new.fontsize, old.fontsize, color if force else (0, 0, 0),
+            new.fontsize, old.fontsize, color,
             old.scale_x, new.scale_x, new.enter_xy,
             old.exit_xy
         )

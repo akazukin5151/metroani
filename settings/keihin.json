@@ -345,7 +345,7 @@
                 "combined_exit_xy": [500,110],
                 "enter_xy": [500,35],
                 "exit_xy": [500,110],
-                "scale_x": 0.8,
+                "scale_x": 1,
                 "name_after_terminus": false,
                 "xy": [530,70]
             }
