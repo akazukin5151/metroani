@@ -176,6 +176,17 @@ def make_text_frames_simple(
     )
 
 
+def make_direction_text(t, n, constants, surface, new_term, old_term, settings,
+                        new, old, color):
+    new_text = new_term.terminus
+    old_text = old_term.terminus
+    make_text_frames_simple(
+        t, constants, surface, new_text, old_text,
+        settings[n].xy, new, old, color, old.scale_x, new.scale_x,
+        new.enter_xy, old.exit_xy
+    )
+
+
 def join_text(term):
     if term.name_after_terminus:
         return ' '.join([term.terminus, term.name])
@@ -214,12 +225,9 @@ def make_frames(
 
     # Station text
     if n == 0 and constants.show_direction:
-        new_text = new_term.terminus
-        old_text = old_term.terminus
-        make_text_frames_simple(
-            t, constants, surface, new_text, old_text,
-            settings[n].xy, new, old, color, old.scale_x, new.scale_x,
-            new.enter_xy, old.exit_xy
+        make_direction_text(
+            t, n, constants, surface, old_term, new_term, settings, new, old,
+            color
         )
     else:
         make_text_frames_from_setting(
