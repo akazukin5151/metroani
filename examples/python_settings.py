@@ -20,7 +20,8 @@ constants = metroani.Constants(
     icon_xy=[650, 240],
     icon_text_font='Roboto',
     icon_line_fontsize=60,
-    icon_station_fontsize=70
+    icon_station_fontsize=70,
+    show_direction=False,
 )
 
 # Station settings
@@ -79,21 +80,31 @@ station_settings = [saginomiya, toritsu_kasei]
 
 # Terminus station setting
 terminal = metroani.CircularList([
-    metroani.StationTranslation(
-        name='西武新宿 ゆき',
+    metroani.TerminusTranslation(
+        name='ゆき',
+        terminus='西武新宿',
         font='Hiragino Sans GB W3',
         fontsize=70,
+        combined_enter_xy=[960,35],
+        combined_exit_xy=[960,100],
         enter_xy=[960,35],
         exit_xy=[960,100],
-        scale_x=1
+        scale_x=1,
+        name_after_terminus=False,
+        xy=[650, 70]
     ),
-    metroani.StationTranslation(
-        name='For Seibu Shinjuku',
+    metroani.TerminusTranslation(
+        name='For',
+        terminus='Seibu Shinjuku',
         font='Roboto',
         fontsize=60,
+        combined_enter_xy=[960,35],
+        combined_exit_xy=[960,110],
         enter_xy=[960,35],
         exit_xy=[960,110],
-        scale_x=0.8
+        scale_x=0.8,
+        name_after_terminus=False,
+        xy=[650, 70]
     )
 ])
 terminal_settings = metroani.Transition(terminal, [650, 70])
