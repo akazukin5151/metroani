@@ -226,7 +226,7 @@ def make_frames(
     # Station text
     if n == 0 and constants.show_direction:
         make_direction_text(
-            t, n, constants, surface, old_term, new_term, settings, new, old,
+            t, n, constants, surface, new_term, old_term, settings, new, old,
             color
         )
     else:
