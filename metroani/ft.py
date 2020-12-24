@@ -3,7 +3,7 @@ import gizeh as gz
 
 from cytoolz import curry
 
-from .s_types import Yamanote, Tokyu
+from .s_types import Yamanote, Tokyu, JR
 from .graphics import (
     draw_metro_frames,
     draw_yamanote_frames,
@@ -147,17 +147,7 @@ def make_text_frames(
     return surface
 
 
-def make_text_frames_from_setting(t, constants, surface, settings, old, new):
-    if constants.theme.lower() == 'yamanote':
-        color = Yamanote.bg_color
-    elif constants.theme.lower() == 'tokyu':
-        color = Tokyu.station_color
-    # TODO: only change color for station name
-    #elif constants.theme.lower() == 'jr':
-        #color = JR.station_font_color
-    else:
-        color = (0,0,0)
-
+def make_text_frames_from_setting(t, constants, surface, settings, old, new, color):
     make_text_frames(
         t, constants.duration, surface, new.name, old.name,
         settings.xy, new.font, old.font,
@@ -186,22 +176,34 @@ def make_frames(
     if (func := case.get(constants.theme.lower(), None)):
         func(surface, constants)
 
+    force = False
+    if constants.theme.lower() == 'yamanote':
+        color = Yamanote.bg_color
+        force = True
+    elif constants.theme.lower() == 'tokyu':
+        color = Tokyu.station_color
+        force = True
+    elif constants.theme.lower() == 'jr':
+        color = JR.station_font_color
+    else:
+        color = (0,0,0)
+
     # Station text
     make_text_frames_from_setting(
         t, constants, surface, settings[n],
-        old, new
+        old, new, color
     )
 
     # 'Next' text
     make_text_frames_from_setting(
         t, constants, surface, next_settings,
-        old_next, new_next
+        old_next, new_next, color if force else (0, 0, 0)
     )
 
     # Terminus station text
     make_text_frames_from_setting(
         t, constants, surface, terminal_settings,
-        old_term, new_term
+        old_term, new_term, color if force else (0, 0, 0)
     )
 
     # Line info graphics
