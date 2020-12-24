@@ -2,15 +2,23 @@
 
 ## gif.json
 
-The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freeze duration and one train state (next). Best for learning/experimenting/tinkering with. Used to generate the header gif in the README
+The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freeze duration and one train state (next). Best for learning/experimenting/tinkering with. Used to generate the header gif in the README. Uses the Metro theme.
 
 ## full.json
 
-The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 2-second freeze duration and three train states (next, arriving, currently). Takes a long time to render the full video.
+The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 2-second freeze duration and three train states (next, arriving, currently). Takes a long time to render the full video. Uses the Metro theme.
 
 ## joban.json
 
-The Joban line from Toride to Mabashi (actually Kashiwa), with a 1-second freeze duration and one train state (next). The Joban Line doesn't use the Yamanote style in real life, so here is a mockup of one.
+The Joban line from Toride to Mabashi (actually Kashiwa), with a 1-second freeze duration and one train state (next). The Joban Line doesn't use the Yamanote theme in real life, so here is a mockup of one.
+
+## keihin.json
+
+The Keihin-Tohoku line from Omiya to Kawaguchi, with a 1-second freeze duration and one train state (next). Uses the JR theme.
+
+## den_en_toshi.json
+
+The Tokyu Den-en-toshi line from Azamino to Futako-Shinchi, with a 1-second freeze duration and one train state (next). Uses the Tokyu theme.
 
 ## dev.json
 
