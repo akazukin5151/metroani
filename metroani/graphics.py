@@ -1,7 +1,7 @@
 '''Functions that draw graphics for every frame, given surface'''
 import gizeh as gz
 
-from .utils import rgb
+from .utils import rgb, find_prev_unskipped_station
 from .s_types import Metro, Yamanote, JR, Tokyu
 
 
@@ -153,7 +153,8 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
 
     for n, setting in zip(range(8), settings_to_show):
         x_pos = rect_x + spacing * n
-        color = (.5, .5, .5) if setting.skip else (0, 0, 0)
+        passed = n == 0 and not constants.show_direction
+        color = (.5, .5, .5) if setting.skip or passed else (0, 0, 0)
         arrow_x_pos = x_pos - 15
         arrow_width = 5
 
@@ -309,8 +310,13 @@ def make_line_info(surface, constants, settings, station_idx):
         # Move arrow to center of first rectangle
         arrow_x_offset = - spacing/2
     else:
-        # Anywhere else in the line: show previous station
-        settings_to_show = settings[station_idx-1:station_idx + max_stations - 1]
+        # Anywhere else in the line: show the previous station that isn't skipped
+        i = find_prev_unskipped_station(station_idx, settings)
+        settings_to_show = settings[station_idx - i : station_idx + max_stations - 1]
+        # Move arrow to between previous and next station rectangle
+        # TODO: add config to disable this
+        arrow_x_offset = spacing * (i - 1)
+        # TODO: even better, animate the arrow moving in-between skipped stations
 
     # Actually draw the frame
     make_bar(surface, constants, bar_width, bar_height, bar_x, bar_y)
