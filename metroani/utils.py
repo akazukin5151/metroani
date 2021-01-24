@@ -1,3 +1,6 @@
+import sys
+
+
 def rgb(values: list[int]) -> list[float]:
     return [x/255 for x in values]
 
@@ -9,5 +12,11 @@ def find_prev_unskipped_station(station_idx, settings):
         else:
             return i
     else:  # nobreak
-        print('Warning')
-        return i
+        # Warnings doesn't work, maybe hidden by moviepy?
+        print(
+            'The first station has skip=true. '
+            'Please make that station skip=false or add a preceding station '
+            'with skip=false.',
+            file=sys.stderr
+        )
+        return 1
