@@ -9,11 +9,12 @@ from .s_types import Constants, Transition, StationTransition, TerminusTransitio
 def make_video(
     constants, station_settings, terminal_settings, state_settings
 ):
+    start = 0 if constants.show_direction else 1
     final = (
         combine_train_states(
             n, station_settings, state_settings, terminal_settings, constants
         )
-        for n in range(len(station_settings))
+        for n in range(start, len(station_settings))
     )
 
     return mpy.concatenate_videoclips([

@@ -18,10 +18,106 @@
     },
     "stations": [
         {
+            "station_number": "DT-20",
+            "translations": [
+                {
+                    "name": "青葉台",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Aobadai",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": false
+        },
+        {
+            "station_number": "DT-19",
+            "translations": [
+                {
+                    "name": "藤が丘",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Fujigaoka",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
+            "station_number": "DT-18",
+            "translations": [
+                {
+                    "name": "市が尾",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Ichigao",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
+            "station_number": "DT-17",
+            "translations": [
+                {
+                    "name": "江田",
+                    "font": "Hiragino Sans GB W3",
+                    "fontsize": 200,
+                    "enter_xy": [960,110],
+                    "exit_xy": [960,320],
+                    "scale_x": 1
+                },
+                {
+                    "name": "Ichigao",
+                    "font": "Roboto",
+                    "fontsize": 170,
+                    "enter_xy": [1400,120],
+                    "exit_xy": [1400,320],
+                    "scale_x": 1
+                }
+            ],
+            "xy": [1300,220],
+            "transfers": [],
+            "skip": true
+        },
+        {
             "station_number": "DT-16",
             "translations": [
                 {
-                    "name": "あざみ野 ",
+                    "name": "あざみ野",
                     "font": "Hiragino Sans GB W3",
                     "fontsize": 200,
                     "enter_xy": [960,110],
