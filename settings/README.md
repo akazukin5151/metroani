@@ -2,11 +2,11 @@
 
 ## gif.json
 
-The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freeze duration and one train state (next). Best for learning/experimenting/tinkering with. Used to generate the header gif in the README. Uses the Metro theme.
+A section of the Seibu-Shinjuku line between Saginomiya to Seibu-Shinjuku, with a 1-second freeze duration and one train state (next). Best for learning/experimenting/tinkering with. Used to generate the header gif in the README. Uses the Metro theme.
 
 ## full.json
 
-The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 2-second freeze duration and three train states (next, arriving, currently). Takes a long time to render the full video. Uses the Metro theme.
+A section of the Seibu-Shinjuku line between Saginomiya to Seibu-Shinjuku, with a 2-second freeze duration and three train states (next, arriving, currently). Takes a long time to render the full video. Uses the Metro theme.
 
 ## joban.json
 
@@ -18,11 +18,11 @@ The Keihin-Tohoku line from Omiya to Kawaguchi, with a 1-second freeze duration 
 
 ## den_en_toshi.json
 
-The Tokyu Den-en-toshi line from Azamino to Futako-Shinchi, with a 1-second freeze duration and one train state (next). Uses the Tokyu theme.
+A section of the Tokyu Den-en-toshi line between Azamino to Futako-Shinchi, with a 1-second freeze duration and one train state (next). Uses the Tokyu theme.
 
 ## dev.json
 
-The Seibu-Shinjuku line from Saginomiya to Seibu-Shinjuku, with a 1-second freeze duration and one train state (next). May change at any time; for development and debugging purposes, do not rely on this. Running `python metroani/metroani.py` will create a video with this setting.
+For development and debugging purposes, can change at any time. Do not rely on this. Running `python metroani/metroani.py` will create a video with this setting.
 
 
 # Settings documentation
