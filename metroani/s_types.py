@@ -85,7 +85,7 @@ class TerminusTransition(NamedTuple):
     Contains circular-list of the text in every language
     '''
     # 'Inherit' from Transition
-    names: CircularList[StationTranslation]
+    names: CircularList[TerminusTranslation]
     xy: list[int]
     # New
     terminus_number: str

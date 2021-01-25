@@ -77,8 +77,9 @@ The terminus station of the line. Indicates the direction of the train.
 
 The value for the "terminal" key should be a single dictionary. Only two keys are accepted:
 
-- `translations` (list[Translation]) - A list of different translations for the terminus indicator. See [Translation](#Translation)
+- `translations` (list[TerminusTranslation]) - A list of different translations for the terminus indicator. See [TerminusTranslation](#TerminusTranslation)
 - `xy` (list[int]) - the position of the text
+- `terminus_number` (str) - The station number of the terminus
 
 ![terminal](puml/render/terminal.png)
 
@@ -96,9 +97,9 @@ A visualization showing only one state (next):
 ![states](puml/render/states.png)
 
 
-## Translation
+## Translation (for state)
 
-A collection of values that every translation for the terminus and train state.
+A collection of values that every translation for the train state has.
 
 - `name` (string) - the name of the terminus/state in a language
 - `font` (string) - the font to use for this language (some fonts cannot display CJK)
@@ -128,6 +129,27 @@ A collection of values that every line (that can be transferred to) translation 
 - `font` (string) - the font to use for this language (some fonts cannot display CJK)
 - `fontsize` (int) - font size of this translation
 - `scale_x` (int) - horizontal scale of the translation
+
+
+## TerminusTranslation
+
+A collection of values that every translation for the terminus has.
+
+### Same as StationTranslation
+
+- `name` (string) - **the translation for "to"/"from"/"for"**
+- `font` (string) - the font to use for this language (some fonts cannot display CJK)
+- `fontsize` (int) - font size of this translation
+- `scale_x` (int) - horizontal scale of the translation
+- `enter_xy` (list[int]) - where the center of the enter transition is
+- `exit_xy` (list[int]) - where the center of the exit transition is
+
+### Additional values
+- `terminus` (str) - the name of the terminus station in a language
+- `name_after_terminus` (bool) - whether to put *"to"/"from"/"for"* after name of the terminus. If true, then it looks like "西武新宿 ゆき". If false, it looks like "For Seibu Shinjuku"
+- `xy` (list[int]) - the position of the text
+- `combined_enter_xy` (list[int]) - where the center of the enter transition is
+- `combined_exit_xy` (list[int]) - where the center of the enter transition is
 
 
 ## UML diagram
