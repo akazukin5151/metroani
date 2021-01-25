@@ -51,6 +51,7 @@ Video-wide settings.
 - `icon_text_font` (string) - font to use for text in the station icon
 - `icon_line_fontsize` (int) - font size of the line number in the station icon
 - `icon_station_fontsize` (int) - font size of the station number in the station icon
+- `show_direction` (bool) - whether to show the terminus station instead of the first station. Use false if your video is a section of a line, true if it is an entire line.
 
 ![constants](puml/render/constants.png)
 
