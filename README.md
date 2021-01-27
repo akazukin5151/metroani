@@ -39,11 +39,11 @@ The Tokyu Den-en-toshi Line using the Tokyu theme `examples/den_en_toshi.py`:
 3. `pip install -r requirements.txt`
 4. (Optional: install `gifsicle` to compress gifs)
 5. Start by running `python examples/webm.py` and adjusting `settings/gif.json`
-6. Read the settings documentation in `settings/README.md`
+6. Read the settings documentation in [settings/README.md](settings/README.md)
 
 Notes:
 
-- Running `python main.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`. See `settings/README.md`
+- Running `python main.py` will create a video using development/debugging settings (which should be avoided). Best to experiment `examples/webm.py` and `settings/gif.json`. See [settings/README.md](settings/README.md)
 - Python 3.9 was used to develop the script, but Python 3.7 (or later) should be fine (as long as it supports `from __future__ import annotations`).
 
 # Usage
