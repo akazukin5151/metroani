@@ -158,8 +158,9 @@ class CircularList(NamedTuple):  # CircularList[T]
 class Metro(NamedTuple):
     stroke_color = [0, 0, 0]
     stroke_width = 10
-    rectangle_height = 220
+    rectangle_height = 250
     rectangle_fill = [0.95, 0.95, 0.95]
+    service_fill = rgb([69, 114, 197])
 
 
 class Yamanote(NamedTuple):
@@ -182,3 +183,4 @@ class Tokyu(NamedTuple):
     rectangle_fill = rgb([22, 22, 22])
     bg_color = rgb([233, 235, 239])
     station_color = [1, 1, 1]
+    service_fill = rgb([204, 73, 62])

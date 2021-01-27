@@ -5,7 +5,7 @@ from .utils import rgb, find_prev_unskipped_station
 from .s_types import Metro, Yamanote, JR, Tokyu
 
 
-def draw_metro_frames(surface, constants):
+def draw_metro_frames(surface, constants, service_settings):
     # Draw separator line
     gz.polyline(
         [(0, constants.sep_height), (constants.width, constants.sep_height)],
@@ -18,8 +18,15 @@ def draw_metro_frames(surface, constants):
         xy=[0,0], fill=Metro.rectangle_fill
     ).draw(surface)
 
+    # Draw background for service type
+    gz.rectangle(
+        lx=constants.width/6, ly=Metro.rectangle_height/2 - 30,
+        xy=[service_settings.xy[0], service_settings.xy[1]],
+        fill=Metro.service_fill
+    ).draw(surface)
 
-def draw_yamanote_frames(surface, constants):
+
+def draw_yamanote_frames(surface, constants, service_settings):
     # Change background color
     gz.rectangle(
         lx=constants.width * 2, ly=constants.height * 2,
@@ -40,8 +47,16 @@ def draw_yamanote_frames(surface, constants):
         fill=constants.line_color
     ).draw(surface)
 
+    # Draw background for service type
+    gz.rectangle(
+        lx=(Yamanote.indicator_pos - Yamanote.indicator_width/2) - 50,
+        ly=Metro.rectangle_height/2 - 30,
+        xy=[service_settings.xy[0] + 10, service_settings.xy[1]],
+        fill=Yamanote.bg_color
+    ).draw(surface)
 
-def draw_jr_frames(surface, constants):
+
+def draw_jr_frames(surface, constants, _):
     # Change background color
     gz.rectangle(
         lx=constants.width * 2, ly=constants.height * 2,
@@ -64,7 +79,7 @@ def draw_jr_frames(surface, constants):
     ).draw(surface)
 
 
-def draw_tokyu_frames(surface, constants):
+def draw_tokyu_frames(surface, constants, service_settings):
     # Change background color
     gz.rectangle(
         lx=constants.width * 2, ly=constants.height * 2,
@@ -76,6 +91,13 @@ def draw_tokyu_frames(surface, constants):
         lx=constants.width, ly=constants.sep_height,
         xy=[constants.width/2,constants.sep_height/2],
         fill=Tokyu.rectangle_fill
+    ).draw(surface)
+
+    # Draw background for service type
+    gz.rectangle(
+        lx=constants.width/4, ly=Metro.rectangle_height/2 - 30,
+        xy=[service_settings.xy[0] + 60, service_settings.xy[1]],
+        fill=Tokyu.service_fill
     ).draw(surface)
 
 

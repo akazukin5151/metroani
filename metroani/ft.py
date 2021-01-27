@@ -210,19 +210,23 @@ def make_frames(
         'tokyu': draw_tokyu_frames,
     }
     if (func := case.get(constants.theme.lower(), None)):
-        func(surface, constants)
+        func(surface, constants, service_settings)
 
     force = False
     if constants.theme.lower() == 'yamanote':
         color = Yamanote.bg_color
+        service_color = constants.line_color
         force = True
     elif constants.theme.lower() == 'tokyu':
         color = Tokyu.station_color
+        service_color = (1, 1, 1)
         force = True
     elif constants.theme.lower() == 'jr':
         color = JR.station_font_color
+        service_color = constants.line_color
     else:
         color = (0,0,0)
+        service_color = (1, 1, 1)
 
     # Station text
     if n == 0 and constants.show_direction:
@@ -246,7 +250,7 @@ def make_frames(
     # Service type text (local, rapid)
     make_text_frames_from_setting(
         t, constants, surface, service_settings,
-        old_service, new_service, color if force else (0, 0, 0)
+        old_service, new_service, service_color
     )
 
     # Terminus station text
