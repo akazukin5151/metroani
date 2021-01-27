@@ -293,7 +293,8 @@ def draw_jr_text(
     )
     make_service_text(
         t, constants, surface, service_settings,
-        old_service, new_service, color=constants.line_color
+        old_service, new_service, color=(0, 0, 0)
+        #Should be constants.line_color but need stroke
     )
     draw_terminus_text(
         t, n, constants, surface, new_term, old_term, terminal_settings,
