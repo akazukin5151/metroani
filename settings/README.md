@@ -109,7 +109,7 @@ A visualization showing a local train:
 ![local](puml/render/service_type.png)
 
 
-## Translation (for state)
+## Translation (for state and service type)
 
 A collection of values that every translation for the train state has.
 
