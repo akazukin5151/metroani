@@ -134,11 +134,32 @@ next_settings = metroani.Transition(next_, [300, 280])
 # まもなく -> Arriving at
 # ただいま -> Now stopping at
 
+local = metroani.CircularList([
+    metroani.StationTranslation(
+        name='各駅停車',
+        font='Hiragino Sans GB W3',
+        fontsize=70,
+        enter_xy=[960,35],
+        exit_xy=[960,100],
+        scale_x=1
+    ),
+    metroani.StationTranslation(
+        name='Local',
+        font='Roboto',
+        fontsize=60,
+        enter_xy=[960,35],
+        exit_xy=[960,100],
+        scale_x=1
+    )
+])
+service_settings = metroani.Transition(local, [200, 70])
+
 clip = metroani.make_video(
     constants,
     station_settings,
     terminal_settings,
     [next_settings],
+    service_settings,
 )
 
 # We can write the clip into a video file, but this file is just a demostration
