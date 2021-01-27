@@ -96,7 +96,7 @@ def draw_tokyu_frames(surface, constants, service_settings):
     # Draw background for service type
     gz.rectangle(
         lx=constants.width/4, ly=Metro.rectangle_height/2 - 30,
-        xy=[service_settings.xy[0] + 60, service_settings.xy[1]],
+        xy=[service_settings.xy[0] + 10, service_settings.xy[1]],
         fill=Tokyu.service_fill
     ).draw(surface)
 
