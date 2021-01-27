@@ -97,6 +97,18 @@ A visualization showing only one state (next):
 ![states](puml/render/states.png)
 
 
+## Service type
+
+The service type of this train, eg local, rapid, commuter express, special rapid, etc. Used to represent the 'speed' of the train in Japan, but can be used for anything. The settings are structured in the same way as [state](#State)
+
+- `translations` (list[Translation]) - A list of different translations for this service. See [Translation](#Translation)
+- `xy` (list[int]) - the position of the text and the background box (if theme applies)
+
+A visualization showing a local train:
+
+![local](puml/render/service_type.png)
+
+
 ## Translation (for state)
 
 A collection of values that every translation for the train state has.
