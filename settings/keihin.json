@@ -375,5 +375,26 @@
             ],
             "xy": [280,280]
         }
+    },
+    "service_type": {
+        "translations": [
+            {
+                "name": "各駅停車",
+                "font": "Hiragino Sans GB W3",
+                "fontsize": 70,
+                "enter_xy": [960,35],
+                "exit_xy": [960, 100],
+                "scale_x": 1
+            },
+            {
+                "name": "Local",
+                "font": "Roboto",
+                "fontsize": 60,
+                "enter_xy": [960, 35],
+                "exit_xy": [960, 100],
+                "scale_x": 1
+            }
+        ],
+        "xy": [200, 70]
     }
 }

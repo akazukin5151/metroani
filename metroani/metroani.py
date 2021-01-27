@@ -7,12 +7,13 @@ from .s_types import Constants, Transition, StationTransition, TerminusTransitio
 
 
 def make_video(
-    constants, station_settings, terminal_settings, state_settings
+    constants, station_settings, terminal_settings, state_settings, service_settings
 ):
     start = 0 if constants.show_direction else 1
     final = (
         combine_train_states(
-            n, station_settings, state_settings, terminal_settings, constants
+            n, station_settings, state_settings, terminal_settings, constants,
+            service_settings
         )
         for n in range(start, len(station_settings))
     )
@@ -34,5 +35,6 @@ def settings_from_json(file_):
         StationTransition.from_json_list(settings, 'stations'),
         TerminusTransition.from_json(settings, 'terminal'),
         [Transition.from_json(settings['states'], key)
-         for key in settings['states'].keys()]
+         for key in settings['states'].keys()],
+        Transition.from_json(settings, 'service_type')
     )

@@ -5,7 +5,7 @@ import moviepy.video.fx.all as vfx
 from .ft import make_frames
 
 
-def animate(n, settings, next_settings, terminal_settings, constants):
+def animate(n, settings, next_settings, terminal_settings, constants, service_settings):
     '''Animates a transition between two languages'''
     return (
         mpy.VideoClip(
@@ -13,14 +13,16 @@ def animate(n, settings, next_settings, terminal_settings, constants):
                 constants=constants, n=n, settings=settings,
                 next_settings=next_settings, terminal_settings=terminal_settings,
                 old=names[0], new=names[1], old_next=next_[0], new_next=next_[1],
-                old_term=terminal[0], new_term=terminal[1]
+                old_term=terminal[0], new_term=terminal[1],
+                service_settings=service_settings, old_service=services[0],
+                new_service=services[1]
             ),
             duration=constants.duration
         )
 
-        for names, next_, terminal in zip(
+        for names, next_, terminal, services in zip(
             settings[n].names.pairs(), next_settings.names.pairs(),
-            terminal_settings.names.pairs()
+            terminal_settings.names.pairs(), service_settings.names.pairs()
         )
         if any([not settings[n].skip for name in names])
     )
@@ -52,24 +54,26 @@ def concat_or_skip(clips):
 
 
 def combine_language_transitions(
-    n, station_settings, state_setting, terminal_settings, constants
+    n, station_settings, state_setting, terminal_settings, constants, service_settings
 ):
     '''Combines multiple language transitions for a given train state'''
     return concat_or_skip([
         freeze(idx, clip, constants)
         for idx, clip in enumerate(animate(
-            n, station_settings, state_setting, terminal_settings, constants
+            n, station_settings, state_setting, terminal_settings, constants,
+            service_settings
         ))
     ])
 
 
 def combine_train_states(
-    n, station_settings, state_settings, terminal_settings, constants
+    n, station_settings, state_settings, terminal_settings, constants, service_settings
 ):
     '''Combines multiple train states and multiple language transitions'''
     return (
         combine_language_transitions(
-            n, station_settings, state_setting, terminal_settings, constants
+            n, station_settings, state_setting, terminal_settings, constants,
+            service_settings
         )
         for state_setting in state_settings
     )

@@ -196,7 +196,8 @@ def join_text(term):
 @curry
 def make_frames(
     t, constants, n, settings, next_settings, terminal_settings,
-    old, new, old_next, new_next, old_term, new_term
+    old, new, old_next, new_next, old_term, new_term, service_settings,
+    old_service, new_service
 ):
     '''Returns the frames from the transition of three texts as a function of time'''
     surface = gz.Surface(constants.width, constants.height, bg_color=(1,1,1))
@@ -241,6 +242,12 @@ def make_frames(
             t, constants, surface, next_settings,
             old_next, new_next, color if force else (0, 0, 0)
         )
+
+    # Service type text (local, rapid)
+    make_text_frames_from_setting(
+        t, constants, surface, service_settings,
+        old_service, new_service, color if force else (0, 0, 0)
+    )
 
     # Terminus station text
     if n == 0 and constants.show_direction:
