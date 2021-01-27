@@ -204,72 +204,17 @@ def make_frames(
 
     # Apply theme
     case = {
-        'metro': draw_metro_frames,
-        'yamanote': draw_yamanote_frames,
-        'jr': draw_jr_frames,
-        'tokyu': draw_tokyu_frames,
+        'metro': (draw_metro_frames, draw_metro_text),
+        'yamanote': (draw_yamanote_frames, draw_yamanote_text),
+        'jr': (draw_jr_frames, draw_jr_text),
+        'tokyu': (draw_tokyu_frames, draw_tokyu_text),
     }
-    if (func := case.get(constants.theme.lower(), None)):
-        func(surface, constants, service_settings)
-
-    force = False
-    if constants.theme.lower() == 'yamanote':
-        color = Yamanote.bg_color
-        service_color = constants.line_color
-        force = True
-    elif constants.theme.lower() == 'tokyu':
-        color = Tokyu.station_color
-        service_color = (1, 1, 1)
-        force = True
-    elif constants.theme.lower() == 'jr':
-        color = JR.station_font_color
-        service_color = constants.line_color
-    else:
-        color = (0,0,0)
-        service_color = (1, 1, 1)
-
-    # Station text
-    if n == 0 and constants.show_direction:
-        make_direction_text(
-            t, n, constants, surface, new_term, old_term, settings, new, old,
-            color
-        )
-    else:
-        make_text_frames_from_setting(
-            t, constants, surface, settings[n],
-            old, new, color
-        )
-
-    # 'Next' text
-    if not (n == 0 and constants.show_direction):
-        make_text_frames_from_setting(
-            t, constants, surface, next_settings,
-            old_next, new_next, color if force else (0, 0, 0)
-        )
-
-    # Service type text (local, rapid)
-    make_text_frames_from_setting(
-        t, constants, surface, service_settings,
-        old_service, new_service, service_color
-    )
-
-    # Terminus station text
-    if n == 0 and constants.show_direction:
-        # TODO: scale x should always be 0
-        make_text_frames_simple(
-            t, constants, surface, new_term.name, old_term.name,
-            new_term.xy, new_term, old_term, color if force else (0, 0, 0),
-            old_term.scale_x, new_term.scale_x, new_term.enter_xy,
-            old_term.exit_xy, hide_xy=old_term.xy
-        )
-    else:
-        new_text = join_text(new_term)
-        old_text = join_text(old_term)
-
-        make_text_frames_simple(
-            t, constants, surface, new_text, old_text, terminal_settings.xy,
-            new_term, old_term, color if force else (0, 0, 0), old_term.scale_x,
-            new_term.scale_x, new_term.combined_enter_xy, old_term.combined_exit_xy
+    if (funcs := case.get(constants.theme.lower(), None)):
+        funcs[0](surface, constants, service_settings)
+        funcs[1](
+            t, constants, surface, n, new_term, old_term, terminal_settings,
+            settings, new, old, next_settings, old_next, new_next,
+            service_settings, old_service, new_service
         )
 
     # Line info graphics
@@ -286,3 +231,149 @@ def make_frames(
 
     return surface.get_npimage()
 
+
+def draw_metro_text(
+    t, constants, surface, n, new_term, old_term, terminal_settings,
+    settings, new, old, next_settings, old_next, new_next,
+    service_settings, old_service, new_service
+):
+    make_station_text(
+        t, constants, n, surface, new_term, old_term, settings, new, old,
+        color=(0, 0, 0)
+    )
+    make_next_text(
+        t, n, constants, surface, next_settings, old_next, new_next,
+        color=(0, 0, 0)
+    )
+    make_service_text(
+        t, constants, surface, service_settings,
+        old_service, new_service, color=(1, 1, 1)
+    )
+    draw_terminus_text(
+        t, n, constants, surface, new_term, old_term, terminal_settings,
+        color=(0, 0, 0)
+    )
+
+
+def draw_yamanote_text(
+    t, constants, surface, n, new_term, old_term, terminal_settings,
+    settings, new, old, next_settings, old_next, new_next,
+    service_settings, old_service, new_service
+):
+    make_station_text(
+        t, constants, n, surface, new_term, old_term, settings, new, old,
+        color=Yamanote.bg_color
+    )
+    make_next_text(
+        t, n, constants, surface, next_settings, old_next, new_next,
+        color=Yamanote.bg_color
+    )
+    make_service_text(
+        t, constants, surface, service_settings,
+        old_service, new_service, color=constants.line_color
+    )
+    draw_terminus_text(
+        t, n, constants, surface, new_term, old_term, terminal_settings,
+        color=Yamanote.bg_color
+    )
+
+
+def draw_jr_text(
+    t, constants, surface, n, new_term, old_term, terminal_settings,
+    settings, new, old, next_settings, old_next, new_next,
+    service_settings, old_service, new_service
+):
+    make_station_text(
+        t, constants, n, surface, new_term, old_term, settings, new, old,
+        color=JR.station_font_color
+    )
+    make_next_text(
+        t, n, constants, surface, next_settings, old_next, new_next,
+        color=(0, 0, 0)
+    )
+    make_service_text(
+        t, constants, surface, service_settings,
+        old_service, new_service, color=constants.line_color
+    )
+    draw_terminus_text(
+        t, n, constants, surface, new_term, old_term, terminal_settings,
+        color=(0, 0, 0)
+    )
+
+
+def draw_tokyu_text(
+    t, constants, surface, n, new_term, old_term, terminal_settings,
+    settings, new, old, next_settings, old_next, new_next,
+    service_settings, old_service, new_service
+):
+    make_station_text(
+        t, constants, n, surface, new_term, old_term, settings, new, old,
+        color=Tokyu.station_color
+    )
+    make_next_text(
+        t, n, constants, surface, next_settings, old_next, new_next,
+        color=Tokyu.station_color
+    )
+    make_service_text(
+        t, constants, surface, service_settings,
+        old_service, new_service, color=(1, 1, 1)
+    )
+    draw_terminus_text(
+        t, n, constants, surface, new_term, old_term, terminal_settings,
+        color=Tokyu.station_color
+    )
+
+
+def make_station_text(
+    t, constants, n, surface, new_term, old_term, settings, new, old, color
+):
+    if n == 0 and constants.show_direction:
+        return make_direction_text(
+            t, n, constants, surface, new_term, old_term, settings, new, old,
+            color
+        )
+    return make_text_frames_from_setting(
+        t, constants, surface, settings[n],
+        old, new, color
+    )
+
+
+def make_next_text(
+    t, n, constants, surface, next_settings, old_next, new_next, color
+):
+    if not (n == 0 and constants.show_direction):
+        make_text_frames_from_setting(
+            t, constants, surface, next_settings,
+            old_next, new_next, color
+        )
+
+
+def make_service_text(
+    t, constants, surface, service_settings, old_service, new_service, color
+):
+    make_text_frames_from_setting(
+        t, constants, surface, service_settings,
+        old_service, new_service, color
+    )
+
+
+def draw_terminus_text(
+    t, n, constants, surface, new_term, old_term, terminal_settings, color
+):
+    if n == 0 and constants.show_direction:
+        # TODO: scale x should always be 0
+        return make_text_frames_simple(
+            t, constants, surface, new_term.name, old_term.name,
+            new_term.xy, new_term, old_term, color,
+            old_term.scale_x, new_term.scale_x, new_term.enter_xy,
+            old_term.exit_xy, hide_xy=old_term.xy
+        )
+
+    new_text = join_text(new_term)
+    old_text = join_text(old_term)
+
+    return make_text_frames_simple(
+        t, constants, surface, new_text, old_text, terminal_settings.xy,
+        new_term, old_term, color, old_term.scale_x,
+        new_term.scale_x, new_term.combined_enter_xy, old_term.combined_exit_xy
+    )
