@@ -12,7 +12,7 @@ def draw_metro_frames(surface, constants):
         stroke=Metro.stroke_color, stroke_width=Metro.stroke_width
     ).draw(surface)
 
-    # Draw background for 'next' station text
+    # Draw background for direction indicator
     gz.rectangle(
         lx=constants.width*2, ly=Metro.rectangle_height,
         xy=[0,0], fill=Metro.rectangle_fill
