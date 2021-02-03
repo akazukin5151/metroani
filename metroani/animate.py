@@ -3,6 +3,7 @@ import moviepy.editor as mpy
 import moviepy.video.fx.all as vfx
 
 from .ft import make_frames
+from .utils import pairs
 
 
 def animate(n, settings, next_settings, terminal_settings, constants, service_settings):
@@ -21,8 +22,8 @@ def animate(n, settings, next_settings, terminal_settings, constants, service_se
         )
 
         for names, next_, terminal, services in zip(
-            settings[n].names.pairs(), next_settings.names.pairs(),
-            terminal_settings.names.pairs(), service_settings.names.pairs()
+            pairs(settings[n].names), pairs(next_settings.names),
+            pairs(terminal_settings.names), pairs(service_settings.names)
         )
         if any([not settings[n].skip for name in names])
     )

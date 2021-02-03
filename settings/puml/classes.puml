@@ -20,27 +20,19 @@ class TerminusTranslation extends StationTranslation {
     +combined_exit_xy
 }
 
-class CircularList<T> {
-    +it: list[T]
-    +head: int
-    +curr()
-    +iter()
-    +pairs()
-}
-
 class Transition {
-    +names: CircularList[StationTranslation]
+    +names: list[StationTranslation]
     +xy: list[int]
     +from_json()
 }
 
 class TerminusTransition extends Transition {
-    +names: CircularList[TerminusTranslation]
+    +names: list[TerminusTranslation]
     +terminus_number: str
 }
 
 class StationTransition {
-    +names : CircularList[StationTranslation]
+    +names : list[StationTranslation]
     +xy: list[int]
     +station_number: str
     +transfers: list[list[LineTranslation]]
@@ -48,16 +40,10 @@ class StationTransition {
     +from_json_list()
 }
 
+Transition *-up-> "StationTranslation": 0..*
+StationTransition *-up-> "StationTranslation": 0..*
+StationTransition *-up--> LineTranslation: 0..*
 
-"CircularList[StationTranslation]" --up-> CircularList: T -> StationTranslation
-"CircularList[StationTranslation]" *-up-> StationTranslation
-"CircularList[TerminusTranslation]" --up-> CircularList: T -> TerminusTranslation
-"CircularList[TerminusTranslation]" *-up-> TerminusTranslation
-
-Transition *-up-> "CircularList[StationTranslation]"
-StationTransition *-up-> "CircularList[StationTranslation]"
-StationTransition *-up--> LineTranslation
-
-TerminusTransition *-up-> "CircularList[TerminusTranslation]"
+TerminusTransition *-up-> "TerminusTranslation": 0..*
 
 @enduml

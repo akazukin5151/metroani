@@ -211,7 +211,7 @@ def make_station_info(surface, settings_to_show, rect_width, bar_height,
         # Station names
         # TODO: font, fontsize, change language, option to rotate instead
         make_vertical_text(
-            setting.names.curr().name, surface,
+            setting.names[0].name, surface,
             first_xy=[x_pos, name_y_pos],
             spacing=70, fontfamily='Hiragino Sans GB W3', fontsize=70,
             fill=color

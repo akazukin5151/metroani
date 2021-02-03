@@ -25,7 +25,7 @@ constants = metroani.Constants(
 )
 
 # Station settings
-saginomiya_names = metroani.CircularList([
+saginomiya_names = [
     metroani.StationTranslation(
         name='鷺ノ宮',
         font='Hiragino Sans GB W3',
@@ -42,7 +42,7 @@ saginomiya_names = metroani.CircularList([
         exit_xy=[1400,320],
         scale_x=0.8,
     )
-])
+]
 saginomiya = metroani.StationTransition(
     names=saginomiya_names,
     xy=[1300, 220],
@@ -51,7 +51,7 @@ saginomiya = metroani.StationTransition(
     skip=False
 )
 
-toritsu_kasei_names = metroani.CircularList([
+toritsu_kasei_names = [
     metroani.StationTranslation(
         name='都立家政',
         font='Hiragino Sans GB W3',
@@ -68,7 +68,7 @@ toritsu_kasei_names = metroani.CircularList([
         exit_xy=[1400,320],
         scale_x=0.8,
     )
-])
+]
 toritsu_kasei = metroani.StationTransition(
     names=toritsu_kasei_names,
     xy=[1300, 220],
@@ -79,7 +79,7 @@ toritsu_kasei = metroani.StationTransition(
 station_settings = [saginomiya, toritsu_kasei]
 
 # Terminus station setting
-terminal = metroani.CircularList([
+terminal = [
     metroani.TerminusTranslation(
         name='ゆき',
         terminus='西武新宿',
@@ -106,11 +106,11 @@ terminal = metroani.CircularList([
         name_after_terminus=False,
         xy=[650, 70]
     )
-])
+]
 terminal_settings = metroani.Transition(terminal, [650, 70])
 
 # Train state settings
-next_ = metroani.CircularList([
+next_ = [
     metroani.StationTranslation(
         name='つぎは',
         font='Hiragino Sans GB W3',
@@ -127,14 +127,14 @@ next_ = metroani.CircularList([
         exit_xy=[960,330],
         scale_x=1
     )
-])
+]
 next_settings = metroani.Transition(next_, [300, 280])
 
 # Other possible states:
 # まもなく -> Arriving at
 # ただいま -> Now stopping at
 
-local = metroani.CircularList([
+local = [
     metroani.StationTranslation(
         name='各駅停車',
         font='Hiragino Sans GB W3',
@@ -151,7 +151,7 @@ local = metroani.CircularList([
         exit_xy=[960,100],
         scale_x=1
     )
-])
+]
 service_settings = metroani.Transition(local, [200, 70])
 
 clip = metroani.make_video(

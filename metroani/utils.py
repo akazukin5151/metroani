@@ -1,8 +1,15 @@
 import sys
+from itertools import chain
+
+from cytoolz import sliding_window
 
 
 def rgb(values: list[int]) -> list[float]:
     return [x/255 for x in values]
+
+
+def pairs(lst):
+    return sliding_window(2, chain(lst, [lst[0]]))
 
 
 def find_prev_unskipped_station(station_idx, settings):

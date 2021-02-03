@@ -1,8 +1,6 @@
 from __future__ import annotations
 from typing import NamedTuple
 
-from cytoolz import sliding_window
-
 from .utils import rgb
 
 
@@ -67,15 +65,13 @@ class Transition(NamedTuple):
     '''Transition-wide settings for state settings
     Contains circular-list of the text in every language
     '''
-    names: CircularList[StationTranslation]
+    names: list[StationTranslation]
     xy: list[int]
 
     @classmethod
     def from_json(cls, settings: 'json', section: str):
         return cls(
-            CircularList(
-                [StationTranslation(**ss) for ss in settings[section]['translations']]
-            ),
+            [StationTranslation(**ss) for ss in settings[section]['translations']],
             settings[section]['xy']
         )
 
@@ -85,7 +81,7 @@ class TerminusTransition(NamedTuple):
     Contains circular-list of the text in every language
     '''
     # 'Inherit' from Transition
-    names: CircularList[TerminusTranslation]
+    names: list[TerminusTranslation]
     xy: list[int]
     # New
     terminus_number: str
@@ -93,9 +89,7 @@ class TerminusTransition(NamedTuple):
     @classmethod
     def from_json(cls, settings: 'json', section: str):
         return cls(
-            CircularList(
-                [TerminusTranslation(**ss) for ss in settings[section]['translations']]
-            ),
+            [TerminusTranslation(**ss) for ss in settings[section]['translations']],
             settings[section]['xy'],
             settings[section]['terminus_number'],
         )
@@ -105,7 +99,7 @@ class StationTransition(NamedTuple):
     '''Transition-wide settings for station settings
     Contains circular-list of the text in every language
     '''
-    names: CircularList[StationTranslation]
+    names: list[StationTranslation]
     xy: list[int]
     station_number: str
     # Inner list is same line in different languages
@@ -117,9 +111,7 @@ class StationTransition(NamedTuple):
     def from_json_list(cls, settings: 'json', section: str):
         return [
             cls(
-                CircularList(
-                    [StationTranslation(**ss) for ss in station['translations']]
-                ),
+                [StationTranslation(**ss) for ss in station['translations']],
                 station['xy'],
                 station['station_number'],
                 [
@@ -130,28 +122,6 @@ class StationTransition(NamedTuple):
             )
             for station in settings[section]
         ]
-
-
-class CircularList(NamedTuple):  # CircularList[T]
-    '''Immutable Circular List'''
-    it: 'list[T]'
-    head: int = 0
-
-    def curr(self):
-        '''Returns the item that the head currently points to'''
-        return self.it[self.head]
-
-    def iter(self):
-        '''Returns a list of items 'clockwise'/'rightwards',
-        including the current item at the end
-        '''
-        right = self.it[self.head:]
-        left = self.it[:self.head]
-        return right + left + [self.curr()]
-
-    def pairs(self):
-        return sliding_window(2, self.iter())
-
 
 
 # Themes
