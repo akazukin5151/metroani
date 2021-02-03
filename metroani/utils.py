@@ -13,17 +13,19 @@ def pairs(lst):
 
 
 def find_prev_unskipped_station(station_idx, settings):
-    for i in range(1, station_idx + 1):
-        if settings[station_idx - i].skip:
-            i += 1
-        else:
-            return i
-    else:  # nobreak
-        # Warnings doesn't work, maybe hidden by moviepy?
-        print(
-            'The first station has skip=true. '
-            'Please make that station skip=false or add a preceding station '
-            'with skip=false.',
-            file=sys.stderr
-        )
-        return 1
+    '''
+    Number of stations between current station to the previous station
+    that is not skipped
+    '''
+    for idx, setting in enumerate(reversed(settings[:station_idx])):
+        if not setting.skip:
+            return idx + 1  # Number of stations, not the index
+
+    # Warnings doesn't work, maybe hidden by moviepy?
+    print(
+        'The first station has skip=true. '
+        'Please make that station skip=false or add a preceding station '
+        'with skip=false.',
+        file=sys.stderr
+    )
+    return 1
