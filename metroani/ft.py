@@ -16,51 +16,55 @@ from .graphics import (
 __all__ = ['make_frames']
 
 
-def thresholdify_inc(pivot, pivot_value):
-    '''
-    Given an increasing linear function of t, f(t, d), return a new
-    function g such that:
-    1) g(t, d) = pivot_value when t <= pivot
-    2) g(d, d) = f(d, d)
+def thresholdify_beginning(pivot, constant_value):
+    '''TLDR: turns a / function into _/
+    Given a function f(t, duration), return a new function g(t, d) which satisfies:
+    1) g(d, d) = f(d, d)             -- (if t == d, then g == f)
+    2) g(t, d) = if t <= pivot
+                 then: constant_value
+                 else: h(t)
+                     where h = a linear function of t from g(pivot, d) to g(d, d)
     '''
     def wrapper(f: 'func[T, T] -> T') -> 'func[T, T] -> T':
         def g(t, d):
             if t <= pivot:
-                return pivot_value
+                return constant_value
             x1 = pivot
             x2 = d
-            y1 = pivot_value
-            y2 = f(x2, d)
+            y1 = constant_value
+            y2 = f(d, d)
             gradient = (y2 - y1) / (x2 - x1)
             c = y2 - gradient*x2
-            return gradient*t + c
+            return gradient*t + c  # h(t)
         return g
     return wrapper
 
 
-def thresholdify_dec(pivot, pivot_value):
-    '''
-    Given a decreasing linear function of t, f(t, d), return a new
-    function g such that:
-    1) g(t, d) = pivot_value when t >= d - pivot
-    2) g(0, d) = f(0, d)
+def thresholdify_end(pivot, constant_value):
+    '''TLDR: turns a \ function into \_
+    Given a function f(t, duration), return a new function g(t, d) which satisfies:
+    1) g(0, d) = f(0, d)             -- (if t == d == 0, then g == f)
+    2) g(t, d) = if t >= d - pivot
+                 then: constant_value
+                 else: h(t)
+                     where h = a linear function of t from g(0, d) to g(d-pivot, d)
     '''
     def wrapper(f: 'func[T, T] -> T') -> 'func[T, T] -> T':
         def g(t, d):
             if t >= d - pivot:
-                return pivot_value
+                return constant_value
             x1 = 0
             x2 = d - pivot
-            y1 = f(x1, d)
-            y2 = pivot_value
+            y1 = f(0, d)
+            y2 = constant_value
             gradient = (y2 - y1) / (x2 - x1)
             c = y2 - gradient*x2
-            return gradient*t + c
+            return gradient*t + c  # h(t)
         return g
     return wrapper
 
 
-@thresholdify_inc(pivot=0.1, pivot_value=0.01)
+@thresholdify_beginning(pivot=0.1, constant_value=0.01)
 def show_text_scaler(t, duration):
     '''Scaling function for text-showing animation; Piecewise looks like _/
     Scale ranges from 0 to 1
@@ -68,7 +72,7 @@ def show_text_scaler(t, duration):
     return t / duration
 
 
-@thresholdify_dec(pivot=0.1, pivot_value=0.01)
+@thresholdify_end(pivot=0.1, constant_value=0.01)
 def hide_text_scaler(t, duration):
     '''Scaling function for text-hiding animation; Piecewise looks like \_
     Scale ranges from 0 to 1
@@ -76,13 +80,13 @@ def hide_text_scaler(t, duration):
     return 1 - (t / duration)
 
 
-@thresholdify_inc(pivot=0.1, pivot_value=0.01)
+@thresholdify_beginning(pivot=0.1, constant_value=0.01)
 def show_text_alpha(t, _):
     '''Piecewise function that looks like _/'''
     return 2 * t
 
 
-@thresholdify_dec(pivot=0.1, pivot_value=0.01)
+@thresholdify_end(pivot=0.1, constant_value=0.01)
 def hide_text_alpha(t, duration):
     '''Piecewise function that looks like \_'''
     return -2*t + 2*duration
