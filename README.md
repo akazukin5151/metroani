@@ -1,5 +1,7 @@
 # Metroani
 
+[![status](https://img.shields.io/badge/status-maintenance-green)](https://img.shields.io/badge/status-maintenance-green)
+
 Programatically create multilingual train announcement animations, Japan style.
 
 ![example](examples/example.gif)
