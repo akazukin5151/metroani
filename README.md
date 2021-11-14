@@ -36,7 +36,7 @@ The Tokyu Den-en-toshi Line using the Tokyu theme `examples/den_en_toshi.py`:
 
 # Installation
 
-1. `git clone https://github.com/twenty5151/metroani`
+1. `git clone https://github.com/akazukin5151/metroani`
 2. `cd metroani`
 3. `pip install -r requirements.txt`
 4. (Optional: install `gifsicle` to compress gifs)
